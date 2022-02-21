@@ -1,0 +1,14 @@
+.FoundedSong-container {
+  display: flex;
+  border: royalblue 1px solid;
+}
+
+.FoundedSong-song {
+  width: 90%;
+  align-self: center;
+}
+
+.FoundedSong-img {
+  /* height: 100px; */
+  width: 100px;
+}

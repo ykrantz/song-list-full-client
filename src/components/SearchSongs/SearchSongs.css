@@ -1,0 +1,16 @@
+.SearchSongs-container {
+  /* display: flex;
+  align-self: center;
+  align-items: center; */
+  /* margin-bottom: 20px; */
+  /* width: 100%; */
+}
+
+.SearchSongs-title {
+  /* font-weight: bold; */
+}
+
+.SearchSongs-input {
+  /* margin-left: 20px; */
+  /* background-color: rgb(230, 234, 236); */
+}

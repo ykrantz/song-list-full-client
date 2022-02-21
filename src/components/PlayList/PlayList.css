@@ -1,0 +1,46 @@
+.PlayList-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-left: 3%;
+
+  overflow: hidden;
+  overflow-y: scroll;
+  min-height: 80px;
+  max-height: 500px;
+
+  /* height: 300px; */
+  /* border: solid blue 1px; */
+}
+
+.PlayList-container-header {
+  display: flex;
+  background-color: bisque;
+}
+.PlayList-h1 {
+  float: left;
+  width: 25%;
+  align-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.PlayList-songs {
+  /* overflow: hidden;
+  height: 40%; */
+  /* overflow-y: scroll; */
+  /* height: 500; */
+}
+
+.PlayList-DeleteSweepIcon {
+  /* justify-content: center; */
+  align-self: center;
+  /* align-items: center; */
+  /* justify-items: center; */
+  /* align-content: center; */
+  margin-left: 35px;
+}
+/* .PlayList-list {
+  overflow: hidden;
+  height: 40%;
+} */

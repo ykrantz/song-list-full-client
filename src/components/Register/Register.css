@@ -1,0 +1,26 @@
+.Register-message {
+  color: red;
+}
+
+.Register-buttons {
+  /* align-items: center;
+    align-tracks: center; */
+  /* margin-left: 41%; */
+  display: flex;
+  justify-content: center;
+}
+
+.Register-Inputs {
+  align-items: center;
+  align-tracks: center;
+  margin-top: 50px;
+  display: block;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  /* flex-direction: column; */
+}
+
+.Register-header {
+  margin-top: 80px;
+}

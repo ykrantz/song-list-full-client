@@ -1,0 +1,24 @@
+.FoundedSongYouTube-container {
+  display: flex;
+  /* border: royalblue 1px solid; */
+}
+
+.FoundedSongYouTube-song {
+  width: 90%;
+  align-self: center;
+}
+
+.FoundedSongYouTube-img {
+  /* height: 100px; */
+  width: 100px;
+  /* margin-right: 10px; */
+}
+.FoundedSongYouTube-button {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.FoundedSongPlaylist-text {
+  /* margin-right: 10px; */
+  /* margin-left: 20px; */
+}
