@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack";
 import "./SearchSongs.css";
 import { useState } from "react/cjs/react.development";
 
-const SearchSongs = ({ findSongs }) => {
+const SearchSongs = ({ findSongsInPlayList }) => {
   const [inputSong, setInputSong] = useState("");
   const { searchSongsFromServer } = useContext(handleAddSongTolibrary);
 
@@ -29,7 +29,7 @@ const SearchSongs = ({ findSongs }) => {
               backgroundColor: "red",
             }}
             size="small"
-            centerRipple="true"
+            // centerRipple="true"
             // style={{="center"}}
           >
             X
@@ -39,7 +39,7 @@ const SearchSongs = ({ findSongs }) => {
             value={inputSong}
             onChange={(e) => {
               setInputSong(e.target.value);
-              findSongs(inputSong);
+              findSongsInPlayList(inputSong);
             }}
             placeholder="song name"
             label="enter song name"

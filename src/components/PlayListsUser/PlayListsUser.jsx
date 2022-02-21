@@ -11,28 +11,35 @@ const PlayListsUser = () => {
 
   const createPlayListInServer = async () => {
     if (playlistInput) {
-      const accessToken = JSON.parse(localStorage.accessToken);
-      const ans = await fetch("http://localhost:3008/playlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `bearer ${accessToken}`,
-        },
-        body: JSON.stringify({
-          playlistName: playlistInput,
-        }),
-      });
-      const data = await ans.json();
-      console.log(data);
-      if (ans.status === 200) {
-        console.log({ data }, ans.status);
-        console.log("plallist was updated in server");
+      if (playlistInput.length < 20) {
+        const accessToken = JSON.parse(localStorage.accessToken);
+        const ans = await fetch("http://localhost:3008/playlist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            playlistName: playlistInput,
+          }),
+        });
+        const data = await ans.json();
+        console.log(data);
+        if (ans.status === 200) {
+          console.log({ data }, ans.status);
+          console.log("plallist was updated in server");
+        } else {
+          changeMessage(data.message);
+        }
+        getPlaylistsUserFromServer();
+        setCurrentPlayList(playlistInput);
+        changeMessage(`new playlist was created: ${playlistInput}`);
+        return ans.status;
       } else {
-        changeMessage(data.message);
+        changeMessage(
+          `Playlist can be up to 15 letters. You entered : ${playlistInput.length} letters `
+        );
       }
-      getPlaylistsUserFromServer();
-      setCurrentPlayList(playlistInput);
-      return ans.status;
     } else {
       changeMessage("You didn't enter a playlist name");
     }
@@ -62,11 +69,11 @@ const PlayListsUser = () => {
                 backgroundColor: "red",
               }}
               size="small"
-              centerRipple="true"
+              // centerRipple={true}
               // style={{="center"}}
             >
               X
-            </Button>{" "}
+            </Button>
             <TextField
               value={playlistInput}
               onChange={(e) => setPlaylistInput(e.target.value)}

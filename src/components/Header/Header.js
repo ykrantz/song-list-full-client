@@ -12,8 +12,13 @@ import handleSerachSongPlayList from "../../context/handleSerachSongPlayList";
 const Header = ({ videoSrc }) => {
   const navigate = useNavigate();
 
-  const { setNewPlayList, autoplayFlag, setUserPlayLists, currentPlayList } =
-    useContext(handlePlaylist);
+  const {
+    setNewPlayList,
+    setCurrentPlayList,
+    autoplayFlag,
+    setUserPlayLists,
+    currentPlayList,
+  } = useContext(handlePlaylist);
   const { setSearchSongApiResults } = useContext(handleSearchSongApi);
   const { setSearchPlaylistResults } = useContext(handleSerachSongPlayList);
 
@@ -22,7 +27,7 @@ const Header = ({ videoSrc }) => {
     localStorage.accessToken = "";
     setNewPlayList([]);
     setUserPlayLists([]);
-    currentPlayList([]);
+    setCurrentPlayList([]);
     setSearchSongApiResults([]);
     setSearchPlaylistResults([]);
     navigate("/");

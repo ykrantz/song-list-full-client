@@ -10,6 +10,7 @@ import React, { useContext } from "react";
 import { useState } from "react/cjs/react.development";
 import handleUser from "../../context/handleUser";
 import BackToHome from "../BackToHome/BackToHome";
+import checkUserDetailsInput from "../../controllers/checkCorrectInput";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -17,12 +18,14 @@ const Register = () => {
   const navigate = useNavigate();
   const [message, setMessege] = useState("");
   const { currentUser, setCurrentUser } = useContext(handleUser);
+
   const registerInServer = async () => {
-    //  await   setUser({username:userName.current.value, password:password.current.value })
-    if (userName === "" || password === "") {
-      alert(`You didnt enter user name/password`);
+    const ErorUserDetails = checkUserDetailsInput(userName, password);
+    if (ErorUserDetails) {
+      setMessege(ErorUserDetails);
       return;
     }
+
     const ans = await fetch("http://localhost:3008/users/register", {
       method: "POST",
       headers: {

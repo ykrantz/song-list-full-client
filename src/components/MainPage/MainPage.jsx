@@ -8,7 +8,6 @@ import PlayListsUser from "../PlayListsUser/PlayListsUser";
 import SearchSongs from "../SearchSongs/SearchSongs";
 import FoundedSongsYouTube from "../FoundedSongsYouTube/FoundedSongsYouTube";
 import FoundedSongsPlaylist from "../FoundedSongsPlaylist/FoundedSongsPlaylist";
-import BackToHome from "../BackToHome/BackToHome.js";
 import handlePlaylist from "../../context/handlePlaylist";
 import handleSearchSongApi from "../../context/handleSearchSongApi";
 import handleSerachSongPlayList from "../../context/handleSerachSongPlayList";
@@ -21,7 +20,6 @@ const MainPage = () => {
   const [videoSrc, setVideoSrc] = useState(
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
   );
-
   const [masseage, setMasseage] = useState("");
   // feture fot futere: autoplay
   // const [autoplayFlag, setAutoplayFlag] = useState(true);
@@ -41,12 +39,10 @@ const MainPage = () => {
     const myPlayLists = await ans.json();
     if (ans.status === 200) {
       setUserPlayLists([...myPlayLists]);
+
       console.log("got play lists from server");
     } else {
       setUserPlayLists([]);
-      if (userPlayLists.length > 0) {
-        setCurrentPlayList(userPlayLists[0]);
-      }
     }
   };
 
@@ -54,6 +50,8 @@ const MainPage = () => {
     if (!localStorage.currentUser) {
       console.log("no user");
       setNewPlayList([]);
+      return;
+    } else if (!currentPlayList) {
       return;
     }
     const ans = await fetch(
@@ -82,13 +80,19 @@ const MainPage = () => {
     getPlaylistFromServer();
   }, [currentPlayList]);
 
+  useEffect(() => {
+    if (!currentPlayList && userPlayLists.length > 0) {
+      setCurrentPlayList(userPlayLists[0].playlistName);
+    }
+  }, [userPlayLists]);
+
   const getSongApiDitails = (songId) => {
     return searchSongApiResults.find((song) => song.id === songId);
   };
 
-  const findSongs = (songInput) => {
+  const findSongsInPlayList = (songInput) => {
     const songsFounded = newPlayList.filter((song) =>
-      song.title.includes(songInput)
+      song.title.toLowerCase().includes(songInput.toLowerCase())
     );
 
     setSearchPlaylistResults(songsFounded);
@@ -171,7 +175,7 @@ const MainPage = () => {
     setMasseage(str);
     setTimeout(() => {
       setMasseage("");
-    }, 2000);
+    }, 3000);
   };
 
   const updateSongResurce = (songId) => {
@@ -194,17 +198,26 @@ const MainPage = () => {
     if (searchValue === "") {
       changeMessage("You didn't enter search value");
       return;
+    } else if (searchValue.length > 20) {
+      changeMessage(
+        `Too long serach of ${searchValue.length} letters. please try less than 20 letters `
+      );
+      return;
     }
-    const res = await fetch(`http://localhost:3008/api/search/${searchValue}`);
-    const data = await res.json();
-    setSearchSongApiResults(data);
-    console.log({ data });
+    const ans = await fetch(`http://localhost:3008/api/search/${searchValue}`);
+    const data = await ans.json();
+    if (ans.status === 200) {
+      setSearchSongApiResults(data);
+      console.log({ data });
+    } else {
+      changeMessage(data.message);
+    }
   };
 
   return (
     <div className="MainPage">
       <div className="MainPage-container">
-        <BackToHome />
+        {/* <BackToHome /> */}
         <br></br>
 
         <handleSearchSongApi.Provider
@@ -249,7 +262,7 @@ const MainPage = () => {
                 )}
                 <SearchSongs
                   className="MainPage-SearchApi"
-                  findSongs={findSongs}
+                  findSongsInPlayList={findSongsInPlayList}
                 />
               </div>
               <div>
