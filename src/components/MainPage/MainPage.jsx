@@ -81,6 +81,7 @@ const MainPage = () => {
   }, [currentPlayList]);
 
   useEffect(() => {
+    console.log("setuser play");
     if (!currentPlayList && userPlayLists.length > 0) {
       setCurrentPlayList(userPlayLists[0].playlistName);
     }
@@ -117,6 +118,10 @@ const MainPage = () => {
   };
 
   const addSongToPlaylistServer = async (songId) => {
+    if (!currentPlayList) {
+      changeMessage("Please choose/create playlist before adding a song");
+      return;
+    }
     const songDitails = getSongApiDitails(songId);
 
     if (!newPlayList.find((song) => song.id === songId)) {

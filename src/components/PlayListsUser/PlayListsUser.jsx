@@ -28,13 +28,13 @@ const PlayListsUser = () => {
         if (ans.status === 200) {
           console.log({ data }, ans.status);
           console.log("plallist was updated in server");
+
+          getPlaylistsUserFromServer();
+          setCurrentPlayList(playlistInput);
+          changeMessage(`new playlist was created: ${playlistInput}`);
         } else {
           changeMessage(data.message);
         }
-        getPlaylistsUserFromServer();
-        setCurrentPlayList(playlistInput);
-        changeMessage(`new playlist was created: ${playlistInput}`);
-        return ans.status;
       } else {
         changeMessage(
           `Playlist can be up to 15 letters. You entered : ${playlistInput.length} letters `

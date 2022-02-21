@@ -39,9 +39,9 @@ const PlayList = ({ newPlayList, removeSong }) => {
     const data = await ans.json();
     console.log(data);
     if (ans.status === 200) {
-      await getPlaylistsUserFromServer();
-      setNewPlayList([]);
       setCurrentPlayList("");
+      await getPlaylistsUserFromServer();
+
       console.log("the play list was deleted from server. playlist was update");
       changeMessage("play list  wad deleted");
     }
