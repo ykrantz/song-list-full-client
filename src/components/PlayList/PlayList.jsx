@@ -7,6 +7,7 @@ import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import { useContext } from "react";
 import handlePlaylist from "../../context/handlePlaylist";
 import Playlists from "../Playlists/Playlists";
+import BASE_URL from "../../general/main_var";
 
 const PlayList = ({ newPlayList, removeSong }) => {
   const style = {
@@ -27,7 +28,7 @@ const PlayList = ({ newPlayList, removeSong }) => {
     const accessToken = JSON.parse(localStorage.accessToken);
     const user = JSON.parse(localStorage.currentUser);
     const ans = await fetch(
-      `http://localhost:3008/playlist/deleteplaylist/${playlistName}`,
+      `${BASE_URL}playlist/deleteplaylist/${playlistName}`,
       {
         method: "DELETE",
         headers: {

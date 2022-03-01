@@ -8,6 +8,7 @@ import Divider from "@mui/material/Divider";
 import BackToHome from "../BackToHome/BackToHome.js";
 
 import { useEffect } from "react/cjs/react.development";
+import BASE_URL from "../../general/main_var";
 const UserFavoriteList = () => {
   const [songUserFavoriteList, setSongUserFavoriteList] = useState([]);
   const [masseage, setMasseage] = useState("");
@@ -33,7 +34,7 @@ const UserFavoriteList = () => {
 
       return [];
     }
-    const ans = await fetch(`http://localhost:3008/songs/favorite/${songId}`, {
+    const ans = await fetch(`${BASE_URL}songs/favorite/${songId}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",

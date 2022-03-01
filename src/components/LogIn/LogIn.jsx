@@ -10,6 +10,7 @@ import React from "react";
 import { useState } from "react/cjs/react.development";
 import BackToHome from "../BackToHome/BackToHome";
 import checkUserDetailsInput from "../../controllers/checkCorrectInput";
+import BASE_URL from "../../general/main_var";
 
 const LogIn = () => {
   const [userName, setUserName] = useState("");
@@ -23,7 +24,7 @@ const LogIn = () => {
       setMessege(ErorUserDetails);
       return;
     }
-    const ans = await fetch("http://localhost:3008/users/login", {
+    const ans = await fetch(`${BASE_URL}users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

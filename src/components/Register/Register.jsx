@@ -11,6 +11,7 @@ import { useState } from "react/cjs/react.development";
 import handleUser from "../../context/handleUser";
 import BackToHome from "../BackToHome/BackToHome";
 import checkUserDetailsInput from "../../controllers/checkCorrectInput";
+import BASE_URL from "../../general/main_var";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -26,7 +27,7 @@ const Register = () => {
       return;
     }
 
-    const ans = await fetch("http://localhost:3008/users/register", {
+    const ans = await fetch(`${BASE_URL}users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
