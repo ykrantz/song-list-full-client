@@ -2,12 +2,11 @@ import "./UserFavoriteList.css";
 
 import React, { useState } from "react";
 import UserFavorite from "../UserFavorite/UserFavorite";
-import { useParams, useNavigate } from "react-router";
-import HomeIcon from "@mui/icons-material/Home";
+import { useParams } from "react-router";
 import Divider from "@mui/material/Divider";
 import BackToHome from "../BackToHome/BackToHome.js";
 
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
 import BASE_URL from "../../general/main_var";
 const UserFavoriteList = () => {
   const [songUserFavoriteList, setSongUserFavoriteList] = useState([]);
@@ -34,7 +33,7 @@ const UserFavoriteList = () => {
 
       return [];
     }
-    const ans = await fetch(`${BASE_URL}songs/favorite/${songId}`, {
+    const ans = await fetch(`${BASE_URL}/songs/favorite/${songId}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",

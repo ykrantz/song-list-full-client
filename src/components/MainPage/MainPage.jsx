@@ -30,8 +30,7 @@ const MainPage = () => {
       setUserPlayLists([]);
       return;
     }
-    const ans = await fetch(`${BASE_URL}playList/userplaylists`, {
-      // const ans = await fetch(`${BASE_URL}playList/userplaylists`, {
+    const ans = await fetch(`${BASE_URL}/playList/userplaylists`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -56,13 +55,16 @@ const MainPage = () => {
     } else if (!currentPlayList) {
       return;
     }
-    const ans = await fetch(`${BASE_URL}playList/playlist/${currentPlayList}`, {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `bearer ${JSON.parse(localStorage.accessToken)}`,
-      },
-    });
+    const ans = await fetch(
+      `${BASE_URL}/playList/playlist/${currentPlayList}`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${JSON.parse(localStorage.accessToken)}`,
+        },
+      }
+    );
     const myPlayList = await ans.json();
     if (ans.status === 200) {
       setNewPlayList([...myPlayList]);
@@ -125,7 +127,7 @@ const MainPage = () => {
 
     if (!newPlayList.find((song) => song.id === songId)) {
       const accessToken = JSON.parse(localStorage.accessToken);
-      const ans = await fetch("${BASE_URL}playlist", {
+      const ans = await fetch(`${BASE_URL}/playlist`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -156,7 +158,7 @@ const MainPage = () => {
 
   const deleteSongFromServer = async (songId) => {
     const accessToken = JSON.parse(localStorage.accessToken);
-    const ans = await fetch(`${BASE_URL}playlist/deletesong`, {
+    const ans = await fetch(`${BASE_URL}/playlist/deletesong`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -208,7 +210,7 @@ const MainPage = () => {
       );
       return;
     }
-    const ans = await fetch(`${BASE_URL}api/search/${searchValue}`);
+    const ans = await fetch(`${BASE_URL}/api/search/${searchValue}`);
     const data = await ans.json();
     if (ans.status === 200) {
       setSearchSongApiResults(data);

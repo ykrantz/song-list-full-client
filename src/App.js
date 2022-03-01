@@ -1,12 +1,12 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "plyr-react/dist/plyr.css";
 // import MainPage from "./components/MainPage/MainPage";
 import Register from "./components/Register/Register";
 import LogIn from "./components/LogIn/LogIn";
 import handleUser from "./context/handleUser";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 // import MainPage from "./components/MainPage/MainPage";
 import MainPage from "./components/MainPage/MainPage";
 import UserFavoriteList from "./components/UserFavoriteList/UserFavoriteList";

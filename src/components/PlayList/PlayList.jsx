@@ -28,7 +28,7 @@ const PlayList = ({ newPlayList, removeSong }) => {
     const accessToken = JSON.parse(localStorage.accessToken);
     const user = JSON.parse(localStorage.currentUser);
     const ans = await fetch(
-      `${BASE_URL}playlist/deleteplaylist/${playlistName}`,
+      `${BASE_URL}/playlist/deleteplaylist/${playlistName}`,
       {
         method: "DELETE",
         headers: {

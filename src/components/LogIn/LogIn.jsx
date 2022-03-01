@@ -6,8 +6,7 @@ import Button from "@mui/material/Button";
 
 import { useNavigate } from "react-router-dom";
 
-import React from "react";
-import { useState } from "react/cjs/react.development";
+import React, { useState } from "react";
 import BackToHome from "../BackToHome/BackToHome";
 import checkUserDetailsInput from "../../controllers/checkCorrectInput";
 import BASE_URL from "../../general/main_var";
@@ -24,7 +23,7 @@ const LogIn = () => {
       setMessege(ErorUserDetails);
       return;
     }
-    const ans = await fetch(`${BASE_URL}users/login`, {
+    const ans = await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

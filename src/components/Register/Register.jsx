@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
 import React, { useContext } from "react";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import handleUser from "../../context/handleUser";
 import BackToHome from "../BackToHome/BackToHome";
 import checkUserDetailsInput from "../../controllers/checkCorrectInput";
@@ -27,7 +27,7 @@ const Register = () => {
       return;
     }
 
-    const ans = await fetch(`${BASE_URL}users/register`, {
+    const ans = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
