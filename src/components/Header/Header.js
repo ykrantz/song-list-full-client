@@ -44,7 +44,8 @@ const Header = ({ videoSrc }) => {
       </div>
       <div className="Header-headContainer">
         <div className="Header-headContex">
-          <h1 className="Header-headMiddle">Song play list</h1>
+          <h1 className="Header-headMiddle">Video play list</h1>
+
           <div className="Header-buttons">
             <Stack spacing={2} direction="column">
               {!localStorage.currentUser && (
@@ -70,6 +71,7 @@ const Header = ({ videoSrc }) => {
               )}
             </Stack>
           </div>
+
           <div className="Header-title">
             {localStorage.currentUser && (
               <>

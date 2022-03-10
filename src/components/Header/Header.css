@@ -23,6 +23,8 @@
 .Header-headMiddle {
   float: left;
   width: 85%;
+  font-size: xx-large;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 .Header-buttons {
   margin-top: 30px;
@@ -48,6 +50,8 @@
   /* align-self: center; */
 }
 
+.Header-explain {
+}
 .Header-welcome {
   margin-left: 20%;
   align-self: center;

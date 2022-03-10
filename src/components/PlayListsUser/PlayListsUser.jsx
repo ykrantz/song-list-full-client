@@ -3,6 +3,7 @@ import handlePlaylist from "../../context/handlePlaylist";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
+import BASE_URL from "../../general/main_var";
 
 const PlayListsUser = () => {
   const [playlistInput, setPlaylistInput] = useState("");
@@ -13,7 +14,7 @@ const PlayListsUser = () => {
     if (playlistInput) {
       if (playlistInput.length < 20) {
         const accessToken = JSON.parse(localStorage.accessToken);
-        const ans = await fetch("http://localhost:3008/playlist", {
+        const ans = await fetch(`${BASE_URL}/playlist`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
