@@ -12,7 +12,7 @@ const FoundedSongsPlaylist = ({ searchSongResults }) => {
   return (
     <div className="FoundedSongsPlaylist-container">
       <List sx={style} component="nav" aria-label="mailbox folders">
-        <h3>Songs that was found in Playlist:</h3>
+        <h3>Videos that were found in Playlist:</h3>
         <Divider />
         {searchSongResults.map((song) => (
           <FoundedSongPlaylist key={song._id} song={song} />

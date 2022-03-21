@@ -12,7 +12,7 @@ const FoundedSongsYouTube = ({ foundedSongs, searchSongResults }) => {
   return (
     <div className="FoundedSongsYouTube-container">
       <List sx={style} component="nav" aria-label="mailbox folders">
-        <h3>Songs that was found in YouTube:</h3>
+        <h3>Video that were found in YouTube:</h3>
         <Divider />
 
         {searchSongResults.map((song) => (

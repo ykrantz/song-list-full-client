@@ -73,6 +73,7 @@ const Header = ({ videoSrc }) => {
           </div>
 
           <div className="Header-title">
+            {/* <h4>Watch vidoes without any advertisements</h4> */}
             {localStorage.currentUser && (
               <>
                 <p className="Header-welcome">welcome : </p>
