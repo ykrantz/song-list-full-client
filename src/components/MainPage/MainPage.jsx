@@ -83,7 +83,7 @@ const MainPage = () => {
   }, [currentPlayList]);
 
   useEffect(() => {
-    console.log("setuser play");
+    console.log("set user play");
     if (!currentPlayList && userPlayLists.length > 0) {
       setCurrentPlayList(userPlayLists[0].playlistName);
     }
@@ -100,9 +100,9 @@ const MainPage = () => {
 
     setSearchPlaylistResults(songsFounded);
     if (songsFounded.length === 0) {
-      changeMessage("No Song was founded");
+      changeMessage("No videos was founded in current playlist");
     } else {
-      changeMessage("Great. we founded songs for you");
+      changeMessage("Great. we founded videos for you in current playlist");
     }
   };
 
@@ -121,7 +121,7 @@ const MainPage = () => {
 
   const addSongToPlaylistServer = async (songId) => {
     if (!currentPlayList) {
-      changeMessage("Please choose/create playlist before adding a song");
+      changeMessage("Please choose/create playlist before adding a video");
       return;
     }
     const songDitails = getSongApiDitails(songId);
@@ -143,8 +143,8 @@ const MainPage = () => {
       console.log(data);
 
       if (ans.status === 200) {
-        console.log("song was updated in server");
-        changeMessage(`Song added succsesfully 
+        console.log("video was updated in server");
+        changeMessage(`video added succsesfully 
       (${songDitails.title.substring(0, 25)} )`);
         getPlaylistFromServer();
       } else {
@@ -152,7 +152,7 @@ const MainPage = () => {
       }
     } else {
       changeMessage(
-        `The song already exist in playlist
+        `The video already exist in playlist
       (${songDitails.title.substring(0, 25)})`
       );
     }
@@ -174,7 +174,7 @@ const MainPage = () => {
     const data = await ans.json();
     console.log(data);
     if (ans.status === 200) {
-      changeMessage("song was deleted from server");
+      changeMessage("video was deleted from server");
       await getPlaylistFromServer();
     }
   };
@@ -222,6 +222,7 @@ const MainPage = () => {
     if (ans.status === 200) {
       setSearchSongApiResults(data);
       console.log({ data });
+      changeMessage("Great. we founded videos for you from YouTube");
     } else {
       changeMessage(data.message);
     }
