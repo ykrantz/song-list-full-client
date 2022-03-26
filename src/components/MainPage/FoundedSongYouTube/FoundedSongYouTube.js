@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PlaySongButton from "../PlaySongButton/PlaySongButton";
 import FavoriteFindButton from "../FavoriteFindButton/FavoriteFindButton";
-import handlePlaylist from "../../context/handlePlaylist";
+import handlePlaylist from "../../../context/handlePlaylist";
 const FoundedSongYouTube = ({ song: { id, title, thumbnails } }) => {
   const { addSongToPlaylistServer, updateSongResurce } =
     useContext(handlePlaylist);

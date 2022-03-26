@@ -5,9 +5,9 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import { useContext } from "react";
-import handlePlaylist from "../../context/handlePlaylist";
+import handlePlaylist from "../../../context/handlePlaylist";
 import Playlists from "../Playlists/Playlists";
-import BASE_URL from "../../general/main_var";
+import BASE_URL from "../../../general/main_var";
 
 const PlayList = ({ newPlayList, removeSong }) => {
   const style = {

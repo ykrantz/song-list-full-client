@@ -1,13 +1,14 @@
 import "./MainPage.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import Header from "../Header/Header";
-import PlayList from "../PlayList/PlayList";
-import PlayListsUser from "../PlayListsUser/PlayListsUser";
+import Header from "./Header/Header";
 
-import SearchSongs from "../SearchSongs/SearchSongs";
-import FoundedSongsYouTube from "../FoundedSongsYouTube/FoundedSongsYouTube";
-import FoundedSongsPlaylist from "../FoundedSongsPlaylist/FoundedSongsPlaylist";
+import PlayList from "./PlayList/PlayList";
+import PlayListsUser from "./PlayListsUser/PlayListsUser";
+
+import SearchSongs from "./SearchSongs/SearchSongs";
+import FoundedSongsYouTube from "./FoundedSongsYouTube/FoundedSongsYouTube";
+import FoundedSongsPlaylist from "./FoundedSongsPlaylist/FoundedSongsPlaylist";
 import handlePlaylist from "../../context/handlePlaylist";
 import handleSearchSongApi from "../../context/handleSearchSongApi";
 import handleSerachSongPlayList from "../../context/handleSerachSongPlayList";

@@ -1,12 +1,12 @@
-import PlaySongButton from "../PlaySongButton/PlaySongButton";
 import { useContext } from "react";
 
-import RemoveSongButton from "../RemoveSongButton/RemoveSongButton";
 import "./FoundedSongPlaylist.css";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import handlePlaylist from "../../context/handlePlaylist";
+import handlePlaylist from "../../../context/handlePlaylist";
+import PlaySongButton from "../PlaySongButton/PlaySongButton";
+import RemoveSongButton from "../RemoveSongButton/RemoveSongButton";
 
 const FoundedSongPlaylist = ({ song: { id, title, img } }) => {
   const { updateSongResurce } = useContext(handlePlaylist);

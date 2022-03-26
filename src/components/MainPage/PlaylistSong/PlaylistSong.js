@@ -7,7 +7,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import FavoriteFindButton from "../FavoriteFindButton/FavoriteFindButton";
-import handlePlaylist from "../../context/handlePlaylist";
+import handlePlaylist from "../../../context/handlePlaylist";
 
 const PlaylistSong = ({ song: { _id, id, title, img } }) => {
   // console.log(song);

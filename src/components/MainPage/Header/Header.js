@@ -5,9 +5,9 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import handlePlaylist from "../../context/handlePlaylist";
-import handleSearchSongApi from "../../context/handleSearchSongApi";
-import handleSerachSongPlayList from "../../context/handleSerachSongPlayList";
+import handlePlaylist from "../../../context/handlePlaylist";
+import handleSearchSongApi from "../../../context/handleSearchSongApi";
+import handleSerachSongPlayList from "../../../context/handleSerachSongPlayList";
 
 const Header = ({ videoSrc }) => {
   const navigate = useNavigate();
