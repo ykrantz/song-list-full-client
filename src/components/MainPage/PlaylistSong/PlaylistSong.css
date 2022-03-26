@@ -1,6 +1,7 @@
 .PlaylistSong-container {
   display: flex;
-  border: 1px solid brown;
+  /* border: 1px solid brown; */
+  /* border: 1px solid brown; */
   width: 100%;
   /* height: 100px; */
 }

@@ -7,6 +7,8 @@ import Divider from "@mui/material/Divider";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PlaySongButton from "../PlaySongButton/PlaySongButton";
 import FavoriteFindButton from "../FavoriteFindButton/FavoriteFindButton";
+import Tooltip from "@mui/material/Tooltip";
+
 import handlePlaylist from "../../../context/handlePlaylist";
 const FoundedSongYouTube = ({ song: { id, title, thumbnails } }) => {
   const { addSongToPlaylistServer, updateSongResurce } =
@@ -27,12 +29,14 @@ const FoundedSongYouTube = ({ song: { id, title, thumbnails } }) => {
           onClick={() => updateSongResurce(id)}
         ></img>
         {localStorage.currentUser && (
-          <AddCircleIcon
-            fontSize="large"
-            onClick={() => {
-              addSongToPlaylistServer(id);
-            }}
-          />
+          <Tooltip title={"add song to playlist"}>
+            <AddCircleIcon
+              fontSize="large"
+              onClick={() => {
+                addSongToPlaylistServer(id);
+              }}
+            />
+          </Tooltip>
         )}
       </ListItem>
       <Divider />

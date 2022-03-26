@@ -1,5 +1,7 @@
 import "./BackToHome.css";
 import HomeIcon from "@mui/icons-material/Home";
+import Tooltip from "@mui/material/Tooltip";
+
 import { useNavigate } from "react-router";
 
 import React from "react";
@@ -9,11 +11,13 @@ const BackToHome = () => {
 
   return (
     <div>
-      <HomeIcon
-        fontSize="large"
-        onClick={() => navigate("/")}
-        className="BackToHome-home"
-      />
+      <Tooltip title={"go back to home page"}>
+        <HomeIcon
+          fontSize="large"
+          onClick={() => navigate("/")}
+          className="BackToHome-home"
+        />
+      </Tooltip>
     </div>
   );
 };

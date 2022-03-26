@@ -4,6 +4,8 @@ import "./PlayList.css";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
+import Tooltip from "@mui/material/Tooltip";
+
 import { useContext } from "react";
 import handlePlaylist from "../../../context/handlePlaylist";
 import Playlists from "../Playlists/Playlists";
@@ -55,11 +57,13 @@ const PlayList = ({ newPlayList, removeSong }) => {
           <h3 className="PlayList-h1">Play list: </h3>
           <Playlists />
           {currentPlayList && (
-            <DeleteSweepIcon
-              className="PlayList-DeleteSweepIcon"
-              fontSize="large"
-              onClick={() => deleteUserPlaylist(currentPlayList)}
-            />
+            <Tooltip title={"delete playlist"}>
+              <DeleteSweepIcon
+                className="PlayList-DeleteSweepIcon"
+                fontSize="large"
+                onClick={() => deleteUserPlaylist(currentPlayList)}
+              />
+            </Tooltip>
           )}
         </div>
         <Divider />

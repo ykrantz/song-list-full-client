@@ -7,10 +7,10 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
+import BackToHome from "../generalComponents/BackToHome/BackToHome";
 import checkUserDetailsInput from "../../controllers/checkCorrectInput";
 import BASE_URL from "../../general/main_var";
 import MessageNote from "../generalComponents/MessageNote/MessageNote";
-import BackToHome from "../generalComponents/BackToHome/BackToHome";
 
 const LogIn = () => {
   const [userName, setUserName] = useState("");
