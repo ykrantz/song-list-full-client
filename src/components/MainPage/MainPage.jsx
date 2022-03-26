@@ -13,6 +13,7 @@ import handlePlaylist from "../../context/handlePlaylist";
 import handleSearchSongApi from "../../context/handleSearchSongApi";
 import handleSerachSongPlayList from "../../context/handleSerachSongPlayList";
 import BASE_URL from "../../general/main_var";
+import MessageNote from "../generalComponents/MessageNote/MessageNote";
 const MainPage = () => {
   const [searchSongApiResults, setSearchSongApiResults] = useState([]);
   const [searchPlaylistResults, setSearchPlaylistResults] = useState([]);
@@ -22,7 +23,7 @@ const MainPage = () => {
   const [videoSrc, setVideoSrc] = useState(
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
   );
-  const [masseage, setMasseage] = useState("");
+  const [message, setMessage] = useState("");
   // feture fot futere: autoplay
   // const [autoplayFlag, setAutoplayFlag] = useState(true);
 
@@ -97,15 +98,23 @@ const MainPage = () => {
     const songsFounded = newPlayList.filter((song) =>
       song.title.toLowerCase().includes(songInput.toLowerCase())
     );
-
+    console.log({ songInput }, { songsFounded });
     setSearchPlaylistResults(songsFounded);
     if (songsFounded.length === 0) {
-      changeMessage("No videos was founded in current playlist");
+      changeMessage("No videos was founded in current playlist", true);
     } else {
       changeMessage("Great. we founded videos for you in current playlist");
     }
   };
 
+  const changeMessage = (str, isEror = false) => {
+    setMessage({ message: str, isEror: isEror });
+
+    // setMessage(str);
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
+  };
   const formolizeSongToServer = (songApiDitails) => {
     console.log(songApiDitails);
     return {
@@ -121,7 +130,10 @@ const MainPage = () => {
 
   const addSongToPlaylistServer = async (songId) => {
     if (!currentPlayList) {
-      changeMessage("Please choose/create playlist before adding a video");
+      changeMessage(
+        "Please choose/create playlist before adding a video",
+        true
+      );
       return;
     }
     const songDitails = getSongApiDitails(songId);
@@ -148,12 +160,13 @@ const MainPage = () => {
       (${songDitails.title.substring(0, 25)} )`);
         getPlaylistFromServer();
       } else {
-        changeMessage(ans.messege);
+        changeMessage(ans.messege, true);
       }
     } else {
       changeMessage(
         `The video already exist in playlist
-      (${songDitails.title.substring(0, 25)})`
+      (${songDitails.title.substring(0, 25)})`,
+        true
       );
     }
   };
@@ -179,12 +192,6 @@ const MainPage = () => {
     }
   };
 
-  const changeMessage = (str) => {
-    setMasseage(str);
-    setTimeout(() => {
-      setMasseage("");
-    }, 3000);
-  };
   const waitingMessage = () => {
     changeMessage("Waiting for results from server");
   };
@@ -211,7 +218,8 @@ const MainPage = () => {
       return;
     } else if (searchValue.length > 20) {
       changeMessage(
-        `Too long serach of ${searchValue.length} letters. please try less than 20 letters `
+        `Too long serach of ${searchValue.length} letters. please try less than 20 letters `,
+        true
       );
       return;
     }
@@ -224,7 +232,7 @@ const MainPage = () => {
       console.log({ data });
       changeMessage("Great. we founded videos for you from YouTube");
     } else {
-      changeMessage(data.message);
+      changeMessage(data.message, true);
     }
   };
 
@@ -281,8 +289,13 @@ const MainPage = () => {
               </div>
               <div>
                 <p className="MainPage-message">
-                  <b>Message:</b>
-                  <span className="MainPage-messageDetails"> {masseage}</span>
+                  <b>Message: </b>
+                  <MessageNote
+                    message={message?.message}
+                    isEror={message?.isEror}
+                  />
+
+                  {/* <span className="MainPage-messageDetails"> {masseage}</span> */}
                 </p>
               </div>
               <div className="MainPage-contex">

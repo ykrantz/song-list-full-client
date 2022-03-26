@@ -10,19 +10,20 @@ import React, { useState } from "react";
 import BackToHome from "../BackToHome/BackToHome";
 import checkUserDetailsInput from "../../controllers/checkCorrectInput";
 import BASE_URL from "../../general/main_var";
+import MessageNote from "../generalComponents/MessageNote/MessageNote";
 
 const LogIn = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessege] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const logInServer = async () => {
-    setMessege("Waiting for data from server");
+    setMessage({ message: "Waiting for data from server", isEror: false });
 
     const ErorUserDetails = checkUserDetailsInput(userName, password);
     if (ErorUserDetails) {
-      setMessege(ErorUserDetails);
+      setMessage(ErorUserDetails);
       return;
     }
     const ans = await fetch(`${BASE_URL}/users/login`, {
@@ -41,7 +42,7 @@ const LogIn = () => {
       navigate("/");
     } else {
       console.log(accessTokenRes);
-      setMessege(accessTokenRes.message);
+      setMessage({ message: accessTokenRes.message, isEror: true });
     }
   };
 
@@ -94,7 +95,8 @@ const LogIn = () => {
         </Stack>
       </div>
 
-      <p className="Login-message">{message}</p>
+      {/* <p className="Login-message">{message}</p> */}
+      <MessageNote message={message?.message} isEror={message?.isEror} />
     </div>
   );
 };

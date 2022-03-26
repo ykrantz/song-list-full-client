@@ -6,11 +6,21 @@ import Stack from "@mui/material/Stack";
 
 import "./SearchSongs.css";
 import { useState } from "react";
+import handleSerachSongPlayList from "../../../context/handleSerachSongPlayList";
 
 const SearchSongs = ({ findSongsInPlayList }) => {
   const [inputSong, setInputSong] = useState("");
   const { searchSongsFromServer } = useContext(handleAddSongTolibrary);
-
+  const { setSearchPlaylistResults } = useContext(handleSerachSongPlayList);
+  const searchSongsInPlaylist = (textToSearch) => {
+    setInputSong(textToSearch);
+    if (textToSearch === "") {
+      setSearchPlaylistResults([]);
+      return;
+    } else {
+      findSongsInPlayList(textToSearch);
+    }
+  };
   return (
     <div className="SearchSongs-container">
       <Stack spacing={4} direction="row" marginLeft={"100px"}>
@@ -38,8 +48,9 @@ const SearchSongs = ({ findSongsInPlayList }) => {
             className="SearchSongs-input"
             value={inputSong}
             onChange={(e) => {
-              setInputSong(e.target.value);
-              findSongsInPlayList(inputSong);
+              searchSongsInPlaylist(e.target.value);
+              // setInputSong(e.target.value);
+              // findSongsInPlayList(inputSong);
             }}
             placeholder="song name"
             label="enter song name"

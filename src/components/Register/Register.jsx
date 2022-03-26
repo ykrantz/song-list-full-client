@@ -12,19 +12,20 @@ import handleUser from "../../context/handleUser";
 import BackToHome from "../BackToHome/BackToHome";
 import checkUserDetailsInput from "../../controllers/checkCorrectInput";
 import BASE_URL from "../../general/main_var";
+import MessageNote from "../generalComponents/MessageNote/MessageNote";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [message, setMessege] = useState("");
+  const [message, setMessage] = useState("");
   const { currentUser, setCurrentUser } = useContext(handleUser);
 
   const registerInServer = async () => {
-    setMessege("Waiting for data from server");
+    setMessage({ message: "Waiting for data from server", isEror: false });
     const ErorUserDetails = checkUserDetailsInput(userName, password);
     if (ErorUserDetails) {
-      setMessege(ErorUserDetails);
+      setMessage(ErorUserDetails);
       return;
     }
 
@@ -46,10 +47,10 @@ const Register = () => {
       console.log(data.accessToken);
       navigate("/");
     } else {
-      setMessege(data.message);
+      setMessage({ message: data.message, isEror: true });
     }
   };
-
+  console.log(message);
   return (
     <div>
       <BackToHome />
@@ -98,7 +99,7 @@ const Register = () => {
           </Button>
         </Stack>
       </div>
-      <p className="Register-message">{message}</p>
+      <MessageNote message={message?.message} isEror={message?.isEror} />
     </div>
   );
 };
