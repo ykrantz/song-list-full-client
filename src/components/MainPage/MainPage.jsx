@@ -98,7 +98,6 @@ const MainPage = () => {
     const songsFounded = newPlayList.filter((song) =>
       song.title.toLowerCase().includes(songInput.toLowerCase())
     );
-    console.log({ songInput }, { songsFounded });
     setSearchPlaylistResults(songsFounded);
     if (songsFounded.length === 0) {
       changeMessage("No videos was founded in current playlist", true);
