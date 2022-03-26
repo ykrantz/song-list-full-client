@@ -1,7 +1,7 @@
 import "./UserFavoriteList.css";
 
 import React, { useState } from "react";
-import UserFavorite from "../UserFavorite/UserFavorite";
+import UserFavorite from "./UserFavorite/UserFavorite";
 import { useParams } from "react-router";
 import Divider from "@mui/material/Divider";
 import BackToHome from "../BackToHome/BackToHome.js";
