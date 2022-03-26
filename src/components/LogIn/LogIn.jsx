@@ -18,6 +18,8 @@ const LogIn = () => {
   const navigate = useNavigate();
 
   const logInServer = async () => {
+    setMessege("Waiting for data from server");
+
     const ErorUserDetails = checkUserDetailsInput(userName, password);
     if (ErorUserDetails) {
       setMessege(ErorUserDetails);

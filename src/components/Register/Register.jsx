@@ -21,6 +21,7 @@ const Register = () => {
   const { currentUser, setCurrentUser } = useContext(handleUser);
 
   const registerInServer = async () => {
+    setMessege("Waiting for data from server");
     const ErorUserDetails = checkUserDetailsInput(userName, password);
     if (ErorUserDetails) {
       setMessege(ErorUserDetails);

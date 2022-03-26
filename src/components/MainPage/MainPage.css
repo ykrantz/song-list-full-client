@@ -44,9 +44,13 @@
 }
 
 .MainPage-message {
-  text-align: left;
+  /* text-align: left; */
+  text-align: center;
   /* justify-content: flex-start; */
   /* margin-left: 10px; */
+}
+.MainPage-messageDetails {
+  color: red;
 }
 .MainPage-inputsAndButtonsContainer {
   display: flex;

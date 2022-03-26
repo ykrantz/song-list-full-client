@@ -141,10 +141,11 @@ const MainPage = () => {
       });
       const data = await ans.json();
       console.log(data);
+
       if (ans.status === 200) {
         console.log("song was updated in server");
         changeMessage(`Song added succsesfully 
-      (song name:${songDitails.title} )`);
+      (${songDitails.title.substring(0, 25)} )`);
         getPlaylistFromServer();
       } else {
         changeMessage(ans.messege);
@@ -152,7 +153,7 @@ const MainPage = () => {
     } else {
       changeMessage(
         `The song already exist in playlist
-      (song name: ${songDitails.title})`
+      (${songDitails.title.substring(0, 25)})`
       );
     }
   };
@@ -184,6 +185,9 @@ const MainPage = () => {
       setMasseage("");
     }, 3000);
   };
+  const waitingMessage = () => {
+    changeMessage("Waiting for results from server");
+  };
 
   const updateSongResurce = (songId) => {
     // setAutoplayFlag(true);
@@ -211,6 +215,8 @@ const MainPage = () => {
       );
       return;
     }
+
+    waitingMessage();
     const ans = await fetch(`${BASE_URL}/api/search/${searchValue}`);
     const data = await ans.json();
     if (ans.status === 200) {
@@ -273,8 +279,9 @@ const MainPage = () => {
                 />
               </div>
               <div>
-                <p>
-                  <b className="MainPage-message">Message:</b> {masseage}
+                <p className="MainPage-message">
+                  <b>Message:</b>
+                  <span className="MainPage-messageDetails"> {masseage}</span>
                 </p>
               </div>
               <div className="MainPage-contex">
