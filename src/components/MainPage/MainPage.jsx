@@ -222,7 +222,6 @@ const MainPage = () => {
     if (ans.status === 200) {
       setSearchSongApiResults(data);
       console.log({ data });
-      changeMessage(`Search results was update from server`);
     } else {
       changeMessage(data.message);
     }
