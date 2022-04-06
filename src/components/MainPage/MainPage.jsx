@@ -14,9 +14,10 @@ import handleSearchSongApi from "../../context/handleSearchSongApi";
 import handleSerachSongPlayList from "../../context/handleSerachSongPlayList";
 import BASE_URL from "../../general/main_var";
 import MessageNote from "../generalComponents/MessageNote/MessageNote";
+import Body from "./Body/Body";
 const MainPage = () => {
   const [searchSongApiResults, setSearchSongApiResults] = useState([]);
-  const [searchPlaylistResults, setSearchPlaylistResults] = useState([]);
+  // const [searchPlaylistResults, setSearchPlaylistResults] = useState([]);
   const [newPlayList, setNewPlayList] = useState([]);
   const [userPlayLists, setUserPlayLists] = useState([]);
   const [currentPlayList, setCurrentPlayList] = useState("");
@@ -94,17 +95,17 @@ const MainPage = () => {
     return searchSongApiResults.find((song) => song.id === songId);
   };
 
-  const findSongsInPlayList = (songInput) => {
-    const songsFounded = newPlayList.filter((song) =>
-      song.title.toLowerCase().includes(songInput.toLowerCase())
-    );
-    setSearchPlaylistResults(songsFounded);
-    if (songsFounded.length === 0) {
-      changeMessage("No videos was founded in current playlist", true);
-    } else {
-      changeMessage("Great. we founded videos for you in current playlist");
-    }
-  };
+  // const findSongsInPlayList = (songInput) => {
+  //   const songsFounded = newPlayList.filter((song) =>
+  //     song.title.toLowerCase().includes(songInput.toLowerCase())
+  //   );
+  //   setSearchPlaylistResults(songsFounded);
+  //   if (songsFounded.length === 0) {
+  //     changeMessage("No videos was founded in current playlist", true);
+  //   } else {
+  //     changeMessage("Great. we founded videos for you in current playlist");
+  //   }
+  // };
 
   const changeMessage = (str, isEror = false) => {
     setMessage({ message: str, isEror: isEror });
@@ -269,7 +270,8 @@ const MainPage = () => {
             <handleSerachSongPlayList.Provider
               value={{
                 changeMessage,
-                setSearchPlaylistResults,
+                // setSearchPlaylistResults,
+                newPlayList,
               }}
             >
               <Header
@@ -277,7 +279,8 @@ const MainPage = () => {
                 videoSrc={videoSrc}
                 setNewPlayList={setNewPlayList}
               />
-              <div className="MainPage-inputsAndButtonsContainer">
+              <Body />
+              {/* <div className="MainPage-inputsAndButtonsContainer">
                 {localStorage.currentUser && (
                   <PlayListsUser className="MainPage-CreatePlaylist" />
                 )}
@@ -285,7 +288,7 @@ const MainPage = () => {
                   className="MainPage-SearchApi"
                   findSongsInPlayList={findSongsInPlayList}
                 />
-              </div>
+              </div> */}
               <div>
                 <p className="MainPage-message">
                   <b>Message: </b>
@@ -297,7 +300,7 @@ const MainPage = () => {
                   {/* <span className="MainPage-messageDetails"> {masseage}</span> */}
                 </p>
               </div>
-              <div className="MainPage-contex">
+              {/* <div className="MainPage-contex">
                 {localStorage.currentUser && (
                   <PlayList
                     className="MainPage-PlayList"
@@ -314,7 +317,7 @@ const MainPage = () => {
                     searchSongResults={searchPlaylistResults}
                   />
                 )}
-              </div>
+              </div> */}
             </handleSerachSongPlayList.Provider>
           </handlePlaylist.Provider>
         </handleSearchSongApi.Provider>
