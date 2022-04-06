@@ -23,8 +23,6 @@ const Header = () => {
     setSearchPlaylistResults,
     videoSrc,
   } = useContext(handleMainStates);
-  // const { setSearchSongApiResults } = useContext(handleSearchSongApi);
-  // const { setSearchPlaylistResults } = useContext(handleSerachSongPlayList);
 
   const logOut = () => {
     localStorage.currentUser = "";

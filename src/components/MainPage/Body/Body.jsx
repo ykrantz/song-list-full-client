@@ -251,7 +251,7 @@ const Body = () => {
       <div className="Body-container">
         {/* <BackToHome /> */}
         <br></br>
-
+        {/* TODO: remove unneccery provider and use the mainState provider */}
         <handleSearchSongApi.Provider
           value={{
             changeMessage: changeMessage,
@@ -283,11 +283,6 @@ const Body = () => {
                 setSearchPlaylistResults,
               }}
             >
-              {/* <Header
-                className="Body-header"
-                videoSrc={videoSrc}
-                setNewPlayList={setNewPlayList}
-              /> */}
               <div className="Body-inputsAndButtonsContainer">
                 {localStorage.currentUser && (
                   <PlayListsUser className="Body-CreatePlaylist" />
@@ -304,8 +299,6 @@ const Body = () => {
                     message={message?.message}
                     isEror={message?.isEror}
                   />
-
-                  {/* <span className="Body-messageDetails"> {masseage}</span> */}
                 </p>
               </div>
               <div className="Body-contex">
