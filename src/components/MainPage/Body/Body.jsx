@@ -11,6 +11,8 @@ import FoundedSongsPlaylist from "../FoundedSongsPlaylist/FoundedSongsPlaylist";
 import handlePlaylist from "../../../context/handlePlaylist";
 import handleSearchSongApi from "../../../context/handleSearchSongApi";
 import handleSerachSongPlayList from "../../../context/handleSerachSongPlayList";
+import handleChangeMesage from "../../../context/handleChangeMesage";
+
 import BASE_URL from "../../../general/main_var";
 import MessageNote from "../../generalComponents/MessageNote/MessageNote";
 import handleMainStates from "../../../context/handleMainStates";
@@ -252,76 +254,77 @@ const Body = () => {
         {/* <BackToHome /> */}
         <br></br>
         {/* TODO: remove unneccery provider and use the mainState provider */}
-        <handleSearchSongApi.Provider
+
+        <handleChangeMesage.Provider
           value={{
-            changeMessage: changeMessage,
-            setSearchSongApiResults: setSearchSongApiResults,
-            searchSongsFromServer: searchSongsFromServer,
+            changeMessage,
           }}
         >
-          <handlePlaylist.Provider
+          <handleSearchSongApi.Provider
             value={{
-              addSongToPlaylistServer,
-              deleteSongFromServer,
-              newPlayList,
-              changeMessage,
-              updateSongResurce,
-              getPlaylistFromServer,
-              setNewPlayList,
-              setUserPlayLists,
-              userPlayLists,
-              getPlaylistsUserFromServer,
-              currentPlayList,
-              setCurrentPlayList,
-              // autoplayFlag,
-              // setAutoplayFlag,
+              changeMessage: changeMessage,
+
+              searchSongsFromServer: searchSongsFromServer,
             }}
           >
-            <handleSerachSongPlayList.Provider
+            <handlePlaylist.Provider
               value={{
+                addSongToPlaylistServer,
+                deleteSongFromServer,
                 changeMessage,
-                setSearchPlaylistResults,
+                updateSongResurce,
+                getPlaylistFromServer,
+                getPlaylistsUserFromServer,
+
+                // autoplayFlag,
+                // setAutoplayFlag,
               }}
             >
-              <div className="Body-inputsAndButtonsContainer">
-                {localStorage.currentUser && (
-                  <PlayListsUser className="Body-CreatePlaylist" />
-                )}
-                <SearchSongs
-                  className="Body-SearchApi"
-                  findSongsInPlayList={findSongsInPlayList}
-                />
-              </div>
-              <div>
-                <p className="Body-message">
-                  <b>Message: </b>
-                  <MessageNote
-                    message={message?.message}
-                    isEror={message?.isEror}
+              <handleSerachSongPlayList.Provider
+                value={{
+                  changeMessage,
+                }}
+              >
+                <div className="Body-inputsAndButtonsContainer">
+                  {localStorage.currentUser && (
+                    <PlayListsUser className="Body-CreatePlaylist" />
+                  )}
+                  <SearchSongs
+                    className="Body-SearchApi"
+                    findSongsInPlayList={findSongsInPlayList}
                   />
-                </p>
-              </div>
-              <div className="Body-contex">
-                {localStorage.currentUser && (
-                  <PlayList
-                    className="Body-PlayList"
-                    newPlayList={newPlayList}
+                </div>
+                <div>
+                  <p className="Body-message">
+                    <b>Message: </b>
+                    <MessageNote
+                      message={message?.message}
+                      isEror={message?.isEror}
+                    />
+                  </p>
+                </div>
+                <div className="Body-contex">
+                  {localStorage.currentUser && (
+                    <PlayList
+                      className="Body-PlayList"
+                      newPlayList={newPlayList}
+                    />
+                  )}
+                  <FoundedSongsYouTube
+                    className="Body-FoundedSongsYouTube"
+                    searchSongResults={searchSongApiResults}
                   />
-                )}
-                <FoundedSongsYouTube
-                  className="Body-FoundedSongsYouTube"
-                  searchSongResults={searchSongApiResults}
-                />
-                {localStorage.currentUser && (
-                  <FoundedSongsPlaylist
-                    className="Body-FoundedSongsPlaylist"
-                    searchSongResults={searchPlaylistResults}
-                  />
-                )}
-              </div>
-            </handleSerachSongPlayList.Provider>
-          </handlePlaylist.Provider>
-        </handleSearchSongApi.Provider>
+                  {localStorage.currentUser && (
+                    <FoundedSongsPlaylist
+                      className="Body-FoundedSongsPlaylist"
+                      searchSongResults={searchPlaylistResults}
+                    />
+                  )}
+                </div>
+              </handleSerachSongPlayList.Provider>
+            </handlePlaylist.Provider>
+          </handleSearchSongApi.Provider>
+        </handleChangeMesage.Provider>
         <div className="Body-footer"></div>
       </div>
     </div>

@@ -7,8 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import React, { useContext } from "react";
-import handlePlaylist from "../../../context/handlePlaylist";
-
+import handleMainStates from "../../../context/handleMainStates";
 const Playlists = () => {
   // const [age, setAge] = React.useState("");
 
@@ -20,7 +19,8 @@ const Playlists = () => {
     setCurrentPlayList(choosenPlaylist);
   };
   const { userPlayLists, currentPlayList, setCurrentPlayList } =
-    useContext(handlePlaylist);
+    useContext(handleMainStates);
+
   // console.log({ userPlayLists });
 
   return (

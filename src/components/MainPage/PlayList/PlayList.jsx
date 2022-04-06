@@ -10,21 +10,21 @@ import { useContext } from "react";
 import handlePlaylist from "../../../context/handlePlaylist";
 import Playlists from "../Playlists/Playlists";
 import BASE_URL from "../../../general/main_var";
+import handleMainStates from "../../../context/handleMainStates";
+import handleChangeMesage from "../../../context/handleChangeMesage";
 
-const PlayList = ({ newPlayList, removeSong }) => {
+const PlayList = ({ removeSong }) => {
   const style = {
     width: "100%",
     maxWidth: 500,
     bgcolor: "cornsilk",
   };
 
-  const {
-    getPlaylistsUserFromServer,
-    changeMessage,
-    currentPlayList,
-    setNewPlayList,
-    setCurrentPlayList,
-  } = useContext(handlePlaylist);
+  const { getPlaylistsUserFromServer } = useContext(handlePlaylist);
+  const { changeMessage } = useContext(handleChangeMesage);
+
+  const { newPlayList, currentPlayList, setCurrentPlayList } =
+    useContext(handleMainStates);
 
   const deleteUserPlaylist = async (playlistName) => {
     const accessToken = JSON.parse(localStorage.accessToken);
