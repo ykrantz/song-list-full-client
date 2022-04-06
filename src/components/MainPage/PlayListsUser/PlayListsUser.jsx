@@ -4,11 +4,14 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import BASE_URL from "../../../general/main_var";
+import handleMainStates from "../../../context/handleMainStates";
+import handleChangeMesage from "../../../context/handleChangeMesage";
 
 const PlayListsUser = () => {
   const [playlistInput, setPlaylistInput] = useState("");
-  const { getPlaylistsUserFromServer, setCurrentPlayList, changeMessage } =
-    useContext(handlePlaylist);
+  const { getPlaylistsUserFromServer } = useContext(handlePlaylist);
+  const { changeMessage } = useContext(handleChangeMesage);
+  const { setCurrentPlayList } = useContext(handleMainStates);
 
   const createPlayListInServer = async () => {
     if (playlistInput) {

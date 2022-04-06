@@ -6,12 +6,13 @@ import Stack from "@mui/material/Stack";
 
 import "./SearchSongs.css";
 import { useState } from "react";
-import handleSerachSongPlayList from "../../../context/handleSerachSongPlayList";
+import handleMainStates from "../../../context/handleMainStates";
 
 const SearchSongs = ({ findSongsInPlayList }) => {
   const [inputSong, setInputSong] = useState("");
   const { searchSongsFromServer } = useContext(handleAddSongTolibrary);
-  const { setSearchPlaylistResults } = useContext(handleSerachSongPlayList);
+  const { setSearchPlaylistResults } = useContext(handleMainStates);
+
   const searchSongsInPlaylist = (textToSearch) => {
     setInputSong(textToSearch);
     if (textToSearch === "") {

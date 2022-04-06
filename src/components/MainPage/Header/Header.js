@@ -8,19 +8,21 @@ import { useContext } from "react";
 import handlePlaylist from "../../../context/handlePlaylist";
 import handleSearchSongApi from "../../../context/handleSearchSongApi";
 import handleSerachSongPlayList from "../../../context/handleSerachSongPlayList";
+import handleMainStates from "../../../context/handleMainStates";
 
-const Header = ({ videoSrc }) => {
+const Header = () => {
   const navigate = useNavigate();
 
   const {
     setNewPlayList,
     setCurrentPlayList,
-    autoplayFlag,
+    // autoplayFlag,
+    // currentPlayList,
     setUserPlayLists,
-    currentPlayList,
-  } = useContext(handlePlaylist);
-  const { setSearchSongApiResults } = useContext(handleSearchSongApi);
-  const { setSearchPlaylistResults } = useContext(handleSerachSongPlayList);
+    setSearchSongApiResults,
+    setSearchPlaylistResults,
+    videoSrc,
+  } = useContext(handleMainStates);
 
   const logOut = () => {
     localStorage.currentUser = "";
