@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import handleAddSongTolibrary from "../../../context/handleSearchSongApi";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
@@ -7,19 +6,59 @@ import Stack from "@mui/material/Stack";
 import "./SearchSongs.css";
 import { useState } from "react";
 import handleMainStates from "../../../context/handleMainStates";
+import handleChangeMesage from "../../../context/handleChangeMesage";
+import BASE_URL from "../../../general/main_var";
 
-const SearchSongs = ({ findSongsInPlayList }) => {
+const SearchSongs = () => {
   const [inputSong, setInputSong] = useState("");
-  const { searchSongsFromServer } = useContext(handleAddSongTolibrary);
-  const { setSearchPlaylistResults } = useContext(handleMainStates);
+  // const { searchSongsFromServer } = useContext(handleAddSongTolibrary);
+  const { changeMessage, waitingMessage } = useContext(handleChangeMesage);
+  const { setSearchPlaylistResults, newPlayList, setSearchSongApiResults } =
+    useContext(handleMainStates);
 
-  const searchSongsInPlaylist = (textToSearch) => {
+  const findVideoInPlayList = (songInput) => {
+    const songsFounded = newPlayList.filter((song) =>
+      song.title.toLowerCase().includes(songInput.toLowerCase())
+    );
+    setSearchPlaylistResults(songsFounded);
+    if (songsFounded.length === 0) {
+      changeMessage("No videos was founded in current playlist", true);
+    } else {
+      changeMessage("Great. we founded videos for you in current playlist");
+    }
+  };
+
+  const searchSongsFromServer = async (searchValue) => {
+    if (searchValue === "") {
+      changeMessage("You didn't enter search value");
+      return;
+    } else if (searchValue.length > 20) {
+      changeMessage(
+        `Too long serach of ${searchValue.length} letters. please try less than 20 letters `,
+        true
+      );
+      return;
+    }
+
+    waitingMessage();
+    const ans = await fetch(`${BASE_URL}/api/search/${searchValue}`);
+    const data = await ans.json();
+    if (ans.status === 200) {
+      setSearchSongApiResults(data);
+      console.log({ data });
+      changeMessage("Great. we founded videos for you from YouTube");
+    } else {
+      changeMessage(data.message, true);
+    }
+  };
+
+  const searchVideosInPlaylist = (textToSearch) => {
     setInputSong(textToSearch);
     if (textToSearch === "") {
       setSearchPlaylistResults([]);
       return;
     } else {
-      findSongsInPlayList(textToSearch);
+      findVideoInPlayList(textToSearch);
     }
   };
   return (
@@ -49,12 +88,10 @@ const SearchSongs = ({ findSongsInPlayList }) => {
             className="SearchSongs-input"
             value={inputSong}
             onChange={(e) => {
-              searchSongsInPlaylist(e.target.value);
-              // setInputSong(e.target.value);
-              // findSongsInPlayList(inputSong);
+              searchVideosInPlaylist(e.target.value);
             }}
-            placeholder="song name"
-            label="enter song name"
+            placeholder="video name"
+            label="enter video name"
             variant="outlined"
           />
         </Stack>
@@ -65,7 +102,7 @@ const SearchSongs = ({ findSongsInPlayList }) => {
           }}
           variant="contained"
         >
-          Search Song From YouTube
+          Search video
         </Button>
       </Stack>
     </div>

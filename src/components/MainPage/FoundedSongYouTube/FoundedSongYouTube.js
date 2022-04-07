@@ -10,9 +10,75 @@ import FavoriteFindButton from "../FavoriteFindButton/FavoriteFindButton";
 import Tooltip from "@mui/material/Tooltip";
 
 import handlePlaylist from "../../../context/handlePlaylist";
+import handleChangeMesage from "../../../context/handleChangeMesage";
+import handleMainStates from "../../../context/handleMainStates";
+import BASE_URL from "../../../general/main_var";
 const FoundedSongYouTube = ({ song: { id, title, thumbnails } }) => {
-  const { addSongToPlaylistServer, updateSongResurce } =
+  const { updateSongResurce, getPlaylistFromServer } =
     useContext(handlePlaylist);
+  const { changeMessage } = useContext(handleChangeMesage);
+  const { currentPlayList, newPlayList, searchSongApiResults } =
+    useContext(handleMainStates);
+
+  const formolizeSongToServer = (songApiDitails) => {
+    console.log(songApiDitails);
+    return {
+      title: songApiDitails.title,
+      artist: songApiDitails?.author.name,
+      src: songApiDitails.url,
+      user: JSON.parse(localStorage.currentUser),
+      provider: "youTube",
+      img: songApiDitails.thumbnails[0].url,
+      id: songApiDitails.id,
+    };
+  };
+
+  const getSongApiDitails = (songId) => {
+    return searchSongApiResults.find((song) => song.id === songId);
+  };
+
+  const addSongToPlaylistServer = async (songId) => {
+    if (!currentPlayList) {
+      changeMessage(
+        "Please choose/create playlist before adding a video",
+        true
+      );
+      return;
+    }
+    const songDitails = getSongApiDitails(songId);
+
+    if (!newPlayList.find((song) => song.id === songId)) {
+      const accessToken = JSON.parse(localStorage.accessToken);
+      const ans = await fetch(`${BASE_URL}/playlist`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          playlistName: currentPlayList,
+          song: formolizeSongToServer(songDitails),
+        }),
+      });
+      const data = await ans.json();
+      console.log(data);
+
+      if (ans.status === 200) {
+        console.log("video was updated in server");
+        changeMessage(`video added succsesfully 
+        (${songDitails.title.substring(0, 25)} )`);
+        getPlaylistFromServer();
+      } else {
+        changeMessage(ans.messege, true);
+      }
+    } else {
+      changeMessage(
+        `The video already exist in playlist
+        (${songDitails.title.substring(0, 25)})`,
+        true
+      );
+    }
+  };
 
   return (
     <div className="FoundedSongYouTube-container">
