@@ -131,9 +131,7 @@ const Body = () => {
   return (
     <div className="Body">
       <div className="Body-container">
-        {/* <BackToHome /> */}
         <br></br>
-        {/* TODO: remove unneccery provider and use the mainState provider */}
 
         <handleChangeMesage.Provider
           value={{
