@@ -3,7 +3,7 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import "./FoundedSongsYouTube.css";
 
-const FoundedSongsYouTube = ({ foundedSongs, searchSongResults }) => {
+const FoundedSongsYouTube = ({ searchSongResults }) => {
   const style = {
     width: "100%",
     maxWidth: 600,
