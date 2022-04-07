@@ -1,8 +1,10 @@
 .FoundedSongsPlaylist-container {
   display: flex;
   flex-direction: column;
-  margin-left: 2%;
   width: 30%;
+  background-color: rgb(24, 206, 197);
+  margin-left: 2%;
+ 
 
   overflow: hidden;
   overflow-y: scroll;

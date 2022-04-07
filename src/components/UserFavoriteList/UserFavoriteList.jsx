@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import BackToHome from "../generalComponents/BackToHome/BackToHome";
 
 import { useEffect } from "react";
-import BASE_URL from "../../general/main_var";
+import { BASE_URL } from "../../general/main_var";
 const UserFavoriteList = () => {
   const [songUserFavoriteList, setSongUserFavoriteList] = useState([]);
   const [masseage, setMasseage] = useState("");

@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import handlePlaylist from "../../../context/handlePlaylist";
+import handlePlaylist from "../../../../context/handlePlaylist";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
-import BASE_URL from "../../../general/main_var";
-import handleMainStates from "../../../context/handleMainStates";
-import handleChangeMesage from "../../../context/handleChangeMesage";
+import { BASE_URL } from "../../../../general/main_var";
+import handleMainStates from "../../../../context/handleMainStates";
+import handleChangeMesage from "../../../../context/handleChangeMesage";
 
 const PlayListsUser = () => {
   const [playlistInput, setPlaylistInput] = useState("");

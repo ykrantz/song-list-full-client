@@ -2,16 +2,16 @@ import "./Body.css";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 
-import PlayList from "../PlayList/PlayList";
-import PlayListsUser from "../PlayListsUser/PlayListsUser";
+import PlayList from "./PlayList/PlayList";
+import PlayListsUser from "./PlayListsUser/PlayListsUser";
 
-import SearchSongs from "../SearchSongs/SearchSongs";
-import FoundedSongsYouTube from "../FoundedSongsYouTube/FoundedSongsYouTube";
-import FoundedSongsPlaylist from "../FoundedSongsPlaylist/FoundedSongsPlaylist";
+import SearchSongs from "./SearchSongs/SearchSongs";
+import FoundedSongsYouTube from "./FoundedSongsYouTube/FoundedSongsYouTube";
+import FoundedSongsPlaylist from "./FoundedSongsPlaylist/FoundedSongsPlaylist";
 import handlePlaylist from "../../../context/handlePlaylist";
 import handleChangeMesage from "../../../context/handleChangeMesage";
 
-import BASE_URL from "../../../general/main_var";
+import { BASE_URL } from "../../../general/main_var";
 import MessageNote from "../../generalComponents/MessageNote/MessageNote";
 import handleMainStates from "../../../context/handleMainStates";
 const Body = () => {
@@ -28,6 +28,7 @@ const Body = () => {
   } = useContext(handleMainStates);
 
   const [message, setMessage] = useState("");
+
   // feture fot futere: autoplay
   // const [autoplayFlag, setAutoplayFlag] = useState(true);
   useEffect(() => {

@@ -5,9 +5,9 @@ import Stack from "@mui/material/Stack";
 
 import "./SearchSongs.css";
 import { useState } from "react";
-import handleMainStates from "../../../context/handleMainStates";
-import handleChangeMesage from "../../../context/handleChangeMesage";
-import BASE_URL from "../../../general/main_var";
+import handleMainStates from "../../../../context/handleMainStates";
+import handleChangeMesage from "../../../../context/handleChangeMesage";
+import { BASE_URL } from "../../../../general/main_var";
 
 const SearchSongs = () => {
   const [inputSong, setInputSong] = useState("");

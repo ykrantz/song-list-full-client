@@ -9,10 +9,11 @@ import PlaySongButton from "../PlaySongButton/PlaySongButton";
 import FavoriteFindButton from "../FavoriteFindButton/FavoriteFindButton";
 import Tooltip from "@mui/material/Tooltip";
 
-import handlePlaylist from "../../../context/handlePlaylist";
-import handleChangeMesage from "../../../context/handleChangeMesage";
-import handleMainStates from "../../../context/handleMainStates";
-import BASE_URL from "../../../general/main_var";
+import handlePlaylist from "../../../../context/handlePlaylist";
+import handleChangeMesage from "../../../../context/handleChangeMesage";
+import handleMainStates from "../../../../context/handleMainStates";
+import { BASE_URL } from "../../../../general/main_var";
+import { TITLE_LENGTH } from "../../../../general/main_var";
 const FoundedSongYouTube = ({ song: { id, title, thumbnails } }) => {
   const { updateSongResurce, getPlaylistFromServer } =
     useContext(handlePlaylist);
@@ -85,7 +86,7 @@ const FoundedSongYouTube = ({ song: { id, title, thumbnails } }) => {
       <ListItem button>
         <PlaySongButton id={id} className="FoundedSongYouTube-button" />
         <ListItemText
-          primary={`${title}`}
+          primary={`${title.substring(0, TITLE_LENGTH)}`}
           onClick={() => updateSongResurce(id)}
         />
         <FavoriteFindButton songId={id} />

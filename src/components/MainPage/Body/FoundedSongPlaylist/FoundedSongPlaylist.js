@@ -4,10 +4,11 @@ import "./FoundedSongPlaylist.css";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import handlePlaylist from "../../../context/handlePlaylist";
+import handlePlaylist from "../../../../context/handlePlaylist";
 import PlaySongButton from "../PlaySongButton/PlaySongButton";
 import RemoveSongButton from "../RemoveSongButton/RemoveSongButton";
-import handleMainStates from "../../../context/handleMainStates";
+import handleMainStates from "../../../../context/handleMainStates";
+import { TITLE_LENGTH } from "../../../../general/main_var";
 
 const FoundedSongPlaylist = ({ song: { id, _id, title, img } }) => {
   const { updateSongResurce } = useContext(handlePlaylist);
@@ -28,7 +29,7 @@ const FoundedSongPlaylist = ({ song: { id, _id, title, img } }) => {
 
         <ListItemText
           className="FoundedSongPlaylist-text"
-          primary={`${title}`}
+          primary={`${title.substring(0, TITLE_LENGTH)}`}
           onClick={() => updateSongResurce(id)}
         />
 

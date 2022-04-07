@@ -7,11 +7,11 @@ import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import Tooltip from "@mui/material/Tooltip";
 
 import { useContext } from "react";
-import handlePlaylist from "../../../context/handlePlaylist";
+import handlePlaylist from "../../../../context/handlePlaylist";
 import Playlists from "../Playlists/Playlists";
-import BASE_URL from "../../../general/main_var";
-import handleMainStates from "../../../context/handleMainStates";
-import handleChangeMesage from "../../../context/handleChangeMesage";
+import { BASE_URL } from "../../../../general/main_var";
+import handleMainStates from "../../../../context/handleMainStates";
+import handleChangeMesage from "../../../../context/handleChangeMesage";
 
 const PlayList = ({ removeSong }) => {
   const style = {

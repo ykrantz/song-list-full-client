@@ -3,10 +3,10 @@ import { useContext } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Tooltip from "@mui/material/Tooltip";
 
-import handleMainStates from "../../../context/handleMainStates";
-import BASE_URL from "../../../general/main_var";
-import handlePlaylist from "../../../context/handlePlaylist";
-import handleChangeMesage from "../../../context/handleChangeMesage";
+import handleMainStates from "../../../../context/handleMainStates";
+import { BASE_URL } from "../../../../general/main_var";
+import handlePlaylist from "../../../../context/handlePlaylist";
+import handleChangeMesage from "../../../../context/handleChangeMesage";
 
 const RemoveSongButton = ({ _id }) => {
   const { currentPlayList } = useContext(handleMainStates);

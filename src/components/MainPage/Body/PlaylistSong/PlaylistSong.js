@@ -7,7 +7,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import FavoriteFindButton from "../FavoriteFindButton/FavoriteFindButton";
-import handlePlaylist from "../../../context/handlePlaylist";
+import handlePlaylist from "../../../../context/handlePlaylist";
+import { TITLE_LENGTH } from "../../../../general/main_var";
 
 const PlaylistSong = ({ song: { _id, id, title, img } }) => {
   // console.log(song);
@@ -19,7 +20,7 @@ const PlaylistSong = ({ song: { _id, id, title, img } }) => {
         <PlaySongButton id={id} />
         <ListItemText
           onClick={() => updateSongResurce(id)}
-          primary={`${title}`}
+          primary={`${title.substring(0, TITLE_LENGTH)}`}
         />
         <FavoriteFindButton songId={id} />
         <img
