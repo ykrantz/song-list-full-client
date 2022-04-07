@@ -35,6 +35,7 @@ const FoundedSongPlaylist = ({ song: { id, _id, title, img } }) => {
 
         <img
           src={img}
+          alt="song_image"
           className="FoundedSongPlaylist-img"
           onClick={() => updateSongResurce(id)}
         ></img>

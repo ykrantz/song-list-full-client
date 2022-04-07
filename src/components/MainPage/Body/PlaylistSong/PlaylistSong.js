@@ -25,6 +25,7 @@ const PlaylistSong = ({ song: { _id, id, title, img } }) => {
         <FavoriteFindButton songId={id} />
         <img
           src={img}
+          alt="song_image"
           className="PlaylistSong-img"
           onClick={() => updateSongResurce(id)}
         ></img>

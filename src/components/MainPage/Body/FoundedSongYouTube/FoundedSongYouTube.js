@@ -92,6 +92,7 @@ const FoundedSongYouTube = ({ song: { id, title, thumbnails } }) => {
         <FavoriteFindButton songId={id} />
         <img
           src={thumbnails[0].url}
+          alt="song_image"
           className="FoundedSongYouTube-img"
           onClick={() => updateSongResurce(id)}
         ></img>
