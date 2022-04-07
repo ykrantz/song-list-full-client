@@ -11,7 +11,7 @@ import { useState } from "react";
 import handleUser from "../../context/handleUser";
 import BackToHome from "../generalComponents/BackToHome/BackToHome";
 import checkUserDetailsInput from "../../controllers/checkCorrectInput";
-import BASE_URL from "../../general/main_var";
+import { BASE_URL } from "../../general/main_var";
 import MessageNote from "../generalComponents/MessageNote/MessageNote";
 
 const Register = () => {

@@ -4,12 +4,24 @@ import "./FoundedSongPlaylist.css";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import handlePlaylist from "../../../context/handlePlaylist";
+import handlePlaylist from "../../../../context/handlePlaylist";
 import PlaySongButton from "../PlaySongButton/PlaySongButton";
 import RemoveSongButton from "../RemoveSongButton/RemoveSongButton";
+import handleMainStates from "../../../../context/handleMainStates";
+import { TITLE_LENGTH } from "../../../../general/main_var";
 
-const FoundedSongPlaylist = ({ song: { id, title, img } }) => {
+const FoundedSongPlaylist = ({ song: { id, _id, title, img } }) => {
   const { updateSongResurce } = useContext(handlePlaylist);
+  const { searchPlaylistResults, setSearchPlaylistResults } =
+    useContext(handleMainStates);
+
+  const deleteVideoFromPlaylistResults = (_id) => {
+    const newFoundedVideo = searchPlaylistResults.filter(
+      (video) => video._id !== _id
+    );
+    setSearchPlaylistResults(newFoundedVideo);
+  };
+
   return (
     <div className="FoundedSongPlaylist-container">
       <ListItem button>
@@ -17,18 +29,18 @@ const FoundedSongPlaylist = ({ song: { id, title, img } }) => {
 
         <ListItemText
           className="FoundedSongPlaylist-text"
-          primary={`${title}`}
+          primary={`${title.substring(0, TITLE_LENGTH)}`}
           onClick={() => updateSongResurce(id)}
         />
-        {/* TODO: */}
-        {/* featue in futere . to check if other users liked also the sond */}
-        {/* <FavoriteFindButton songId={id} /> */}
+
         <img
           src={img}
           className="FoundedSongPlaylist-img"
           onClick={() => updateSongResurce(id)}
         ></img>
-        <RemoveSongButton id={id} />
+        <div onClick={() => deleteVideoFromPlaylistResults(_id)}>
+          <RemoveSongButton _id={_id} />
+        </div>
       </ListItem>
       <Divider />
     </div>

@@ -2,26 +2,22 @@ import "./Body.css";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 
-import PlayList from "../PlayList/PlayList";
-import PlayListsUser from "../PlayListsUser/PlayListsUser";
+import PlayList from "./PlayList/PlayList";
+import PlayListsUser from "./PlayListsUser/PlayListsUser";
 
-import SearchSongs from "../SearchSongs/SearchSongs";
-import FoundedSongsYouTube from "../FoundedSongsYouTube/FoundedSongsYouTube";
-import FoundedSongsPlaylist from "../FoundedSongsPlaylist/FoundedSongsPlaylist";
+import SearchSongs from "./SearchSongs/SearchSongs";
+import FoundedSongsYouTube from "./FoundedSongsYouTube/FoundedSongsYouTube";
+import FoundedSongsPlaylist from "./FoundedSongsPlaylist/FoundedSongsPlaylist";
 import handlePlaylist from "../../../context/handlePlaylist";
-import handleSearchSongApi from "../../../context/handleSearchSongApi";
-import handleSerachSongPlayList from "../../../context/handleSerachSongPlayList";
 import handleChangeMesage from "../../../context/handleChangeMesage";
 
-import BASE_URL from "../../../general/main_var";
+import { BASE_URL } from "../../../general/main_var";
 import MessageNote from "../../generalComponents/MessageNote/MessageNote";
 import handleMainStates from "../../../context/handleMainStates";
 const Body = () => {
   const {
     searchSongApiResults,
-    setSearchSongApiResults,
     searchPlaylistResults,
-    setSearchPlaylistResults,
     newPlayList,
     setNewPlayList,
     userPlayLists,
@@ -32,6 +28,7 @@ const Body = () => {
   } = useContext(handleMainStates);
 
   const [message, setMessage] = useState("");
+
   // feture fot futere: autoplay
   // const [autoplayFlag, setAutoplayFlag] = useState(true);
   useEffect(() => {
@@ -113,94 +110,6 @@ const Body = () => {
     }
   };
 
-  const addSongToPlaylistServer = async (songId) => {
-    if (!currentPlayList) {
-      changeMessage(
-        "Please choose/create playlist before adding a video",
-        true
-      );
-      return;
-    }
-    const songDitails = getSongApiDitails(songId);
-
-    if (!newPlayList.find((song) => song.id === songId)) {
-      const accessToken = JSON.parse(localStorage.accessToken);
-      const ans = await fetch(`${BASE_URL}/playlist`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `bearer ${accessToken}`,
-        },
-        body: JSON.stringify({
-          playlistName: currentPlayList,
-          song: formolizeSongToServer(songDitails),
-        }),
-      });
-      const data = await ans.json();
-      console.log(data);
-
-      if (ans.status === 200) {
-        console.log("video was updated in server");
-        changeMessage(`video added succsesfully 
-      (${songDitails.title.substring(0, 25)} )`);
-        getPlaylistFromServer();
-      } else {
-        changeMessage(ans.messege, true);
-      }
-    } else {
-      changeMessage(
-        `The video already exist in playlist
-      (${songDitails.title.substring(0, 25)})`,
-        true
-      );
-    }
-  };
-
-  const deleteSongFromServer = async (songId) => {
-    const accessToken = JSON.parse(localStorage.accessToken);
-    const ans = await fetch(`${BASE_URL}/playlist/deletesong`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `bearer ${accessToken}`,
-      },
-      body: JSON.stringify({
-        playlistName: currentPlayList,
-        songId: songId,
-      }),
-    });
-    const data = await ans.json();
-    console.log(data);
-    if (ans.status === 200) {
-      changeMessage("video was deleted from server");
-      await getPlaylistFromServer();
-    }
-  };
-
-  const searchSongsFromServer = async (searchValue) => {
-    if (searchValue === "") {
-      changeMessage("You didn't enter search value");
-      return;
-    } else if (searchValue.length > 20) {
-      changeMessage(
-        `Too long serach of ${searchValue.length} letters. please try less than 20 letters `,
-        true
-      );
-      return;
-    }
-
-    waitingMessage();
-    const ans = await fetch(`${BASE_URL}/api/search/${searchValue}`);
-    const data = await ans.json();
-    if (ans.status === 200) {
-      setSearchSongApiResults(data);
-      console.log({ data });
-      changeMessage("Great. we founded videos for you from YouTube");
-    } else {
-      changeMessage(data.message, true);
-    }
-  };
-
   // general functions in page:
 
   const updateSongResurce = (songId) => {
@@ -219,35 +128,6 @@ const Body = () => {
     localStorage.youtubeId = JSON.stringify(songId);
   };
 
-  const formolizeSongToServer = (songApiDitails) => {
-    console.log(songApiDitails);
-    return {
-      title: songApiDitails.title,
-      artist: songApiDitails?.author.name,
-      src: songApiDitails.url,
-      user: JSON.parse(localStorage.currentUser),
-      provider: "youTube",
-      img: songApiDitails.thumbnails[0].url,
-      id: songApiDitails.id,
-    };
-  };
-
-  const getSongApiDitails = (songId) => {
-    return searchSongApiResults.find((song) => song.id === songId);
-  };
-
-  const findSongsInPlayList = (songInput) => {
-    const songsFounded = newPlayList.filter((song) =>
-      song.title.toLowerCase().includes(songInput.toLowerCase())
-    );
-    setSearchPlaylistResults(songsFounded);
-    if (songsFounded.length === 0) {
-      changeMessage("No videos was founded in current playlist", true);
-    } else {
-      changeMessage("Great. we founded videos for you in current playlist");
-    }
-  };
-
   return (
     <div className="Body">
       <div className="Body-container">
@@ -258,72 +138,49 @@ const Body = () => {
         <handleChangeMesage.Provider
           value={{
             changeMessage,
+            waitingMessage,
           }}
         >
-          <handleSearchSongApi.Provider
+          <handlePlaylist.Provider
             value={{
-              changeMessage: changeMessage,
-
-              searchSongsFromServer: searchSongsFromServer,
+              updateSongResurce,
+              getPlaylistFromServer,
+              getPlaylistsUserFromServer,
+              // autoplayFlag,
+              // setAutoplayFlag,
             }}
           >
-            <handlePlaylist.Provider
-              value={{
-                addSongToPlaylistServer,
-                deleteSongFromServer,
-                changeMessage,
-                updateSongResurce,
-                getPlaylistFromServer,
-                getPlaylistsUserFromServer,
-
-                // autoplayFlag,
-                // setAutoplayFlag,
-              }}
-            >
-              <handleSerachSongPlayList.Provider
-                value={{
-                  changeMessage,
-                }}
-              >
-                <div className="Body-inputsAndButtonsContainer">
-                  {localStorage.currentUser && (
-                    <PlayListsUser className="Body-CreatePlaylist" />
-                  )}
-                  <SearchSongs
-                    className="Body-SearchApi"
-                    findSongsInPlayList={findSongsInPlayList}
-                  />
-                </div>
-                <div>
-                  <p className="Body-message">
-                    <b>Message: </b>
-                    <MessageNote
-                      message={message?.message}
-                      isEror={message?.isEror}
-                    />
-                  </p>
-                </div>
-                <div className="Body-contex">
-                  {localStorage.currentUser && (
-                    <PlayList
-                      className="Body-PlayList"
-                      newPlayList={newPlayList}
-                    />
-                  )}
-                  <FoundedSongsYouTube
-                    className="Body-FoundedSongsYouTube"
-                    searchSongResults={searchSongApiResults}
-                  />
-                  {localStorage.currentUser && (
-                    <FoundedSongsPlaylist
-                      className="Body-FoundedSongsPlaylist"
-                      searchSongResults={searchPlaylistResults}
-                    />
-                  )}
-                </div>
-              </handleSerachSongPlayList.Provider>
-            </handlePlaylist.Provider>
-          </handleSearchSongApi.Provider>
+            <div className="Body-inputsAndButtonsContainer">
+              {localStorage.currentUser && (
+                <PlayListsUser className="Body-CreatePlaylist" />
+              )}
+              <SearchSongs className="Body-SearchApi" />
+            </div>
+            <div>
+              <p className="Body-message">
+                <b>Message: </b>
+                <MessageNote
+                  message={message?.message}
+                  isEror={message?.isEror}
+                />
+              </p>
+            </div>
+            <div className="Body-contex">
+              {localStorage.currentUser && (
+                <PlayList className="Body-PlayList" newPlayList={newPlayList} />
+              )}
+              <FoundedSongsYouTube
+                className="Body-FoundedSongsYouTube"
+                searchSongResults={searchSongApiResults}
+              />
+              {localStorage.currentUser && (
+                <FoundedSongsPlaylist
+                  className="Body-FoundedSongsPlaylist"
+                  searchSongResults={searchPlaylistResults}
+                />
+              )}
+            </div>
+          </handlePlaylist.Provider>
         </handleChangeMesage.Provider>
         <div className="Body-footer"></div>
       </div>
