@@ -1,0 +1,29 @@
+.FoundedVideosYouTube-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  background-color: rgb(122, 240, 122);
+  /* margin-left: 3%; */
+margin-top: 3vh;
+  /* overflow: hidden;
+  overflow-y: scroll;
+  min-height: 80px;
+  max-height: 500px; */
+  /* border: 1px solid red; */
+}
+
+.FoundedVideosYouTube-searchVideoResults{
+
+  overflow: hidden;
+  overflow-y: scroll;
+  min-height: 80px;
+  max-height: 45vh;
+
+}
+
+@media only screen and (min-width: 600px) {
+  .FoundedVideosYouTube-container {
+    float: right;
+    width: 35vw;
+  }
+}

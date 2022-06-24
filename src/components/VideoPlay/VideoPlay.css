@@ -1,0 +1,31 @@
+
+.VideoPlay-container{
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    margin-bottom: 3vh;
+    
+}
+.VideoPlay-Plyr{
+    /* height: 10px; */
+    width: 80vw;
+    height: 20vh;
+  
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    margin-left: 10vw;
+    margin-top: 3vh;
+    
+    
+}
+
+@media only screen and (min-width: 600px) {
+    .VideoPlay-Plyr{
+        width: 50vw;
+        float: left;
+        /* height: 10px; */
+     
+
+    }
+}

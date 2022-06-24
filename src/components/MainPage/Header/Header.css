@@ -1,8 +1,6 @@
-.Header-container {
+/* .Header-container {
   display: flex;
-  /* width: 600px; */
-  /* flex-direction: column; */
-  /* margin-top: 20px; */
+  
   margin-bottom: 20px;
 }
 .Header-Plyr {
@@ -16,8 +14,7 @@
   flex-direction: column;
 }
 .Header-headContex {
-  /* display: flex; */
-  /* flex-direction: column; */
+  
   width: 100%;
 }
 .Header-headMiddle {
@@ -40,15 +37,12 @@
 
 .Header-contex {
   display: flex;
-  /* flex-direction: row; */
 }
 
 .Header-title {
-  /* float: left; */
   width: 100%;
   display: flex;
-  /* flex-direction: column; */
-  /* align-self: center; */
+
 }
 
 .Header-explain {
@@ -66,8 +60,7 @@
   align-self: center;
 }
 .Header-links {
-  /* width: 10%; */
   float: right;
   display: flex;
   flex-direction: column;
-}
+} */

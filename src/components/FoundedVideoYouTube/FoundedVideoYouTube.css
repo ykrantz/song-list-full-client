@@ -1,0 +1,39 @@
+.FoundedVideoYouTube-container {
+  display: flex;
+  /* border: royalblue 1px solid; */
+}
+
+.FoundedVideoYouTube-Video {
+  width: 90%;
+  align-self: center;
+}
+
+.FoundedVideoYouTube-img {
+  /* height: 100px; */
+  width: 20vw;
+  /* margin-right: 10px; */
+}
+.FoundedVideoYouTube-button {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.FoundedVideoPlaylist-text {
+  /* margin-right: 10px; */
+  /* margin-left: 20px; */
+  /* font-size: 1px; */
+}
+.FoundedVideoYouTube-text{
+  width: 80vw;
+  padding-left: 2vh;
+  padding-right: 2vh;
+}
+
+@media only screen and (min-width: 600px) {
+  .FoundedVideoYouTube-img {
+    /* height: 100px; */
+    width: 8vw;
+    /* margin-right: 10px; */
+  }
+}
+

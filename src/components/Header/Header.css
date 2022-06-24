@@ -1,0 +1,31 @@
+.Header-container{
+
+  margin-bottom: 3vh;
+  display: flex;
+}
+
+.Header-titlePlaylist {
+    float: left;
+    /* width: 60%; */
+    font-size: 3vh;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    margin-left: 10vw;
+  }
+  .Header-logOutDiv{
+    float: right;
+    text-align:right;
+    margin-right: 3vw;
+ /* width: 30vw; */
+
+  }
+  .Header-currentUser{
+    margin-bottom: 2vh;
+    
+  }
+
+  @media only screen and (min-width: 600px) {    
+    .Header-titlePlaylist {
+          font-size: 7vh;
+    }
+
+  }
