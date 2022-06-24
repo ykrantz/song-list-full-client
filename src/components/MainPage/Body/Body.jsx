@@ -164,9 +164,9 @@ const Body = () => {
               </p>
             </div>
             <div className="Body-contex">
-              {localStorage.currentUser && (
+              {/* {localStorage.currentUser && (
                 <PlayList className="Body-PlayList" newPlayList={newPlayList} />
-              )}
+              )} */}
               <FoundedSongsYouTube
                 className="Body-FoundedSongsYouTube"
                 searchSongResults={searchSongApiResults}

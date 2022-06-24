@@ -1,12 +1,12 @@
 import "./SearchVideoPageBody.css";
 
 import React, { useContext, useEffect, useState } from "react";
-import VideoPlay from "../VideoPlay/VideoPlay";
-import SearchVideo from "../SearchVideo/SearchVideo";
+import VideoPlay from "../generalComponents/VideoPlay/VideoPlay";
+import SearchVideo from "./SearchVideo/SearchVideo";
 import HandleSearchVideoApi from "../../context/handleSearchVideoApi";
-import FoundedVideosYouTube from "../FoundedVideosYouTube/FoundedVideosYouTube";
+import FoundedVideosYouTube from "./FoundedVideosYouTube/FoundedVideosYouTube";
 import MessageNote from "../generalComponents/MessageNote/MessageNote";
-import UserPlayLists from "../UserPlayLists/UserPlayLists";
+import UserPlayLists from "../generalComponents/UserPlayLists/UserPlayLists";
 import handleUser from "../../context/handleUser";
 
 const SearchPageBody = () => {

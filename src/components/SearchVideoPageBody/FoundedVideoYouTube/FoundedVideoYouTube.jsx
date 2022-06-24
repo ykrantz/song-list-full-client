@@ -5,14 +5,14 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import FavoriteFindButton from "../MainPage/Body/FavoriteFindButton/FavoriteFindButton";
+import FavoriteFindButton from "../../MainPage/Body/FavoriteFindButton/FavoriteFindButton";
 import Tooltip from "@mui/material/Tooltip";
 
-import { BASE_URL } from "../../general/main_var";
-import { TITLE_LENGTH } from "../../general/main_var";
-import handleSearchVideoApi from "../../context/handleSearchVideoApi";
-import PlayVideoButton from "../PlayVideoButton/PlayVideoButton";
-import handleUser from "../../context/handleUser";
+import { BASE_URL } from "../../../general/main_var";
+import { TITLE_LENGTH } from "../../../general/main_var";
+import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
+import PlayVideoButton from "../../generalComponents/PlayVideoButton/PlayVideoButton";
+import handleUser from "../../../context/handleUser";
 
 const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
   // const { updateVideoResurce, getPlaylistFromServer } =

@@ -3,11 +3,11 @@ import "./Header.css";
 import React from "react";
 import { Button, Stack } from "@mui/material";
 import { useNavigate } from "react-router";
-import ButtonSized from "../ButtonSized/ButtonSized";
+import ButtonSized from "../../components/generalComponents/ButtonSized/ButtonSized";
 import { useContext } from "react";
 import handleUser from "../../context/handleUser";
 // import HamburgerMenu from "../HamburgerIcon/HamburgerMenu";
-import MenuDrower from "../MenuDrower/MenuDrower";
+import MenuDrower from "./MenuDrower/MenuDrower";
 
 const Header = () => {
   const { currentUser, setCurrentUser } = useContext(handleUser);

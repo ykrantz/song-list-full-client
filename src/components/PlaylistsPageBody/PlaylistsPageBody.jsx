@@ -1,14 +1,18 @@
 import "./PlaylistsPageBody.css";
 
-import React, { useState } from "react";
-import VideoPlay from "../VideoPlay/VideoPlay";
+import React, { useEffect, useState } from "react";
+import VideoPlay from "../generalComponents/VideoPlay/VideoPlay";
 import { BASE_URL } from "../../general/main_var";
+import HandlePlaylists from "../../context/handlePlaylists";
+import Playlist from "./Playlist/Playlist";
+import UserPlayLists from "../generalComponents/UserPlayLists/UserPlayLists";
+// import Playlist from "../Playlist/Playlist";
 
 const PlaylistsPageBody = () => {
   const [message, setMessage] = useState("");
-  const [userPlayLists, setUserPlayLists] = useState("");
-  const [currentPlayList, setCurrentPlayList] = useState();
-  const [playlistVideos, setPlaylistVideos] = useState();
+  const [userPlaylists, setUserPlaylists] = useState("");
+  const [currentPlaylist, setCurrentPlaylist] = useState("");
+  const [playlist, setPlaylist] = useState([]);
 
   const [videoSrc, setVideoSrc] = useState(
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
@@ -17,6 +21,21 @@ const PlaylistsPageBody = () => {
   // useEffect(()=>{
   //   setCurrentUser()
   // })
+
+  useEffect(() => {
+    getPlaylistsUserFromServer();
+  }, []);
+
+  useEffect(() => {
+    getPlaylistFromServer();
+  }, [currentPlaylist]);
+
+  useEffect(() => {
+    console.log("set user play");
+    if (!currentPlaylist && userPlaylists.length > 0) {
+      setCurrentPlaylist(userPlaylists[0].playlistName);
+    }
+  }, [userPlaylists]);
 
   const changeMessage = (str, isEror = false) => {
     setMessage({ message: str, isEror: isEror });
@@ -50,7 +69,7 @@ const PlaylistsPageBody = () => {
 
   const getPlaylistsUserFromServer = async () => {
     if (!localStorage.currentUser) {
-      setUserPlayLists([]);
+      setUserPlaylists([]);
       return;
     }
     const ans = await fetch(`${BASE_URL}/playList/userplaylists`, {
@@ -62,24 +81,25 @@ const PlaylistsPageBody = () => {
     });
     const myPlayLists = await ans.json();
     if (ans.status === 200) {
-      setUserPlayLists([...myPlayLists]);
+      setUserPlaylists([...myPlayLists]);
 
       console.log("got play lists from server");
     } else {
-      setUserPlayLists([]);
+      setUserPlaylists([]);
     }
   };
 
   const getPlaylistFromServer = async () => {
+    console.log(27);
     if (!localStorage.currentUser) {
       console.log("no user");
-      setPlaylistVideos([]);
+      setPlaylist([]);
       return;
-    } else if (!currentPlayList) {
+    } else if (!currentPlaylist) {
       return;
     }
     const ans = await fetch(
-      `${BASE_URL}/playList/playlist/${currentPlayList}`,
+      `${BASE_URL}/playList/playlist/${currentPlaylist}`,
       {
         method: "get",
         headers: {
@@ -88,19 +108,50 @@ const PlaylistsPageBody = () => {
         },
       }
     );
-    const myPlayList = await ans.json();
+    const myPlaylist = await ans.json();
+    console.log({ myPlaylist }, 26);
     if (ans.status === 200) {
-      setPlaylistVideos([...myPlayList]);
+      console.log({ myPlayList: myPlaylist }, 24);
+      setPlaylist([...myPlaylist]);
     } else {
-      setPlaylistVideos([]);
+      setPlaylist([]);
     }
   };
 
   // general functions in page:
+  console.log(
+    { playlist },
+    { userPlaylists },
+    { currentPlaylist },
+    // { currentUser },
+    25
+  );
 
   return (
-    <div>
-      <VideoPlay videoSrc={videoSrc}></VideoPlay>
+    <div className="PlaylistsPageBody-container">
+      <div className="PlaylistsPageBody-videoPlay">
+        <VideoPlay videoSrc={videoSrc}></VideoPlay>
+      </div>
+      <HandlePlaylists.Provider
+        value={{
+          message,
+          setMessage,
+          userPlaylists,
+          setUserPlaylists,
+          currentPlaylist,
+          setCurrentPlaylist,
+          playlist,
+          setPlaylist,
+          getPlaylistFromServer,
+          updateVideoResurce,
+        }}
+      >
+        <div className="PlaylistsPageBody-Playlist">
+          {/* <Playlists /> */}
+          <UserPlayLists />
+          <Playlist />
+        </div>
+      </HandlePlaylists.Provider>
     </div>
   );
 };

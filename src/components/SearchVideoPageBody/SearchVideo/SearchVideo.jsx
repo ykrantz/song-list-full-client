@@ -7,8 +7,8 @@ import Stack from "@mui/material/Stack";
 
 import { useState } from "react";
 // import handleChangeMesage from "../../../../context/handleChangeMesage";
-import { BASE_URL } from "../../general/main_var";
-import handleSearchVideoApi from "../../context/handleSearchVideoApi";
+import { BASE_URL } from "../../../general/main_var";
+import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
 
 const SearchVideo = () => {
   const [inputVideo, setInputVideo] = useState("");

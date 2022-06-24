@@ -7,16 +7,18 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import React, { useContext, useEffect, useState } from "react";
-import getUserPlaylistsFromServer from "../../controllers/getUserPlaylistsFromServer";
-import handleSearchVideoApi from "../../context/handleSearchVideoApi";
+import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFromServer";
+// import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
+import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 const UserPlayLists = ({ type }) => {
   // const [age, setAge] = React.useState("");
 
-  // const handleChange = (event) => {
+  // const handleChange = (event) y=> {
   //   setAge(event.target.value);
   // };
-  const { currentPlayList, setCurrentPlayList } =
-    useContext(handleSearchVideoApi);
+  const { currentPlayList, setCurrentPlayList } = useContext(
+    handlePlaylistMainState
+  );
   const [userPlayLists, setUserPlayLists] = useState([]);
   console.log(15);
   useEffect(async () => {

@@ -13,9 +13,12 @@ import UserFavoriteList from "./components/UserFavoriteList/UserFavoriteList";
 import SearchVideoPage from "./pages/SearchVideoPage/SearchVideoPage";
 import PlaylistsPage from "./pages/PlaylistsPage/PlaylistsPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import HandlePlaylistMainState from "./context/handlePlaylistMainState";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
+  const [currentPlayList, setCurrentPlayList] = useState("");
+
   return (
     <div className="App">
       <handleUser.Provider
@@ -24,25 +27,34 @@ function App() {
           setCurrentUser,
         }}
       >
-        <Router>
-          <Routes>
-            {/* <Route exact path="/" element={<LogIn />} /> */}
-            {/* <Route exact path="/" element={<p>dd</p>} /> */}
-            {/* <Route exact path="/" element={<MainPage />} /> */}
-            <Route exact path="/" element={<SearchVideoPage />} />
-            {/* <Route exact path="/" element={<Register />} /> */}
-            <Route exact path="/playlists" element={<PlaylistsPage />} />
-            <Route exact path="/search" element={<SearchVideoPage />} />
-            <Route exact path="/about" element={<AboutPage />} />
-            <Route exact path="/register" element={<Register />} />
-            <Route exact path="/login" element={<LogIn />} />
-            <Route
-              exact
-              path="/songfavorites/:songid"
-              element={<UserFavoriteList />}
-            />
-          </Routes>
-        </Router>
+        <HandlePlaylistMainState.Provider
+          value={{
+            currentPlayList,
+            setCurrentPlayList,
+          }}
+        >
+          <Router>
+            <Routes>
+              {/* <Route exact path="/" element={<LogIn />} /> */}
+              {/* <Route exact path="/" element={<p>dd</p>} /> */}
+              {/* <Route exact path="/" element={<MainPage />} /> */}
+
+              <Route exact path="/" element={<SearchVideoPage />} />
+              {/* <Route exact path="/" element={<Register />} /> */}
+              <Route exact path="/playlists" element={<PlaylistsPage />} />
+              <Route exact path="/search" element={<SearchVideoPage />} />
+
+              <Route exact path="/about" element={<AboutPage />} />
+              <Route exact path="/register" element={<Register />} />
+              <Route exact path="/login" element={<LogIn />} />
+              <Route
+                exact
+                path="/songfavorites/:songid"
+                element={<UserFavoriteList />}
+              />
+            </Routes>
+          </Router>
+        </HandlePlaylistMainState.Provider>
       </handleUser.Provider>
       {/* <MainPage></MainPage> */}
     </div>

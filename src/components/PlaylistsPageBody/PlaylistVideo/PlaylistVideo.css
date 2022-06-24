@@ -1,0 +1,17 @@
+.PlaylistVideo-container {
+  display: flex;
+  /* border: 1px solid brown; */
+  /* border: 1px solid brown; */
+  width: 100%;
+  /* height: 100px; */
+}
+
+.PlaylistVideo-song {
+  width: 90%;
+  align-self: center;
+}
+
+.PlaylistVideo-img {
+  /* height: 100px; */
+  width: 100px;
+}
