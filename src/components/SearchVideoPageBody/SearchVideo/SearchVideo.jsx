@@ -9,6 +9,7 @@ import { useState } from "react";
 // import handleChangeMesage from "../../../../context/handleChangeMesage";
 import { BASE_URL } from "../../../general/main_var";
 import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
+import handleMessage from "../../../context/handleMessage";
 
 const SearchVideo = () => {
   const [inputVideo, setInputVideo] = useState("");
@@ -20,10 +21,10 @@ const SearchVideo = () => {
   const {
     setSearchVideoApiResults,
     updateVideoResurce,
-    changeMessage,
-    waitingMessage,
+    // changeMessage,
+    // waitingMessage,
   } = useContext(handleSearchVideoApi);
-
+  const { changeMessage, waitingMessage } = useContext(handleMessage);
   // const [message, setMessage] = useState("");
   // const changeMessage = (str, isEror = false) => {
   //   setMessage({ message: str, isEror: isEror });
@@ -40,12 +41,12 @@ const SearchVideo = () => {
     try {
       console.log({ searchValue });
       if (searchValue === "") {
-        changeMessage("You didn't enter search value");
+        changeMessage("You didn't enter search value", "error");
         return;
       } else if (searchValue.length > 20) {
         changeMessage(
           `Too long serach of ${searchValue.length} letters. please try less than 20 letters `,
-          true
+          "warning"
         );
         return;
       }
@@ -62,7 +63,7 @@ const SearchVideo = () => {
         updateVideoResurce(data[0].id);
         changeMessage("Great. we founded videos for you from YouTube");
       } else {
-        changeMessage(data.message, true);
+        changeMessage(data.message, "warning");
       }
     } catch (e) {
       console.log(e);

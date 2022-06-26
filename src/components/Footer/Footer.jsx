@@ -8,7 +8,7 @@ const Footer = () => {
   const { message } = useContext(handleMessage);
   return (
     <div className="Footer-container">
-      <MessageNote message={message.message} isEror={message.isEror} />
+      <MessageNote message={message.message} type={message.type} />
     </div>
   );
 };

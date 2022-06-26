@@ -22,13 +22,17 @@ function App() {
   const [currentPlaylist, setCurrentPlaylist] = useState("");
   const [message, setMessage] = useState("");
   const [userPlaylists, setUserPlaylists] = useState([]);
+  const [favoritePlaylist, setFavoritePlaylist] = useState([]);
 
-  const changeMessage = (str, isEror = false) => {
-    setMessage({ message: str, isEror: isEror });
+  const changeMessage = (str, type = "success") => {
+    setMessage({ message: str, type: type });
 
     setTimeout(() => {
       setMessage("");
     }, 3000);
+  };
+  const waitingMessage = () => {
+    changeMessage("Waiting for results from server", "info");
   };
   return (
     <div className="App">
@@ -38,13 +42,18 @@ function App() {
           setCurrentUser,
         }}
       >
-        <HandleMessage.Provider value={{ message, setMessage, changeMessage }}>
+        <HandleMessage.Provider
+          value={{ message, setMessage, changeMessage, waitingMessage }}
+        >
           <HandlePlaylistMainState.Provider
             value={{
               currentPlaylist,
               setCurrentPlaylist,
               userPlaylists,
               setUserPlaylists,
+              // TODO: build favorite button
+              favoritePlaylist,
+              setFavoritePlaylist,
             }}
           >
             <Router>

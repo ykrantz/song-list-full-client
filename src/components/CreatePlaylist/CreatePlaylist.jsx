@@ -48,15 +48,16 @@ const CreatePlaylist = () => {
             setCurrentPlaylist(playlistInput);
             changeMessage(`new playlist was created: ${playlistInput}`);
           } else {
-            changeMessage(data.message);
+            changeMessage(data.message, "warning");
           }
         } else {
           changeMessage(
-            `Playlist can be up to 15 letters. You entered : ${playlistInput.length} letters `
+            `Playlist can be up to 15 letters. You entered : ${playlistInput.length} letters `,
+            "warning"
           );
         }
       } else {
-        changeMessage("You didn't enter a playlist name");
+        changeMessage("You didn't enter a playlist name", "warning");
       }
     } catch (e) {
       console.log(e);

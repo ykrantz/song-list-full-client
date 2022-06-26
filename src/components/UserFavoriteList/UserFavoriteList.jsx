@@ -1,6 +1,6 @@
 import "./UserFavoriteList.css";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import UserFavorite from "./UserFavorite/UserFavorite";
 import { useParams } from "react-router";
 import Divider from "@mui/material/Divider";
@@ -8,16 +8,18 @@ import BackToHome from "../generalComponents/BackToHome/BackToHome";
 
 import { useEffect } from "react";
 import { BASE_URL } from "../../general/main_var";
+import handleMessage from "../../context/handleMessage";
 const UserFavoriteList = () => {
   const [songUserFavoriteList, setSongUserFavoriteList] = useState([]);
   const [masseage, setMasseage] = useState("");
 
   const { songid } = useParams();
   // const navigate=useNavigate()
+  const { changeMessage } = useContext(handleMessage);
 
-  const changeMessage = (str) => {
-    setMasseage(str);
-  };
+  // const changeMessage = (str) => {
+  //   setMasseage(str);
+  // };
 
   useEffect(() => {
     showAllUserSongFavorite(songid);

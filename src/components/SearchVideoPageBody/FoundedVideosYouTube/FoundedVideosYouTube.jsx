@@ -2,8 +2,14 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import "./FoundedVideosYouTube.css";
 import FoundedVideoYouTube from "../FoundedVideoYouTube/FoundedVideoYouTube";
+import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
+import { useContext } from "react";
 
 const FoundedVideosYouTube = ({ searchVideoResults }) => {
+  const { favoritePlaylist, setFavoritePlaylist } = useContext(
+    handlePlaylistMainState
+  );
+  // TODO: add a ideititiy to favoriteas
   const style = {
     width: "100%",
     fontSize: "2vh",

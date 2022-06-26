@@ -9,24 +9,33 @@ import MessageNote from "../generalComponents/MessageNote/MessageNote";
 import UserPlayLists from "../generalComponents/UserPlayLists/UserPlayLists";
 import handleUser from "../../context/handleUser";
 import handleMessage from "../../context/handleMessage";
+import getFavoritePlayList from "../../controllers/getFavoritePlayList";
+import handlePlaylistMainState from "../../context/handlePlaylistMainState";
 
 const SearchVideoPageBody = () => {
   const [searchVideoApiResults, setSearchVideoApiResults] = useState([]);
   const [currentPlayList, setCurrentPlayList] = useState();
+  const { favoritePlaylist, setFavoritePlaylist } = useContext(
+    handlePlaylistMainState
+  );
 
   const [videoSrc, setVideoSrc] = useState(
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
   );
   const { changeMessage } = useContext(handleMessage);
 
+  useEffect(async () => {
+    const myFavorits = await getFavoritePlayList("My Favorites");
+    setFavoritePlaylist(myFavorits);
+  }, []);
   // const { currentUser, setCurrentUser } = useContext(handleUser);
   // useEffect(()=>{
   //   setCurrentUser()
   // })
 
-  const waitingMessage = () => {
-    changeMessage("Waiting for results from server");
-  };
+  // const waitingMessage = () => {
+  //   changeMessage("Waiting for results from server", "info");
+  // };
 
   const updateVideoResurce = (videoId) => {
     // setAutoplayFlag(true);
@@ -53,8 +62,8 @@ const SearchVideoPageBody = () => {
           // setVideoSrc,
           currentPlayList,
           setCurrentPlayList,
-          changeMessage,
-          waitingMessage,
+          // changeMessage,
+          // waitingMessage,
           updateVideoResurce,
         }}
       >

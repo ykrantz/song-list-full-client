@@ -90,7 +90,7 @@ const Playlist = ({ removeSong }) => {
         console.log(
           "the play list was deleted from server. playlist was update"
         );
-        changeMessage("play list  wad deleted");
+        changeMessage("play list  wad deleted", "info");
       }
     } catch (e) {
       console.log(e);

@@ -37,7 +37,7 @@ const RemoveVideoButton = ({ _id }) => {
     const data = await ans.json();
     console.log(data);
     if (ans.status === 200) {
-      changeMessage("video was deleted from server");
+      changeMessage("video was deleted from server", "info");
       await getPlaylistFromServer();
     }
   };

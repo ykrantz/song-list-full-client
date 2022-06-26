@@ -64,7 +64,7 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
       if (!currentPlaylist) {
         changeMessage(
           "Please choose/create playlist before adding a video",
-          true
+          "warning"
         );
         return;
       }
@@ -103,7 +103,7 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
       } else {
         console.log(data);
 
-        changeMessage(data?.message, true);
+        changeMessage(data?.message, "warning");
       }
       // }
       //  else {

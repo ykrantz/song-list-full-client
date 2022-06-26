@@ -63,7 +63,7 @@ const PlaylistsPageBody = () => {
   // };
 
   const waitingMessage = () => {
-    changeMessage("Waiting for results from server");
+    changeMessage("Waiting for results from server", "info");
   };
 
   const updateVideoResurce = (videoId) => {
