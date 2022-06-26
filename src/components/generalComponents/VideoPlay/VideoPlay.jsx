@@ -9,6 +9,8 @@ const VideoPlay = ({ videoSrc }) => {
       <div className="VideoPlay-Plyr">
         <Plyr
           source={videoSrc}
+          height={"1px"}
+          width={"30%"}
           // options={{ autoplay: true }}
           // options={{ autoplay: autoplayFlag }}
         />

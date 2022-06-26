@@ -1,5 +1,5 @@
 import "./SearchVideo.css";
-
+import SearchIcon from "@mui/icons-material/Search";
 import { useContext } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -37,76 +37,106 @@ const SearchVideo = () => {
   // };
 
   const searchVideosFromServer = async (searchValue) => {
-    console.log({ searchValue });
-    if (searchValue === "") {
-      changeMessage("You didn't enter search value");
-      return;
-    } else if (searchValue.length > 20) {
-      changeMessage(
-        `Too long serach of ${searchValue.length} letters. please try less than 20 letters `,
-        true
-      );
-      return;
-    }
+    try {
+      console.log({ searchValue });
+      if (searchValue === "") {
+        changeMessage("You didn't enter search value");
+        return;
+      } else if (searchValue.length > 20) {
+        changeMessage(
+          `Too long serach of ${searchValue.length} letters. please try less than 20 letters `,
+          true
+        );
+        return;
+      }
 
-    waitingMessage();
-    const ans = await fetch(`${BASE_URL}/api/search/${searchValue}`);
-    console.log("12");
-    const data = await ans.json();
-    console.log("13", { data });
-    if (ans.status === 200) {
-      setSearchVideoApiResults(data);
-      console.log({ data });
-      console.log(data[0].id, 13);
-      updateVideoResurce(data[0].id);
-      changeMessage("Great. we founded videos for you from YouTube");
-    } else {
-      changeMessage(data.message, true);
+      waitingMessage();
+      const ans = await fetch(`${BASE_URL}/api/search/${searchValue}`);
+      console.log("12");
+      const data = await ans.json();
+      console.log("13", { data });
+      if (ans.status === 200) {
+        setSearchVideoApiResults(data);
+        console.log({ data });
+        console.log(data[0].id, 13);
+        updateVideoResurce(data[0].id);
+        changeMessage("Great. we founded videos for you from YouTube");
+      } else {
+        changeMessage(data.message, true);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
   return (
     <div className="SearchVideos-container">
-      <Stack spacing={4} direction="row" marginLeft={"100px"}>
-        <Stack
+      <Stack
+        spacing={2}
+        direction="row"
+        justifyContent="center"
+        // marginLeft="10%"
+      >
+        <Button
+          onClick={() => {
+            setInputVideo("");
+          }}
+          variant="contained"
+          style={{
+            backgroundColor: "red",
+
+            maxWidth: "90px    ",
+            maxHeight: "30px",
+            minWidth: "2%",
+            minHeight: "20px",
+            // fontSize: "0.8vh",
+          }}
+          size="small"
+          // centerRipple="true"
+          // style={{="center"}}
+        >
+          X
+        </Button>{" "}
+        <TextField
+          className="SearchVideos-input"
+          value={inputVideo}
+          onChange={(e) => {
+            setInputVideo(e.target.value);
+          }}
+          placeholder="video name"
+          label="enter video name"
+          variant="outlined"
+          style={{
+            maxWidth: "20%",
+            // maxHeight: "5px",
+            minWidth: "40%",
+            // minHeight: "5px",
+            // height: "1px",
+            // fontSize: "0.8vh",
+          }}
+          size="small"
+        />
+        {/* <Stack
           spacing={2}
           direction="row"
           // justifyContent="end"
-          marginLeft="10px"
-        >
-          <Button
-            onClick={() => {
-              setInputVideo("");
-            }}
-            variant="contained"
-            style={{
-              backgroundColor: "red",
-            }}
-            size="small"
-            // centerRipple="true"
-            // style={{="center"}}
-          >
-            X
-          </Button>{" "}
-          <TextField
-            className="SearchVideos-input"
-            value={inputVideo}
-            onChange={(e) => {
-              setInputVideo(e.target.value);
-            }}
-            placeholder="video name"
-            label="enter video name"
-            variant="outlined"
-          />
-        </Stack>
+          marginLeft="1px"
+        > */}
         <Button
           onClick={() => {
             searchVideosFromServer(inputVideo);
             // setInputVideo("");
           }}
           variant="contained"
+          style={{
+            maxWidth: "90px    ",
+            maxHeight: "30px",
+            minWidth: "50px",
+            minHeight: "20px",
+            // fontSize: "2vh",
+          }}
         >
-          Search
+          <SearchIcon />
         </Button>
       </Stack>
     </div>

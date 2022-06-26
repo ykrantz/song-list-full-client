@@ -8,27 +8,21 @@ import FoundedVideosYouTube from "./FoundedVideosYouTube/FoundedVideosYouTube";
 import MessageNote from "../generalComponents/MessageNote/MessageNote";
 import UserPlayLists from "../generalComponents/UserPlayLists/UserPlayLists";
 import handleUser from "../../context/handleUser";
+import handleMessage from "../../context/handleMessage";
 
-const SearchPageBody = () => {
+const SearchVideoPageBody = () => {
   const [searchVideoApiResults, setSearchVideoApiResults] = useState([]);
-  const [message, setMessage] = useState("");
   const [currentPlayList, setCurrentPlayList] = useState();
 
   const [videoSrc, setVideoSrc] = useState(
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
   );
+  const { changeMessage } = useContext(handleMessage);
+
   // const { currentUser, setCurrentUser } = useContext(handleUser);
   // useEffect(()=>{
   //   setCurrentUser()
   // })
-
-  const changeMessage = (str, isEror = false) => {
-    setMessage({ message: str, isEror: isEror });
-
-    setTimeout(() => {
-      setMessage("");
-    }, 3000);
-  };
 
   const waitingMessage = () => {
     changeMessage("Waiting for results from server");
@@ -49,7 +43,7 @@ const SearchPageBody = () => {
     });
     localStorage.youtubeId = JSON.stringify(videoId);
   };
-
+  // console.log(message, 30);
   return (
     <div>
       <HandleSearchVideoApi.Provider
@@ -68,7 +62,7 @@ const SearchPageBody = () => {
         <div className="SearchPageBody-VideoPlay">
           <VideoPlay videoSrc={videoSrc} />
         </div>
-        <MessageNote message={message.message} isEror={message.isEror} />
+        {/* <MessageNote message={message.message} isEror={message.isEror} /> */}
         {/* <p className="Body-message">
           <b>Message: </b>
           <MessageNote message={message?.message} isEror={message?.isEror} />
@@ -85,4 +79,4 @@ const SearchPageBody = () => {
   );
 };
 
-export default SearchPageBody;
+export default SearchVideoPageBody;

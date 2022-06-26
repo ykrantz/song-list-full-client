@@ -16,26 +16,48 @@ const UserPlayLists = ({ type }) => {
   // const handleChange = (event) y=> {
   //   setAge(event.target.value);
   // };
-  const { currentPlayList, setCurrentPlayList } = useContext(
-    handlePlaylistMainState
-  );
-  const [userPlayLists, setUserPlayLists] = useState([]);
+  const {
+    currentPlaylist,
+    setCurrentPlaylist,
+    userPlaylists,
+    setUserPlaylists,
+  } = useContext(handlePlaylistMainState);
+
   console.log(15);
   useEffect(async () => {
-    console.log(14);
-    const userPlaylists = await getUserPlaylistsFromServer();
-    console.log(userPlaylists, 16);
-    setUserPlayLists(userPlaylists.data);
+    try {
+      console.log(14);
+      const userPlaylistsFromServer = await getUserPlaylistsFromServer();
+      console.log(userPlaylistsFromServer, 16);
+      setUserPlaylists(userPlaylistsFromServer.data);
+      // Make sure that there is at leat one playlist. and that there is no current play list determineded.
+      // if ther is current play list ,we don't want to change it
+      // TODO: fix when get from search page , need to peek the same playlist
+      if (
+        userPlaylistsFromServer?.data.length > 0
+        //  &&        !(
+        //   userPlaylists.find((val) => val.playlistName === currentPlaylist) ==
+        //   -1
+        // )
+      ) {
+        setCurrentPlaylist(userPlaylistsFromServer.data[0].playlistName);
+      } else {
+        console.log("user playlist didn't change");
+      }
+      // setCurrentPlaylist(userPlaylistsFromServer.data[0]?.playlistName);
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
   // const updateCurrentPlaylist = (choosenPlaylist) => {
   //   setCurrentPlayList(choosenPlaylist);
   // };
-  const playlistLabel = `${type === "add" ? "add to " : ""} Playlist`;
+  const playlistLabel = `${type === "add" ? "add to my " : ""} Playlist`;
 
   // const { userPlayLists, currentPlayList, setCurrentPlayList } =
   //   useContext(handleMainStates);
 
-  // console.log({ userPlayLists });
+  console.log({ currentPlaylist }, 28);
 
   return (
     <div>
@@ -59,12 +81,15 @@ const UserPlayLists = ({ type }) => {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             // value={age}
-            value={currentPlayList}
+            value={currentPlaylist}
             label={playlistLabel}
             // onChange={handleChange}
-            onChange={(e) => setCurrentPlayList(e.target.value)}
+            onChange={(e) => {
+              console.log(e.target.value, 27);
+              setCurrentPlaylist(e.target.value);
+            }}
           >
-            {userPlayLists.map((playlist) => (
+            {userPlaylists.map((playlist) => (
               <MenuItem key={playlist._id} value={playlist.playlistName}>
                 {playlist.playlistName}
               </MenuItem>

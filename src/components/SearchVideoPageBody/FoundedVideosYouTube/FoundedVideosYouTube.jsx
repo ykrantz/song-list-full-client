@@ -6,7 +6,7 @@ import FoundedVideoYouTube from "../FoundedVideoYouTube/FoundedVideoYouTube";
 const FoundedVideosYouTube = ({ searchVideoResults }) => {
   const style = {
     width: "100%",
-
+    fontSize: "2vh",
     maxWidth: 600,
     bgcolor: " rgb(122, 240, 122)",
   };

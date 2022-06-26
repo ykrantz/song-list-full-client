@@ -39,7 +39,7 @@ const Header = () => {
       <MenuDrower />
       <h1 className="Header-titlePlaylist">Video play list</h1>
       <div className="Header-buttons">
-        <Stack spacing={2} direction="column">
+        <Stack spacing={0.5} direction="column">
           {!localStorage.currentUser && (
             <>
               {/* <Button
@@ -65,9 +65,9 @@ const Header = () => {
           )}
           {localStorage.currentUser && (
             <div className="Header-logOutDiv">
-              <p className="Header-currentUser">
+              <span className="Header-currentUser">
                 Welcome, {JSON.parse(localStorage.currentUser)}
-              </p>
+              </span>
               <ButtonSized onClickFunc={logOut} title="Log out" />
             </div>
           )}

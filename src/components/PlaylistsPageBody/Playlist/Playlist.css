@@ -4,10 +4,7 @@
   width: 100vw;
   margin-left: 3%;
 
-  overflow: hidden;
-  overflow-y: scroll;
-  min-height: 80px;
-  max-height: 500px;
+
   background-color: bisque;
   /* height: 300px; */
   /* border: solid blue 1px; */
@@ -17,19 +14,32 @@
   display: flex;
   background-color: bisque;
 }
-.PlayList-h1 {
+.PlayList-title {
   float: left;
   width: 25%;
-  align-content: center;
+  
+  /* align-content: center;
   align-items: center;
-  align-content: center;
+  align-content: center; */
+  /* margin-top: 16px;
+  margin-bottom: 16px; */
+}
+.PlayList-currentPlaylistName{
+  width: 50%;
+  text-justify: center;
+  font-weight: bold;
 }
 
-.PlayList-songs {
+.PlayList-videoContainer {
   /* overflow: hidden;
   height: 40%; */
   /* overflow-y: scroll; */
   /* height: 500; */
+  overflow: hidden;
+  overflow-y: scroll;
+  min-height: 80px;
+
+  max-height: 25vh;
 }
 
 .PlayList-DeleteSweepIcon {

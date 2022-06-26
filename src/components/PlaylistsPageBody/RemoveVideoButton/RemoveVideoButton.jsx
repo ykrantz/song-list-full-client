@@ -9,13 +9,17 @@ import { BASE_URL } from "../../../general/main_var";
 // import handlePlaylist from "../../../../context/handlePlaylist";
 // import handleChangeMesage from "../../../../context/handleChangeMesage";
 import handlePlaylists from "../../../context/handlePlaylists";
+import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
+import handleMessage from "../../../context/handleMessage";
 
 const RemoveVideoButton = ({ _id }) => {
   // const { currentPlayList } = useContext(handleMainStates);
   // const { getPlaylistFromServer } = useContext(handlePlaylist);
   // const { changeMessage } = useContext(handleChangeMesage);
-  const { changeMessage, getPlaylistFromServer, currentPlayList } =
-    useContext(handlePlaylists);
+  const { changeMessage } = useContext(handleMessage);
+
+  const { getPlaylistFromServer } = useContext(handlePlaylists);
+  const { currentPlaylist } = useContext(handlePlaylistMainState);
 
   const deleteSongFromServer = async (songId) => {
     const accessToken = JSON.parse(localStorage.accessToken);
@@ -26,7 +30,7 @@ const RemoveVideoButton = ({ _id }) => {
         authorization: `bearer ${accessToken}`,
       },
       body: JSON.stringify({
-        playlistName: currentPlayList,
+        playlistName: currentPlaylist,
         songId: songId,
       }),
     });

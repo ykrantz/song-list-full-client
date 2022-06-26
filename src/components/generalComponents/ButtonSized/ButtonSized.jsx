@@ -10,9 +10,10 @@ const ButtonSized = ({ onClickFunc, title }) => {
         style={{
           maxWidth: "90px    ",
           maxHeight: "30px",
-          minWidth: "30px",
-          minHeight: "30px",
-          fontSize: "8px",
+          minWidth: "50px",
+          minHeight: "20px",
+          fontSize: "0.8vh",
+          padding: "5px",
         }}
         // size={"small"}
         onClick={() => onClickFunc()}

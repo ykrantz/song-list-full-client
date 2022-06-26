@@ -4,23 +4,41 @@
   display: flex;
 }
 
+.Header-buttons{
+  float: right;
+  width: 30%;
+}
 .Header-titlePlaylist {
     float: left;
     /* width: 60%; */
-    font-size: 3vh;
+    font-size: 2vh;
     font-family: Georgia, "Times New Roman", Times, serif;
-    margin-left: 10vw;
+    /* margin-left: 1vw; */
+        padding-left: 0px;
+        width: 50%;
+
   }
   .Header-logOutDiv{
-    float: right;
+    /* float: right; */
     text-align:right;
-    margin-right: 3vw;
+    margin-right: 2vw;
+    /* font-size: 1vh; */
+    /* width: 100%; */
+    /* width: 150px; */
+    /* margin-top: 0px; */
+    /* position: absolute;
+right: 0px; */
+    /* padding-left: 0px; */
  /* width: 30vw; */
 
   }
   .Header-currentUser{
-    margin-bottom: 2vh;
-    
+    /* margin-bottom: 2vh; */
+        margin-top: 0.5vh;
+        /* width: 100%; */
+            font-size: 1vh;
+
+
   }
 
   @media only screen and (min-width: 600px) {    

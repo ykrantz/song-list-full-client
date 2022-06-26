@@ -1,9 +1,16 @@
 import "./Footer.css";
 
-import React from "react";
+import React, { useContext } from "react";
+import MessageNote from "../generalComponents/MessageNote/MessageNote";
+import handleMessage from "../../context/handleMessage";
 
 const Footer = () => {
-  return <div className="Footer-container">Footer</div>;
+  const { message } = useContext(handleMessage);
+  return (
+    <div className="Footer-container">
+      <MessageNote message={message.message} isEror={message.isEror} />
+    </div>
+  );
 };
 
 export default Footer;
