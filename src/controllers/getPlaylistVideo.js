@@ -1,6 +1,6 @@
 import { BASE_URL } from "../general/main_var";
 
-const getFavoritePlayList = async (playlistName) => {
+const getPlaylistVideoFromServer = async (playlistName) => {
   // const getPlaylistFromServer = async () => {
   try {
     console.log(27);
@@ -31,4 +31,4 @@ const getFavoritePlayList = async (playlistName) => {
   }
 };
 
-export default getFavoritePlayList;
+export default getPlaylistVideoFromServer;

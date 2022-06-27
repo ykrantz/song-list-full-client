@@ -3,12 +3,35 @@ import Divider from "@mui/material/Divider";
 import "./FoundedVideosYouTube.css";
 import FoundedVideoYouTube from "../FoundedVideoYouTube/FoundedVideoYouTube";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import getPlaylistVideoFromServer from "../../../controllers/getPlaylistVideo";
 
 const FoundedVideosYouTube = ({ searchVideoResults }) => {
-  const { favoritePlaylist, setFavoritePlaylist } = useContext(
-    handlePlaylistMainState
-  );
+  const {
+    favoritePlaylist,
+    setFavoritePlaylist,
+    getFavoritePlaylistFromServer,
+  } = useContext(handlePlaylistMainState);
+
+  useEffect(() => {
+    getFavoritePlaylistFromServer();
+    // indicateFavoriteInSearchVideoResults();
+  }, []);
+
+  // const indicateFavoriteInSearchVideoResults = () => {
+  //   const updatedSearchVideoResults = searchVideoResults.map((video) => {
+  //     const { newVideoDetails } = { ...video };
+  //     if (favoritePlaylist.find((favorite) => favorite.id === video.id)) {
+  //       newVideoDetails.favorite = true;
+  //     } else {
+  //       newVideoDetails.favorite = false;
+  //     }
+  //     return newVideoDetails;
+  //   });
+  //   console.log(updatedSearchVideoResults, 38);
+  // };
+
+  // getFavoritePlaylistFromServer();
   // TODO: add a ideititiy to favoriteas
   const style = {
     width: "100%",

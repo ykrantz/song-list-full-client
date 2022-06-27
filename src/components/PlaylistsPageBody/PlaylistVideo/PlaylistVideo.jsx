@@ -13,11 +13,17 @@ import PlayVideoButton from "../../generalComponents/PlayVideoButton/PlayVideoBu
 import handlePlaylists from "../../../context/handlePlaylists";
 import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
 import FavoriteFindButton from "../../MainPage/Body/FavoriteFindButton/FavoriteFindButton";
+import FavoriteButton from "../../generalComponents/FavoriteButton/FavoriteButton";
+import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 
-const PlaylistVideo = ({ song: { _id, id, title, img } }) => {
+const PlaylistVideo = ({ song: { id, title, img } }) => {
   // console.log(song);
   // console.log(img);
   const { updateVideoResurce } = useContext(handlePlaylists);
+
+  const addVideoByIdToPlaylistServer = () => {
+    // TODO: write code /also in server
+  };
   return (
     <div className="PlaylistVideo-container">
       <ListItem button>
@@ -26,14 +32,17 @@ const PlaylistVideo = ({ song: { _id, id, title, img } }) => {
           onClick={() => updateVideoResurce(id)}
           primary={`${title.substring(0, TITLE_LENGTH)}`}
         />
-        <FavoriteFindButton songId={id} />
+        <FavoriteButton
+          videoId={id}
+          addVideoToPlaylistServer={addVideoByIdToPlaylistServer}
+        />
         <img
           src={img}
           alt="song_image"
           className="PlaylistVideo-img"
           onClick={() => updateVideoResurce(id)}
         ></img>
-        <RemoveVideoButton _id={_id} />
+        <RemoveVideoButton id={id} />
       </ListItem>
       <Divider />
     </div>

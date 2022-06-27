@@ -16,6 +16,7 @@ import AboutPage from "./pages/AboutPage/AboutPage";
 import HandlePlaylistMainState from "./context/handlePlaylistMainState";
 import HandleMessage from "./context/handleMessage";
 import HandleUser from "./context/handleUser";
+import getPlaylistVideoFromServer from "./controllers/getPlaylistVideo";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -23,6 +24,12 @@ function App() {
   const [message, setMessage] = useState("");
   const [userPlaylists, setUserPlaylists] = useState([]);
   const [favoritePlaylist, setFavoritePlaylist] = useState([]);
+
+  const getFavoritePlaylistFromServer = async () => {
+    const favorites = await getPlaylistVideoFromServer("My Favorites");
+    console.log(favorites, 37);
+    setFavoritePlaylist(favorites);
+  };
 
   const changeMessage = (str, type = "success") => {
     setMessage({ message: str, type: type });
@@ -54,6 +61,7 @@ function App() {
               // TODO: build favorite button
               favoritePlaylist,
               setFavoritePlaylist,
+              getFavoritePlaylistFromServer,
             }}
           >
             <Router>

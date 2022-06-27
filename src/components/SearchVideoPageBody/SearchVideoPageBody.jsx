@@ -9,7 +9,7 @@ import MessageNote from "../generalComponents/MessageNote/MessageNote";
 import UserPlayLists from "../generalComponents/UserPlayLists/UserPlayLists";
 import handleUser from "../../context/handleUser";
 import handleMessage from "../../context/handleMessage";
-import getFavoritePlayList from "../../controllers/getFavoritePlayList";
+import getFavoritePlayList from "../../controllers/getPlaylistVideo";
 import handlePlaylistMainState from "../../context/handlePlaylistMainState";
 
 const SearchVideoPageBody = () => {

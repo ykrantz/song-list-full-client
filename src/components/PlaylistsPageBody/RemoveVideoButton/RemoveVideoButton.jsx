@@ -12,16 +12,18 @@ import handlePlaylists from "../../../context/handlePlaylists";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import handleMessage from "../../../context/handleMessage";
 
-const RemoveVideoButton = ({ _id }) => {
+const RemoveVideoButton = ({ id }) => {
   // const { currentPlayList } = useContext(handleMainStates);
   // const { getPlaylistFromServer } = useContext(handlePlaylist);
   // const { changeMessage } = useContext(handleChangeMesage);
+
   const { changeMessage } = useContext(handleMessage);
 
   const { getPlaylistFromServer } = useContext(handlePlaylists);
   const { currentPlaylist } = useContext(handlePlaylistMainState);
 
   const deleteSongFromServer = async (songId) => {
+    console.log(songId);
     const accessToken = JSON.parse(localStorage.accessToken);
     const ans = await fetch(`${BASE_URL}/playlist/deletesong`, {
       method: "PUT",
@@ -31,7 +33,7 @@ const RemoveVideoButton = ({ _id }) => {
       },
       body: JSON.stringify({
         playlistName: currentPlaylist,
-        songId: songId,
+        id: songId,
       }),
     });
     const data = await ans.json();
@@ -47,7 +49,7 @@ const RemoveVideoButton = ({ _id }) => {
       <Tooltip title={"delete song"}>
         <DeleteForeverIcon
           fontSize="large"
-          onClick={() => deleteSongFromServer(_id)}
+          onClick={() => deleteSongFromServer(id, currentPlaylist)}
         />
       </Tooltip>
     </div>

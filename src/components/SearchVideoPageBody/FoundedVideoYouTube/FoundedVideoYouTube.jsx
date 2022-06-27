@@ -5,7 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import FavoriteFindButton from "../../MainPage/Body/FavoriteFindButton/FavoriteFindButton";
+import FavoriteButton from "../../generalComponents/FavoriteButton/FavoriteButton";
 import Tooltip from "@mui/material/Tooltip";
 
 import { BASE_URL } from "../../../general/main_var";
@@ -28,18 +28,33 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
   //   : "";
   // TODO: define currentPlayList
   // const currentPlayList = "";
+  console.log(id, 51);
   const { searchVideoApiResults, updateVideoResurce } =
     useContext(handleSearchVideoApi);
+  const { favoritePlaylist } = useContext(handlePlaylistMainState);
   const { changeMessage } = useContext(handleMessage);
 
   const { currentPlaylist } = useContext(handlePlaylistMainState);
   const { currentUser } = useContext(handleUser);
 
+  // const checkIfVideoIsFavorite = (id) => {
+  //   // console.log(id);
+  //   if (favoritePlaylist.find((favorite) => favorite.id === id)) {
+  //     // console.log("in fav");
+  //     return true;
+  //   } else {
+  //     // console.log("no fav");
+  //     return false;
+  //   }
+  // };
+  // const isFavorite = checkIfVideoIsFavorite(id);
+
   const formolizeVideoToServer = (videoApiDitails) => {
+    // console.log(41, videoApiDitails);
     console.log(
       videoApiDitails,
-      JSON.parse(localStorage.currentUser),
-      currentUser,
+      // JSON.parse(localStorage.currentUser),
+      // currentUser,
       19
     );
     return {
@@ -58,10 +73,10 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
     return searchVideoApiResults.find((video) => video.id === videoId);
   };
 
-  const addVideoToPlaylistServer = async (videoId) => {
+  const addVideoToPlaylistServer = async (videoId, playlistName) => {
     try {
-      console.log(currentPlaylist, 17);
-      if (!currentPlaylist) {
+      console.log(playlistName, videoId, 17);
+      if (!playlistName) {
         changeMessage(
           "Please choose/create playlist before adding a video",
           "warning"
@@ -81,13 +96,13 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
         },
         // TODO: to chack why cilnnt add song to servert
         body: JSON.stringify({
-          playlistName: currentPlaylist,
+          playlistName: playlistName,
           song: formolizeVideoToServer(videoDitails),
         }),
       });
       console.log(
         JSON.stringify({
-          playlistName: currentPlaylist,
+          playlistName: playlistName,
           video: formolizeVideoToServer(videoDitails),
         }),
         20
@@ -140,7 +155,11 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
             }}
           />
         </div>
-        <FavoriteFindButton videoId={id} />
+        <FavoriteButton
+          id={id}
+          // isFavorite={isFavorite}
+          addVideoToPlaylistServer={addVideoToPlaylistServer}
+        />
         <img
           src={thumbnails[0].url}
           alt="video_image"
@@ -152,7 +171,7 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
             <AddCircleIcon
               fontSize="large"
               onClick={() => {
-                addVideoToPlaylistServer(id);
+                addVideoToPlaylistServer(id, currentPlaylist);
               }}
             />
           </Tooltip>
