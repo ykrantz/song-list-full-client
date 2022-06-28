@@ -44,16 +44,34 @@ const Playlist = ({ removeSong }) => {
     setCurrentPlaylist,
     userPlaylists,
     setUserPlaylists,
+    getFavoritePlaylistFromServer,
   } = useContext(handlePlaylistMainState);
   const [disableDeletePlaylist, setDisableDeletePlaylist] = useState(true);
 
-  useEffect(
-    () => {
-      setDisableDeletePlaylist(userPlaylists.length <= 1 ? true : false);
-    },
-    [userPlaylists],
-    []
-  );
+  useEffect(() => {
+    setDisableDeletePlaylist(
+      userPlaylists.length <= 1 || currentPlaylist === "My Favorites"
+        ? true
+        : false
+    );
+  }, []);
+  useEffect(() => {
+    setDisableDeletePlaylist(
+      userPlaylists.length <= 1 || currentPlaylist === "My Favorites"
+        ? true
+        : false
+    );
+  }, [currentPlaylist]);
+
+  useEffect(() => {
+    getFavoritePlaylistFromServer();
+    // indicateFavoriteInSearchVideoResults();
+  }, []);
+  useEffect(() => {
+    getFavoritePlaylistFromServer();
+    // indicateFavoriteInSearchVideoResults();
+  }, [playlist]);
+
   console.log({ userPlaylists }, { disableDeletePlaylist }, 31);
 
   const deleteUserPlaylist = async (playlistName) => {

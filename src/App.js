@@ -17,6 +17,7 @@ import HandlePlaylistMainState from "./context/handlePlaylistMainState";
 import HandleMessage from "./context/handleMessage";
 import HandleUser from "./context/handleUser";
 import getPlaylistVideoFromServer from "./controllers/getPlaylistVideo";
+import FavoritePage from "./pages/FavoritePage/FavoritePage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -74,7 +75,7 @@ function App() {
                 {/* <Route exact path="/" element={<Register />} /> */}
                 <Route exact path="/playlists" element={<PlaylistsPage />} />
                 <Route exact path="/search" element={<SearchVideoPage />} />
-
+                <Route exact path="/favorites" element={<FavoritePage />} />
                 <Route exact path="/about" element={<AboutPage />} />
                 <Route exact path="/register" element={<Register />} />
                 <Route exact path="/login" element={<LogIn />} />

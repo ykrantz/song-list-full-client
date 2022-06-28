@@ -17,6 +17,7 @@ const PlaylistsPageBody = () => {
   const {
     currentPlaylist,
     setCurrentPlaylist,
+    favoritePlaylist,
     userPlaylists,
     setUserPlaylists,
   } = useContext(handlePlaylistMainState);
@@ -26,6 +27,7 @@ const PlaylistsPageBody = () => {
   const [videoSrc, setVideoSrc] = useState(
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
   );
+  // TODO: fix bug when current playlist is My favorites.when remove from favorties need to remove from playlist
   // const { currentUser, setCurrentUser } = useContext(handleUser);
   // useEffect(()=>{
   //   setCurrentUser()
@@ -47,6 +49,15 @@ const PlaylistsPageBody = () => {
     }
   }, [currentPlaylist]);
 
+  // useEffect(() => {
+  //   try {
+  //     if (currentPlaylist === "My Favorites") {
+  //       getPlaylistFromServer();
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }, [favoritePlaylist]);
   // useEffect(() => {
   //   console.log("set user play");
   //   if (!currentPlaylist && userPlaylists.length > 0) {

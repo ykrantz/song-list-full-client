@@ -104,6 +104,11 @@ const SearchVideo = () => {
           onChange={(e) => {
             setInputVideo(e.target.value);
           }}
+          onKeyPress={(event) => {
+            if (event.key === "Enter") {
+              searchVideosFromServer(inputVideo);
+            }
+          }}
           placeholder="video name"
           label="enter video name"
           variant="outlined"

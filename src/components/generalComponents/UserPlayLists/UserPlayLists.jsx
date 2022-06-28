@@ -40,7 +40,15 @@ const UserPlayLists = ({ type }) => {
         //   -1
         // )
       ) {
-        setCurrentPlaylist(userPlaylistsFromServer.data[0].playlistName);
+        if (
+          userPlaylistsFromServer.data.find(
+            (value) => value.playlistName === currentPlaylist
+          )
+        ) {
+          setCurrentPlaylist(currentPlaylist);
+        } else {
+          setCurrentPlaylist(userPlaylistsFromServer.data[0].playlistName);
+        }
       } else {
         console.log("user playlist didn't change");
       }

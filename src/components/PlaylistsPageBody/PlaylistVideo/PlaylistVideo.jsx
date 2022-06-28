@@ -33,7 +33,7 @@ const PlaylistVideo = ({ song: { id, title, img } }) => {
           primary={`${title.substring(0, TITLE_LENGTH)}`}
         />
         <FavoriteButton
-          videoId={id}
+          id={id}
           addVideoToPlaylistServer={addVideoByIdToPlaylistServer}
         />
         <img

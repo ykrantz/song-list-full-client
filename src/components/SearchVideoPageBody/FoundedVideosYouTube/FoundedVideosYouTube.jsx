@@ -17,6 +17,10 @@ const FoundedVideosYouTube = ({ searchVideoResults }) => {
     getFavoritePlaylistFromServer();
     // indicateFavoriteInSearchVideoResults();
   }, []);
+  useEffect(() => {
+    getFavoritePlaylistFromServer();
+    // indicateFavoriteInSearchVideoResults();
+  }, [searchVideoResults]);
 
   // const indicateFavoriteInSearchVideoResults = () => {
   //   const updatedSearchVideoResults = searchVideoResults.map((video) => {
