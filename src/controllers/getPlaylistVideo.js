@@ -3,7 +3,6 @@ import { BASE_URL } from "../general/main_var";
 const getPlaylistVideoFromServer = async (playlistName) => {
   // const getPlaylistFromServer = async () => {
   try {
-    console.log(27);
     if (!localStorage.currentUser) {
       console.log("no user");
 
@@ -19,9 +18,7 @@ const getPlaylistVideoFromServer = async (playlistName) => {
       },
     });
     const myPlaylist = await ans.json();
-    console.log({ myPlaylist }, 26);
     if (ans.status === 200) {
-      console.log({ myPlayList: myPlaylist }, 24);
       return [...myPlaylist];
     } else {
       return [];

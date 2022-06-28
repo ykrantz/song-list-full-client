@@ -11,7 +11,6 @@ import MenuDrower from "./MenuDrower/MenuDrower";
 
 const Header = () => {
   const { currentUser, setCurrentUser } = useContext(handleUser);
-  console.log(currentUser);
   const navigate = useNavigate();
 
   const navigateRegister = () => {

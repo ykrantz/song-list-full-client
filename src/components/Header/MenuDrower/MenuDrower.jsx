@@ -16,9 +16,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { useNavigate } from "react-router";
-// import HamburgerMenu from "../HamburgerIcon/HamburgerMenu";
 
-// export default function SwipeableTemporaryDrawer() {
 export default function MenuDrower() {
   const navigate = useNavigate();
   const [state, setState] = React.useState({
@@ -72,8 +70,6 @@ export default function MenuDrower() {
   const anchor = "left";
   return (
     <div>
-      {/* {["left", "right", "top", "bottom"].map((anchor) => ( */}
-      {/* {["left"].map((anchor) => ( */}
       <React.Fragment key={anchor}>
         <Button onClick={toggleDrawer(anchor, true)}>
           <MenuIcon color="primary" />
@@ -91,9 +87,3 @@ export default function MenuDrower() {
     </div>
   );
 }
-
-// const MenuDrower = () => {
-//   return <div>{SwipeableTemporaryDrawer}</div>;
-// };
-
-// export default MenuDrower;

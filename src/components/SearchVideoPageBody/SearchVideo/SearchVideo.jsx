@@ -6,36 +6,17 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 
 import { useState } from "react";
-// import handleChangeMesage from "../../../../context/handleChangeMesage";
 import { BASE_URL } from "../../../general/main_var";
 import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
 import handleMessage from "../../../context/handleMessage";
-
+import CancelIcon from "@mui/icons-material/Cancel";
+import IconButton from "@mui/material/IconButton";
 const SearchVideo = () => {
   const [inputVideo, setInputVideo] = useState("");
-  // const { searchVideosFromServer } = useContext(handleAddVideoTolibrary);
 
-  //   const { changeMessage, waitingMessage } = useContext(handleChangeMesage);
-  //   const { setSearchPlaylistResults, newPlayList, setSearchVideoApiResults } =
-  //     useContext(handleMainStates);
-  const {
-    setSearchVideoApiResults,
-    updateVideoResurce,
-    // changeMessage,
-    // waitingMessage,
-  } = useContext(handleSearchVideoApi);
+  const { setSearchVideoApiResults, updateVideoResurce } =
+    useContext(handleSearchVideoApi);
   const { changeMessage, waitingMessage } = useContext(handleMessage);
-  // const [message, setMessage] = useState("");
-  // const changeMessage = (str, isEror = false) => {
-  //   setMessage({ message: str, isEror: isEror });
-
-  //   setTimeout(() => {
-  //     setMessage("");
-  //   }, 3000);
-  // };
-  // const waitingMessage = () => {
-  //   changeMessage("Waiting for results from server");
-  // };
 
   const searchVideosFromServer = async (searchValue) => {
     try {
@@ -53,13 +34,9 @@ const SearchVideo = () => {
 
       waitingMessage();
       const ans = await fetch(`${BASE_URL}/api/search/${searchValue}`);
-      console.log("12");
       const data = await ans.json();
-      console.log("13", { data });
       if (ans.status === 200) {
         setSearchVideoApiResults(data);
-        console.log({ data });
-        console.log(data[0].id, 13);
         updateVideoResurce(data[0].id);
         changeMessage("Great. we founded videos for you from YouTube");
       } else {
@@ -72,32 +49,16 @@ const SearchVideo = () => {
 
   return (
     <div className="SearchVideos-container">
-      <Stack
-        spacing={2}
-        direction="row"
-        justifyContent="center"
-        // marginLeft="10%"
-      >
-        <Button
+      <Stack spacing={2} direction="row" justifyContent="center">
+        <IconButton
           onClick={() => {
             setInputVideo("");
           }}
-          variant="contained"
-          style={{
-            backgroundColor: "red",
-
-            maxWidth: "90px    ",
-            maxHeight: "30px",
-            minWidth: "2%",
-            minHeight: "20px",
-            // fontSize: "0.8vh",
-          }}
-          size="small"
-          // centerRipple="true"
-          // style={{="center"}}
+          color={"error"}
         >
-          X
-        </Button>{" "}
+          <CancelIcon />
+        </IconButton>
+
         <TextField
           className="SearchVideos-input"
           value={inputVideo}
@@ -121,29 +82,53 @@ const SearchVideo = () => {
             // fontSize: "0.8vh",
           }}
           size="small"
-        />
+        ></TextField>
         {/* <Stack
           spacing={2}
           direction="row"
           // justifyContent="end"
-          marginLeft="1px"
+          marginLeft=
+          "1px"
         > */}
+        {/* <IconButton
+          onClick={() => {
+            searchVideosFromServer(inputVideo);
+            // setInputVideo("");
+          }}
+          color={"primary"}
+        >
+          <SearchIcon />
+        </IconButton> */}
         <Button
           onClick={() => {
             searchVideosFromServer(inputVideo);
             // setInputVideo("");
           }}
           variant="contained"
-          style={{
-            maxWidth: "90px    ",
-            maxHeight: "30px",
-            minWidth: "50px",
-            minHeight: "20px",
-            // fontSize: "2vh",
-          }}
+          // color={"primary"}
         >
           <SearchIcon />
         </Button>
+        {/* <Button
+            onClick={() => {
+              setInputVideo("");
+            }}
+            variant="contained"
+            style={{
+              backgroundColor: "red",
+
+              maxWidth: "90px    ",
+              maxHeight: "30px",
+              minWidth: "2%",
+              minHeight: "20px",
+              // fontSize: "0.8vh",
+            }}
+            size="small"
+            // centerRipple="true"
+            // style={{="center"}}
+          >
+            X
+          </Button>{" "} */}
       </Stack>
     </div>
   );

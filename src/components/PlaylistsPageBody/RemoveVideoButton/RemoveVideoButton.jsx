@@ -13,17 +13,12 @@ import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import handleMessage from "../../../context/handleMessage";
 
 const RemoveVideoButton = ({ id }) => {
-  // const { currentPlayList } = useContext(handleMainStates);
-  // const { getPlaylistFromServer } = useContext(handlePlaylist);
-  // const { changeMessage } = useContext(handleChangeMesage);
-
   const { changeMessage } = useContext(handleMessage);
 
   const { getPlaylistFromServer } = useContext(handlePlaylists);
   const { currentPlaylist } = useContext(handlePlaylistMainState);
 
   const deleteSongFromServer = async (songId) => {
-    console.log(songId);
     const accessToken = JSON.parse(localStorage.accessToken);
     const ans = await fetch(`${BASE_URL}/playlist/deletesong`, {
       method: "PUT",
@@ -37,7 +32,7 @@ const RemoveVideoButton = ({ id }) => {
       }),
     });
     const data = await ans.json();
-    console.log(data);
+    // console.log(data);
     if (ans.status === 200) {
       changeMessage("video was deleted from server", "info");
       await getPlaylistFromServer();

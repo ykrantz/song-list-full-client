@@ -15,15 +15,11 @@ const FavoriteButton = ({ id, addVideoToPlaylistServer }) => {
   const { changeMessage } = useContext(handleMessage);
 
   const navigate = useNavigate();
-  // console.log({ videoId }, isFavorite, 39);
 
   const checkIfVideoIsFavorite = (id) => {
-    // console.log(id);
     if (favoritePlaylist.find((favorite) => favorite.id === id)) {
-      // console.log("in fav");
       return true;
     } else {
-      // console.log("no fav");
       return false;
     }
   };
@@ -35,27 +31,23 @@ const FavoriteButton = ({ id, addVideoToPlaylistServer }) => {
   };
 
   const handleDeleteFromFavorites = async (videoId) => {
-    console.log(videoId, 50);
     const ans = await deleteVideoFromPlaylist(videoId, "My Favorites");
-    console.log(ans, 42);
-    changeMessage(ans.message);
+    changeMessage(ans.message, "info");
 
     getFavoritePlaylistFromServer();
   };
   return (
     <div>
-      <Tooltip title={"see who liked this song"}>
+      <Tooltip title={"add to My Favorites"}>
         {isFavorite ? (
           <FavoriteIcon
             onClick={() => {
-              console.log("dellet", 41);
               handleDeleteFromFavorites(id);
             }}
           />
         ) : (
           <FavoriteBorderIcon
             onClick={() => {
-              console.log("add", 40);
               handleAddToFavorite(id);
             }}
           />

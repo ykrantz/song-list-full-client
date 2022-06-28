@@ -2,7 +2,6 @@ import { BASE_URL } from "../general/main_var";
 
 const getUserPlaylistsFromServer = async () => {
   try {
-    console.log(localStorage.currentUser);
     if (!localStorage.currentUser) {
       return { status: 400, data: [] };
     }

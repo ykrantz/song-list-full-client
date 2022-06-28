@@ -2,13 +2,9 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "plyr-react/dist/plyr.css";
-// import MainPage from "./components/MainPage/MainPage";
 import Register from "./components/Register/Register";
 import LogIn from "./components/LogIn/LogIn";
-import handleUser from "./context/handleUser";
 import { useState } from "react";
-// import MainPage from "./components/MainPage/MainPage";
-import MainPage from "./components/MainPage/MainPage";
 import UserFavoriteList from "./components/UserFavoriteList/UserFavoriteList";
 import SearchVideoPage from "./pages/SearchVideoPage/SearchVideoPage";
 import PlaylistsPage from "./pages/PlaylistsPage/PlaylistsPage";
@@ -28,7 +24,6 @@ function App() {
 
   const getFavoritePlaylistFromServer = async () => {
     const favorites = await getPlaylistVideoFromServer("My Favorites");
-    console.log(favorites, 37);
     setFavoritePlaylist(favorites);
   };
 
@@ -42,6 +37,7 @@ function App() {
   const waitingMessage = () => {
     changeMessage("Waiting for results from server", "info");
   };
+
   return (
     <div className="App">
       <HandleUser.Provider
@@ -59,7 +55,6 @@ function App() {
               setCurrentPlaylist,
               userPlaylists,
               setUserPlaylists,
-              // TODO: build favorite button
               favoritePlaylist,
               setFavoritePlaylist,
               getFavoritePlaylistFromServer,
@@ -67,12 +62,7 @@ function App() {
           >
             <Router>
               <Routes>
-                {/* <Route exact path="/" element={<LogIn />} /> */}
-                {/* <Route exact path="/" element={<p>dd</p>} /> */}
-                {/* <Route exact path="/" element={<MainPage />} /> */}
-
                 <Route exact path="/" element={<SearchVideoPage />} />
-                {/* <Route exact path="/" element={<Register />} /> */}
                 <Route exact path="/playlists" element={<PlaylistsPage />} />
                 <Route exact path="/search" element={<SearchVideoPage />} />
                 <Route exact path="/favorites" element={<FavoritePage />} />
@@ -89,7 +79,6 @@ function App() {
           </HandlePlaylistMainState.Provider>
         </HandleMessage.Provider>
       </HandleUser.Provider>
-      {/* <MainPage></MainPage> */}
     </div>
   );
 }

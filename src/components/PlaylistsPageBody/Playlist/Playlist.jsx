@@ -65,18 +65,13 @@ const Playlist = ({ removeSong }) => {
 
   useEffect(() => {
     getFavoritePlaylistFromServer();
-    // indicateFavoriteInSearchVideoResults();
   }, []);
   useEffect(() => {
     getFavoritePlaylistFromServer();
-    // indicateFavoriteInSearchVideoResults();
   }, [playlist]);
-
-  console.log({ userPlaylists }, { disableDeletePlaylist }, 31);
 
   const deleteUserPlaylist = async (playlistName) => {
     try {
-      console.log("DDD");
       const accessToken = JSON.parse(localStorage.accessToken);
       const user = JSON.parse(localStorage.currentUser);
       const ans = await fetch(
@@ -90,21 +85,15 @@ const Playlist = ({ removeSong }) => {
         }
       );
       const data = await ans.json();
-      console.log(data);
+      // console.log(data);
       if (ans.status === 200) {
-        // setCurrentPlaylist("");
-        // await getPlaylistsUserFromServer();
-        // TODO:
-
         const userPlaylistsFromServer = await getUserPlaylistsFromServer();
-        console.log(userPlaylistsFromServer, 16);
         setUserPlaylists(userPlaylistsFromServer.data);
         if (userPlaylistsFromServer?.data.length > 0) {
           setCurrentPlaylist(userPlaylistsFromServer.data[0].playlistName);
         } else {
           console.log("user playlist didn't change");
         }
-        console.log({ currentPlaylist }, 33);
         console.log(
           "the play list was deleted from server. playlist was update"
         );
@@ -114,16 +103,13 @@ const Playlist = ({ removeSong }) => {
       console.log(e);
     }
   };
-  console.log({ playlist }, 23);
   return (
     <div className="PlayList-container">
       <List sx={style} component="nav" aria-label="mailbox folders">
         <div className="PlayList-container-header">
           <p className="PlayList-title">Play list: </p>
-          {/* <Playlists /> */}
           <UserPlayLists />
-          {/* <p className="PlayList-currentPlaylistName">{currentPlaylist}</p> */}
-          {/* {{ currentPlaylist } && <span>asda</span> && ( */}
+
           <Tooltip title={"delete playlist"}>
             <IconButton
               aria-label="delete"
@@ -133,7 +119,6 @@ const Playlist = ({ removeSong }) => {
               <DeleteSweepIcon
                 className="PlayList-DeleteSweepIcon"
                 fontSize="large"
-                // color="disabled"
                 color={`${disableDeletePlaylist ? "disabled" : "primary"}`}
               />
             </IconButton>

@@ -1,18 +1,15 @@
 import React, { useContext, useState } from "react";
-import handlePlaylist from "../../context/handlePlaylist";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
-import { BASE_URL } from "../../general/main_var";
-import handleMainStates from "../../context/handleMainStates";
-import handleChangeMesage from "../../context/handleChangeMesage";
-import getUserPlaylistsFromServer from "../../controllers/getUserPlaylistsFromServer";
-import handleMessage from "../../context/handleMessage";
-import handlePlaylistMainState from "../../context/handlePlaylistMainState";
-
+import { BASE_URL } from "../../../general/main_var";
+import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFromServer";
+import handleMessage from "../../../context/handleMessage";
+import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
+import CancelIcon from "@mui/icons-material/Cancel";
+import IconButton from "@mui/material/IconButton";
 const CreatePlaylist = () => {
   const [playlistInput, setPlaylistInput] = useState("");
-  // const { getPlaylistsUserFromServer } = useContext(handlePlaylist);
   const { changeMessage } = useContext(handleMessage);
   const { setCurrentPlaylist, setUserPlaylists } = useContext(
     handlePlaylistMainState
@@ -39,8 +36,6 @@ const CreatePlaylist = () => {
             console.log({ data }, ans.status);
             console.log("plallist was updated in server");
 
-            // getPlaylistsUserFromServer();
-            // const  await getUserPlaylistsFromServer();
             const userPlaylistsFromServer = await getUserPlaylistsFromServer();
             console.log(userPlaylistsFromServer, 16);
             setUserPlaylists(userPlaylistsFromServer.data);
@@ -67,19 +62,20 @@ const CreatePlaylist = () => {
   return (
     <div className="CreatePlaylist-container">
       <div className="CreatePlaylist-createPlaylist">
-        <Stack
-          spacing={4}
-          direction="row"
-          // justifyContent="end"
-          marginLeft="10px"
-        >
-          <Stack
-            spacing={2}
-            direction="row"
-            // justifyContent="end"
-            marginLeft="60px"
-          >
+        <Stack spacing={4} direction="row" marginLeft="10px">
+          <Stack spacing={2} direction="row" marginLeft="60px">
             <Button
+              style={{
+                backgroundColor: "#21b6ae",
+                fontSize: "1.7vh",
+              }}
+              onClick={() => createPlayListInServer()}
+              variant="contained"
+            >
+              create playlist
+            </Button>
+
+            {/* <Button
               onClick={() => {
                 setPlaylistInput("");
               }}
@@ -88,11 +84,9 @@ const CreatePlaylist = () => {
                 backgroundColor: "red",
               }}
               size="small"
-              // centerRipple={true}
-              // style={{="center"}}
             >
-              X
-            </Button>
+              <CancelIcon />
+            </Button> */}
             <TextField
               value={playlistInput}
               onChange={(e) => setPlaylistInput(e.target.value)}
@@ -102,16 +96,19 @@ const CreatePlaylist = () => {
               variant="outlined"
             />
           </Stack>
-
-          <Button
-            style={{
-              backgroundColor: "#21b6ae",
+          <IconButton
+            onClick={() => {
+              setPlaylistInput("");
             }}
-            onClick={() => createPlayListInServer()}
-            variant="contained"
+            color="error"
+            // variant="contained"
+            // style={{
+            //   backgroundColor: "red",
+            // }}
+            // size="small"
           >
-            create playlist
-          </Button>
+            <CancelIcon />
+          </IconButton>
         </Stack>
       </div>
     </div>

@@ -17,8 +17,6 @@ import FavoriteButton from "../../generalComponents/FavoriteButton/FavoriteButto
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 
 const PlaylistVideo = ({ song: { id, title, img } }) => {
-  // console.log(song);
-  // console.log(img);
   const { updateVideoResurce } = useContext(handlePlaylists);
 
   const addVideoByIdToPlaylistServer = () => {

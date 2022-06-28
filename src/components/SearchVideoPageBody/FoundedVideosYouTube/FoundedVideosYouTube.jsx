@@ -15,28 +15,11 @@ const FoundedVideosYouTube = ({ searchVideoResults }) => {
 
   useEffect(() => {
     getFavoritePlaylistFromServer();
-    // indicateFavoriteInSearchVideoResults();
   }, []);
   useEffect(() => {
     getFavoritePlaylistFromServer();
-    // indicateFavoriteInSearchVideoResults();
   }, [searchVideoResults]);
 
-  // const indicateFavoriteInSearchVideoResults = () => {
-  //   const updatedSearchVideoResults = searchVideoResults.map((video) => {
-  //     const { newVideoDetails } = { ...video };
-  //     if (favoritePlaylist.find((favorite) => favorite.id === video.id)) {
-  //       newVideoDetails.favorite = true;
-  //     } else {
-  //       newVideoDetails.favorite = false;
-  //     }
-  //     return newVideoDetails;
-  //   });
-  //   console.log(updatedSearchVideoResults, 38);
-  // };
-
-  // getFavoritePlaylistFromServer();
-  // TODO: add a ideititiy to favoriteas
   const style = {
     width: "100%",
     fontSize: "2vh",
