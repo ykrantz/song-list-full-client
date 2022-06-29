@@ -3,8 +3,10 @@
   margin-bottom: 3vh;
   display: flex;
 }
-
-.Header-buttons{
+.Header-logout{
+  font-size: 2vh;
+}
+.Header-logInOut{
   float: right;
   width: 30%;
 }
@@ -36,7 +38,7 @@ right: 0px; */
     /* margin-bottom: 2vh; */
         margin-top: 0.5vh;
         /* width: 100%; */
-            font-size: 1vh;
+            font-size: 2vh;
 
 
   }

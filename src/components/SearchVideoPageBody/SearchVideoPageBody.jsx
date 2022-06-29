@@ -16,6 +16,7 @@ const SearchVideoPageBody = () => {
   const { favoritePlaylist, setFavoritePlaylist } = useContext(
     handlePlaylistMainState
   );
+  console.log(localStorage.currentUser, localStorage.accessToken, 13);
 
   const [videoSrc, setVideoSrc] = useState(
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""

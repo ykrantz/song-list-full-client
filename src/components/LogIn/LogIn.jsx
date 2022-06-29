@@ -38,7 +38,7 @@ const LogIn = () => {
     if (ans.status === 200) {
       localStorage.currentUser = JSON.stringify(userName);
       localStorage.accessToken = JSON.stringify(accessTokenRes.accessToken);
-      console.log(accessTokenRes.accessToken);
+
       navigate("/");
     } else {
       console.log(accessTokenRes);

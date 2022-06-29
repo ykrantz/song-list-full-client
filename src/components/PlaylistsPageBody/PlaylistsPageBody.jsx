@@ -28,6 +28,7 @@ const PlaylistsPageBody = () => {
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
   );
   // TODO: fix bug when current playlist is My favorites.when remove from favorties need to remove from playlist
+  console.log(localStorage.currentUser, localStorage.accessToken, 12);
 
   useEffect(() => {
     try {
