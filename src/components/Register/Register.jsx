@@ -67,6 +67,11 @@ const Register = () => {
         >
           <div>
             <TextField
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  registerInServer();
+                }
+              }}
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
               id="outlined-basic"
@@ -77,6 +82,11 @@ const Register = () => {
           </div>
           <div>
             <TextField
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  registerInServer();
+                }
+              }}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

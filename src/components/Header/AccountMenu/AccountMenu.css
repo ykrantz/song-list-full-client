@@ -1,5 +1,6 @@
-.AccountMenu-userAvatarInMenu{
-   margin-left: 40%;
+.AcountMenu-userNameAvatar{
+   margin-left: 10%;
+   display: flex;
     /* justify-content: center; */
     /* margin-left: 30px; */
     /* text-align: center; */

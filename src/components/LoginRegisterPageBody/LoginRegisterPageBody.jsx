@@ -1,30 +1,29 @@
-import "./LogIn.css";
+import "./LoginRegisterPageBody.css";
+import handleMessage from "../../context/handleMessage";
+import { BASE_URL } from "../../general/main_var";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
+import React, { useContext, useState } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
 
-import React, { useContext, useState } from "react";
-import BackToHome from "../generalComponents/BackToHome/BackToHome";
 import checkUserDetailsInput from "../../controllers/checkCorrectInput";
-import { BASE_URL } from "../../general/main_var";
-import MessageNote from "../generalComponents/MessageNote/MessageNote";
-import Footer from "../Footer/Footer";
-import handleMessage from "../../context/handleMessage";
 import { Divider } from "@mui/material";
-import Header from "../Header/Header";
+import handleUser from "../../context/handleUser";
 
-const LogIn = () => {
+const LoginRegisterPageBody = ({ type }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { changeMessage, waitingMessage } = useContext(handleMessage);
+  const { setCurrentUser } = useContext(handleUser);
 
   // const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  const logInServer = async () => {
+  const logInRegisterServer = async (apiPath) => {
     // setMessage({ message: "Waiting for data from server", isEror: false });
     waitingMessage();
     const ErorUserDetails = checkUserDetailsInput(userName, password);
@@ -32,7 +31,7 @@ const LogIn = () => {
       changeMessage(ErorUserDetails, "error");
       return;
     }
-    const ans = await fetch(`${BASE_URL}/users/login`, {
+    const ans = await fetch(`${BASE_URL}/users/${apiPath}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +43,7 @@ const LogIn = () => {
     if (ans.status === 200) {
       localStorage.currentUser = JSON.stringify(userName);
       localStorage.accessToken = JSON.stringify(accessTokenRes.accessToken);
-
+      setCurrentUser(userName);
       navigate("/");
     } else {
       console.log(accessTokenRes);
@@ -55,12 +54,11 @@ const LogIn = () => {
 
   return (
     <div>
-      <Header />
-      <div className="LogIn-container">
-        <BackToHome />
+      <div className="LoginRegisterPageBody-container">
+        {/* <BackToHome /> */}
 
-        <h1 className="LogIn-header">Log In:</h1>
-        <div className="LogIn-Inputs">
+        {/* <h1 className="LoginRegisterPageBody-header">Log In:</h1> */}
+        <div className="LoginRegisterPageBody-Inputs">
           <Box
             component="form"
             sx={{
@@ -73,12 +71,12 @@ const LogIn = () => {
               <TextField
                 onKeyPress={(event) => {
                   if (event.key === "Enter") {
-                    logInServer();
+                    logInRegisterServer(type);
                   }
                 }}
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
-                id="outlined-basic"
+                id="outlined-basic-user-name"
                 placeholder="user name"
                 label="user name"
                 variant="outlined"
@@ -88,13 +86,13 @@ const LogIn = () => {
               <TextField
                 onKeyPress={(event) => {
                   if (event.key === "Enter") {
-                    logInServer();
+                    logInRegisterServer(type);
                   }
                 }}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                id="outlined-basic"
+                id="outlined-basic-password"
                 placeholder="password"
                 label="password"
                 variant="outlined"
@@ -103,10 +101,13 @@ const LogIn = () => {
           </Box>
         </div>
 
-        <div className="LogIn-buttons">
+        <div className="LoginRegisterPageBody-buttons">
           <Stack spacing={2} direction="row">
-            <Button onClick={() => logInServer()} variant="contained">
-              Log In
+            <Button
+              onClick={() => logInRegisterServer(type)}
+              variant="contained"
+            >
+              {type === "logIn" ? "Log in" : type}
             </Button>
             <Button onClick={() => navigate("/")} variant="contained">
               Cancel
@@ -114,19 +115,20 @@ const LogIn = () => {
           </Stack>
         </div>
 
-        {/* <p className="Login-message">{message}</p> */}
+        {/* <p className="LoginRegisterPageBody-message">{message}</p> */}
         {/* <MessageNote message={message?.message} type={message?.isEror} /> */}
       </div>
       <Divider />
-      <div className="Login-register">
+      <div className="LoginRegisterPageBody-changePage">
         <p>
-          {" "}
-          New to VideoPlaylist?{"  "}
-          <Link to="/register">Sign Up</Link>
+          {type === "logIn" ? "New User?  " : "Already Registered?  "}
+          <Link to={`/${type === "logIn" ? "register" : "login"}`}>
+            Sign {type === "logIn" ? "up" : "in"}
+          </Link>
         </p>
       </div>
-      <Footer />
     </div>
   );
 };
-export default LogIn;
+
+export default LoginRegisterPageBody;

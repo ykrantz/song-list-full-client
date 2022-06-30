@@ -1,63 +1,117 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Stack } from "@mui/material";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import ButtonSized from "../../components/generalComponents/ButtonSized/ButtonSized";
 import { useContext } from "react";
 import handleUser from "../../context/handleUser";
 // import HamburgerMenu from "../HamburgerIcon/HamburgerMenu";
 import MenuDrower from "./MenuDrower/MenuDrower";
-import UserAvatar from "./UserAvatar/UserAvatar";
-import AvatarMenu from "./AvatarMenu/AvatarMenu";
+import UserAvatar from "../archive/UserAvatar/UserAvatar";
+import AvatarMenu from "../archive/AvatarMenu/AvatarMenu";
 import AccountMenu from "./AccountMenu/AccountMenu";
+import handleHeader from "../../context/archive/handleHeader";
 
 const Header = () => {
-  const { currentUser, setCurrentUser } = useContext(handleUser);
+  // const { currentUser, setCurrentUser } = useContext(handleUser);
+  const [displayAcountLogInRegister, setDisplayAcountLogInRegister] =
+    useState(true);
+  const { currentUser } = useContext(handleUser);
   const navigate = useNavigate();
+  // console.log({displayAcountLogInRegister});
+  useEffect(() => {
+    console.log("FFF");
+    isDisplayAcountLogInRegister();
+  }, []);
 
-  console.log(localStorage.currentUser, localStorage.accessToken, 11);
-  const navigateRegister = () => {
-    navigate("/register");
+  const location = useLocation();
+  const pathLocation = location.pathname;
+
+  // const HeaderView = () => {
+  //   const location = useLocation();
+  //   console.log(location.pathname);
+  //   return location.pathname;
+  // };
+
+  const getHeaderPageTitle = () => {
+    // const path = HeaderView();
+    const path = pathLocation;
+    const pathDictonary = {
+      "/search": "Search Video",
+      "/playlists": "My Playlists",
+      "/favorites": "Favorites",
+      "/register": "register",
+      "/login": "login",
+      "/about": "About Me",
+    };
+    return pathDictonary[path];
   };
-  const navigateLogin = () => {
-    navigate("/login");
+
+  const isDisplayAcountLogInRegister = () => {
+    // const pageName = HeaderView();
+    const pageName = pathLocation;
+    console.log({ pageName });
+    if (
+      pageName === "/" ||
+      pageName === "/search" ||
+      pageName === "/playlists" ||
+      pageName === "/favorites"
+    ) {
+      setDisplayAcountLogInRegister(true);
+      // return true;
+    } else {
+      setDisplayAcountLogInRegister(false);
+      // return false;
+    }
   };
-  const logOut = () => {
-    localStorage.currentUser = "";
-    localStorage.accessToken = "";
-    setCurrentUser("");
-    // TODO: to empty after logotu. at least the playlist anf currentuser and token
-    // setNewPlayList([]);
-    // setUserPlayLists([]);
-    // setCurrentPlayList([]);
-    // setSearchSongApiResults([]);
-    // setSearchPlaylistResults([]);
-    navigate("/");
-  };
+
+  // const navigateRegister = () => {
+  //   navigate("/register");
+  // };
+  // const navigateLogin = () => {
+  //   navigate("/login");
+  // };
+  // const logOut = () => {
+  //   localStorage.currentUser = "";
+  //   localStorage.accessToken = "";
+  //   setCurrentUser("");
+  //   // setNewPlayList([]);
+  //   // setUserPlayLists([]);
+  //   // setCurrentPlayList([]);
+  //   // setSearchSongApiResults([]);
+  //   // setSearchPlaylistResults([]);
+  //   navigate("/");
+  // };
 
   return (
     <div className="Header-container">
       {/* <HamburgerMenu /> */}
       <MenuDrower />
-      <h1 className="Header-titlePlaylist">Video play list</h1>
-      <div className="Header-logInOut">
-        <Stack spacing={0.5} direction="column">
-          {!localStorage.currentUser && (
-            <>
-              {/* <Button
+      {/* <div className="Header-titles"> */}
+      {/* <h1 className="Header-titlePlaylist">Video play list</h1> */}
+      {/* <h1 className="Header-titlePageName">{currentPage}</h1> */}
+      <h1 className="Header-titlePageName">{getHeaderPageTitle()}</h1>
+      {/* </div> */}
+      {displayAcountLogInRegister && (
+        <div className="Header-logInOutAcountMenu">
+          <Stack spacing={0.5} direction="column">
+            {/* {!localStorage.currentUser && ( */}
+            {!currentUser && (
+              <>
+                {/* <Button
                 size={"small"}
                 onClick={() => navigate("/register")}
                 variant="contained"
               >
                 register
               </Button> */}
-              {/* TODO: check if it works with naviagte */}
-              {/* <ButtonSized onClickFunc={navigateRegister} title="register" /> */}
-              {<Link to="/login"> log in / register</Link>}
-              {/* <ButtonSized onClickFunc={navigateLogin} title="Log in" /> */}
-              {/* 
+                {/* TODO: check if it works with naviagte */}
+                {/* <ButtonSized onClickFunc={navigateRegister} title="register" /> */}
+                {<Link to="/login"> log in / register</Link>}
+                {/* <ButtonSized onClickFunc={navigateLogin} title="Log in" /> */}
+                {/* 
               <Button
                 size={"small"}
                 onClick={() => navigate("/login")}
@@ -65,26 +119,28 @@ const Header = () => {
               >
                 Log in
               </Button> */}
-            </>
-          )}
-          {localStorage.currentUser && (
-            <div className="Header-logOutDiv">
-              {/* <span className="Header-currentUser">
+              </>
+            )}
+            {/* {localStorage.currentUser && ( */}
+            {currentUser && (
+              <div className="Header-logInOutDiv">
+                {/* <span className="Header-currentUser">
                 Welcome, {JSON.parse(localStorage.currentUser)}
               </span> */}
-              {/* <UserAvatar userName={JSON.parse(localStorage.currentUser)} /> */}
-              <AccountMenu userName={JSON.parse(localStorage.currentUser)} />
-              {/* <AvatarMenu /> */}
-              {/* <ButtonSized onClickFunc={logOut} title="Log out" /> */}
-              {/* <div className="Header-logout">
+                {/* <UserAvatar userName={JSON.parse(localStorage.currentUser)} /> */}
+                <AccountMenu userName={JSON.parse(localStorage.currentUser)} />
+                {/* <AvatarMenu /> */}
+                {/* <ButtonSized onClickFunc={logOut} title="Log out" /> */}
+                {/* <div className="Header-logout">
                 <Link to="/" onClick={() => logOut()}>
                   log out
                 </Link>
               </div> */}
-            </div>
-          )}
-        </Stack>
-      </div>
+              </div>
+            )}
+          </Stack>
+        </div>
+      )}
     </div>
   );
 };

@@ -16,11 +16,10 @@ import Stack from "@mui/material/Stack";
 // }
 
 const MessageNote = ({ message, type }) => {
-  console.log({ type }, 35);
   return (
     <div>
       <Stack sx={{ width: "100%" }} spacing={2}>
-        <Alert severity={type ? type : ""}>{message}</Alert>
+        {type && <Alert severity={type}>{message}</Alert>}
       </Stack>
     </div>
   );

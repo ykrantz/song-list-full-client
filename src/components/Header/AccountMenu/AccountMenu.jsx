@@ -1,3 +1,5 @@
+import "./AccountMenu.css";
+
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -13,6 +15,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import handleUser from "../../../context/handleUser";
 import { useNavigate } from "react-router";
+import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 
 function stringToColor(string) {
   let hash = 0;
@@ -38,8 +41,8 @@ function stringAvatar(name) {
   return {
     sx: {
       bgcolor: stringToColor(name),
-      width: "5vh",
-      height: "5vh",
+      width: "32",
+      height: "32",
     },
     children: `${name.split(" ")[0][0]}${
       name.split(" ").length > 1 ? name.split(" ")[1][0] : name[name.length - 1]
@@ -51,6 +54,8 @@ export default function AccountMenu({ userName }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const { setCurrentUser } = React.useContext(handleUser);
+  const { setCurrentPlaylist, setUserPlaylists, setFavoritePlaylist } =
+    React.useContext(handlePlaylistMainState);
   const navigate = useNavigate();
 
   const handleClick = (event) => {
@@ -59,15 +64,15 @@ export default function AccountMenu({ userName }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const test1 = () => {
-    alert("DDD");
-  };
 
   const handleLogOut = (event) => {
     console.log("loged out");
     localStorage.currentUser = "";
     localStorage.accessToken = "";
     setCurrentUser("");
+    setCurrentPlaylist("");
+    setUserPlaylists([]);
+    setFavoritePlaylist([]);
     // TODO: to empty after logotu. at least the playlist anf currentuser and token
     // setNewPlayList([]);
     // setUserPlayLists([]);
@@ -81,6 +86,11 @@ export default function AccountMenu({ userName }) {
     // }
 
     // setOpen(false);
+  };
+
+  const handleChangeUser = () => {
+    handleLogOut();
+    navigate("/login");
   };
   return (
     <React.Fragment>
@@ -99,7 +109,7 @@ export default function AccountMenu({ userName }) {
             {/* <Avatar  sx={{ width: 32, height: 32 }}>M</Avatar> */}
             <Avatar
               {...stringAvatar(userName)}
-              sx={{ width: 32, height: 32 }}
+              // sx={{ width: 32, height: 32 }}
             ></Avatar>
           </IconButton>
         </Tooltip>
@@ -139,25 +149,41 @@ export default function AccountMenu({ userName }) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
-          <Avatar /> Profile
+        <MenuItem
+          // disableElevation
+          disableRipple
+          // size="small"
+          sx={{
+            ml: 1,
+            "&.MuiButtonBase-root:hover": {
+              bgcolor: "transparent",
+            },
+          }}
+        >
+          <div className="AcountMenu-userNameAvatar">
+            <Avatar
+              {...stringAvatar(userName)}
+              // sx={{ width: 32, height: 32 }}
+            ></Avatar>
+            {userName}
+          </div>
         </MenuItem>
-        <MenuItem>
-          <Avatar /> My account
-        </MenuItem>
+        {/* <MenuItem>
+          <Avatar /> {userName}
+        </MenuItem> */}
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={() => handleChangeUser()}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
-          Add another account
+          change user
         </MenuItem>
-        <MenuItem>
+        {/* <MenuItem>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={() => handleLogOut()}>
           <ListItemIcon>
             <Logout fontSize="small" />

@@ -9,6 +9,7 @@ import Playlist from "./Playlist/Playlist";
 import UserPlayLists from "../generalComponents/UserPlayLists/UserPlayLists";
 import handlePlaylistMainState from "../../context/handlePlaylistMainState";
 import handleMessage from "../../context/handleMessage";
+import handleHeader from "../../context/archive/handleHeader";
 // import Playlist from "../Playlist/Playlist";
 
 const PlaylistsPageBody = () => {
@@ -21,26 +22,24 @@ const PlaylistsPageBody = () => {
     userPlaylists,
     setUserPlaylists,
   } = useContext(handlePlaylistMainState);
-  const { changeMessage } = useContext(handleMessage);
+  const { changeMessage, waitingMessage } = useContext(handleMessage);
+
   const [playlist, setPlaylist] = useState([]);
 
   const [videoSrc, setVideoSrc] = useState(
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
   );
   // TODO: fix bug when current playlist is My favorites.when remove from favorties need to remove from playlist
-  console.log(localStorage.currentUser, localStorage.accessToken, 12);
-
+  useEffect(() => {}, []);
   useEffect(() => {
     try {
+      waitingMessage();
       getPlaylistFromServer();
+      changeMessage("", "");
     } catch (e) {
       console.log(e);
     }
   }, [currentPlaylist]);
-
-  const waitingMessage = () => {
-    changeMessage("Waiting for results from server", "info");
-  };
 
   const updateVideoResurce = (videoId) => {
     // setAutoplayFlag(true);
@@ -77,8 +76,9 @@ const PlaylistsPageBody = () => {
           },
         }
       );
-      const myPlaylist = await ans.json();
+      let myPlaylist = await ans.json();
       if (ans.status === 200) {
+        myPlaylist = [...myPlaylist].reverse();
         setPlaylist([...myPlaylist]);
       } else {
         setPlaylist([]);

@@ -37,8 +37,13 @@ const SearchVideo = () => {
       const data = await ans.json();
       if (ans.status === 200) {
         setSearchVideoApiResults(data);
+
         updateVideoResurce(data[0].id);
-        changeMessage("Great. we founded videos for you from YouTube");
+        console.log("found", 61);
+        changeMessage(
+          "Great. we founded videos for you from YouTube",
+          "success"
+        );
       } else {
         changeMessage(data.message, "warning");
       }

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "plyr-react/dist/plyr.css";
 import Register from "./components/Register/Register";
 import LogIn from "./components/LogIn/LogIn";
+import LoginRegisterPage from "./pages/LoginRegisterPage/LoginRegisterPage";
 import { useState } from "react";
 import UserFavoriteList from "./components/UserFavoriteList/UserFavoriteList";
 import SearchVideoPage from "./pages/SearchVideoPage/SearchVideoPage";
@@ -14,9 +15,10 @@ import HandleMessage from "./context/handleMessage";
 import HandleUser from "./context/handleUser";
 import getPlaylistVideoFromServer from "./controllers/getPlaylistVideo";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
+import HandleHeader from "./context/archive/handleHeader";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState("");
   const [currentPlaylist, setCurrentPlaylist] = useState("");
   const [message, setMessage] = useState("");
   const [userPlaylists, setUserPlaylists] = useState([]);
@@ -67,8 +69,18 @@ function App() {
                 <Route exact path="/search" element={<SearchVideoPage />} />
                 <Route exact path="/favorites" element={<FavoritePage />} />
                 <Route exact path="/about" element={<AboutPage />} />
-                <Route exact path="/register" element={<Register />} />
-                <Route exact path="/login" element={<LogIn />} />
+                {/* <Route exact path="/register" element={<Register />} /> */}
+                <Route
+                  exact
+                  path="/register"
+                  element={<LoginRegisterPage type="register" />}
+                />
+                {/* <Route exact path="/login" element={<LogIn />} /> */}
+                <Route
+                  exact
+                  path="/login"
+                  element={<LoginRegisterPage type="logIn" />}
+                />
                 <Route
                   exact
                   path="/songfavorites/:songid"

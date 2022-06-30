@@ -9,6 +9,7 @@ import UserPlayLists from "../generalComponents/UserPlayLists/UserPlayLists";
 
 import getFavoritePlayList from "../../controllers/getPlaylistVideo";
 import handlePlaylistMainState from "../../context/handlePlaylistMainState";
+import handleHeader from "../../context/archive/handleHeader";
 
 const SearchVideoPageBody = () => {
   const [searchVideoApiResults, setSearchVideoApiResults] = useState([]);
@@ -16,7 +17,6 @@ const SearchVideoPageBody = () => {
   const { favoritePlaylist, setFavoritePlaylist } = useContext(
     handlePlaylistMainState
   );
-  console.log(localStorage.currentUser, localStorage.accessToken, 13);
 
   const [videoSrc, setVideoSrc] = useState(
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""

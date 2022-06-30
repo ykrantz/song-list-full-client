@@ -1,27 +1,52 @@
 .Header-container{
 
+  margin-top: 1vh;
   margin-bottom: 3vh;
   display: flex;
 }
-.Header-logout{
+
+.Header-titles{
+  float: left;
+  /* width: 60%; */
   font-size: 2vh;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  /* margin-left: 1vw; */
+      padding-left: 0px;
+      width: 60%;
 }
-.Header-logInOut{
+.Header-titlePageName{
+  /* float: left; */
+  /* width: 60%; */
+  float: left;
+  padding-left: 0px;
+      width: 60%;
+  font-size: 3vh;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  /* margin-left: 1vw; */
+      /* padding-left: 0px;
+      width: 60%; */
+}
+.Header-titlePlaylist {
+  /* float: left; */
+  /* width: 60%; */
+  font-size: 2vh;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  /* margin-left: 1vw;
+      padding-left: 0px;
+      width: 60%; */
+
+}
+/* .Header-logout{
+  font-size: 2vh;
+} */
+.Header-Header-logInOutAcountMenu{
   float: right;
   width: 30%;
 }
-.Header-titlePlaylist {
-    float: left;
-    /* width: 60%; */
-    font-size: 2vh;
-    font-family: Georgia, "Times New Roman", Times, serif;
-    /* margin-left: 1vw; */
-        padding-left: 0px;
-        width: 50%;
 
-  }
-  .Header-logOutDiv{
+  .Header-logInOutDiv{
     /* float: right; */
+    font-size:1vh;
     text-align:right;
     margin-right: 2vw;
     /* font-size: 1vh; */

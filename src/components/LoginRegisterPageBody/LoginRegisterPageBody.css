@@ -1,0 +1,32 @@
+.LoginRegisterPageBody-container{
+    margin-bottom: 5vh;
+  }
+  
+  .LoginRegisterPageBody-message {
+    color: red;
+  }
+  
+  .LoginRegisterPageBody-buttons {
+    /* align-items: center;
+    align-tracks: center; */
+    /* margin-left: 41%; */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .LoginRegisterPageBody-Inputs {
+    align-items: center;
+    align-tracks: center;
+    margin-top: 50px;
+    display: block;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+  }
+  
+  .LoginRegisterPageBody-header {
+    margin-top: 80px;
+    /* background-color: cornsilk; */
+  }
+  
