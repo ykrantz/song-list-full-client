@@ -68,11 +68,14 @@ right: 0px; */
 
   }
 
-  @media only screen and (min-width: 600px) {    
+  @media only screen and (min-width: 600px) { 
+    .Header-container{
+      margin-bottom: 2vh;
+    }   
     .Header-titlePlaylist {
           font-size: 7vh;
     }
     .Header-titlePageName{
-      font-size: 7vh;
+      font-size: 5vh;
       }
   }

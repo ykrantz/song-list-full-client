@@ -1,22 +1,64 @@
-.SearchPageBody-VideoPlay{
-    /* margin-left: 30px;
-    margin-right: 30px; */
-    /* margin-top: 1vh; */
 
-}
 
-/* .SearchPageBody-container{
+@media only screen and (min-width: 600px) {
+    .SearchPageBody-container{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .SearchPageBody-content{
+        display: flex;
+
+    }
+    .SearchPageBody-left{
+        /* display: flex; */
+        /* flex-direction: column; */
+        float: left;
+        width: 60%;
+        height: 10vh;
+        
+    
+        
+    }
+
+    .SearchPageBody-right{
+        /* height: 500px; */
+        position: relative; 
+        display: flex;
+        flex-direction: column;
+        float: right;
+        /* background-color: aqua; */
+        width: 40%;
+        /* justify-content: center; */
+        align-items: center;
+    }
+    .SearchPageBody-SearchVideo{
+
+    }
+    .SearchPageBody-VideoPlay{
+        /* margin-left: 30px;
+        margin-right: 30px; */
+        /* margin-top: 1vh; */
+
+    }
+    .SearchPageBody-clickPlaylist{
+        /* position: absolute;
+        bottom: -50px; */
+    }
+  
+/* 
+.SearchPageBody-container{
     display: flex;
     flex-direction: column;
-}
+} */
 
-.SearchPageBody-SearchAndVideoPlay{
-    display: flex;
-    float: left;
 
-}
 
-.SearchPageBody-FoundedVideosYouTube{
+
+/* .SearchPageBody-FoundedVideosYouTube{
     display: flex;
     float: right;
 } */
+
+
+}

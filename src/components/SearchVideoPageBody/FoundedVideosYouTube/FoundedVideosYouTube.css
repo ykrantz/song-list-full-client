@@ -3,7 +3,8 @@
   flex-direction: column;
   width: 100vw;
   justify-content: center;
-  background-color: rgb(122, 240, 122);
+  /* background-color: rgb(122, 240, 122); */
+  /* background-color: #dfcfbe; */
   /* margin-left: 3%; */
 margin-top: 3vh;
   /* overflow: hidden;
@@ -24,7 +25,19 @@ margin-top: 3vh;
 
 @media only screen and (min-width: 600px) {
   .FoundedVideosYouTube-container {
+   
     float: right;
-    width: 35vw;
+    width: 90%;
+    /* height: 100%; */
+    justify-content: center;
+    /* height: 100px; */
+    margin-top: 0;
+
+  }
+  .FoundedVideosYouTube-searchVideoResults{
+    /* max-height: 50vh; */
+    height: 300px;
+    max-height: 300px;
+
   }
 }

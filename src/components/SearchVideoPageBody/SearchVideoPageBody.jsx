@@ -11,6 +11,8 @@ import getFavoritePlayList from "../../controllers/getPlaylistVideo";
 import handlePlaylistMainState from "../../context/handlePlaylistMainState";
 import handleHeader from "../../context/archive/handleHeader";
 import getUserPlaylistsFromServer from "../../controllers/getUserPlaylistsFromServer";
+import { Box, Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const SearchVideoPageBody = () => {
   const [searchVideoApiResults, setSearchVideoApiResults] = useState([]);
@@ -52,30 +54,53 @@ const SearchVideoPageBody = () => {
   };
   return (
     <div className="SearchPageBody-container">
-      <HandleSearchVideoApi.Provider
-        value={{
-          searchVideoApiResults,
-          setSearchVideoApiResults,
-          currentPlayList,
-          setCurrentPlayList,
+      {/* <Box sx={{ flexGrow: 1 }}> */}
+      <div className="SearchPageBody-content">
+        <HandleSearchVideoApi.Provider
+          value={{
+            searchVideoApiResults,
+            setSearchVideoApiResults,
+            currentPlayList,
+            setCurrentPlayList,
 
-          updateVideoResurce,
-        }}
-      >
-        <div className="SearchPageBody-SearchAndVideoPlay">
-          <SearchVideo />
-          <div className="SearchPageBody-VideoPlay">
-            <VideoPlay videoSrc={videoSrc} />
+            updateVideoResurce,
+          }}
+        >
+          {/* <Grid container spacing={2}> */}
+          <div className="SearchPageBody-left">
+            {/* <Grid container spacing={2} item xs={12} md={6}> */}
+            {/* <Grid item xs={12} md={8}> */}
+            <div className="SearchPageBody-SearchVideo">
+              <SearchVideo />
+            </div>
+            {/* </Grid> */}
+            {/* <div className="SearchPageBody-VideoPlay"> */}
+            {/* <Grid item xs={10} md={5}> */}
+            <div className="SearchPageBody-VideoPlay">
+              <VideoPlay videoSrc={videoSrc} />
+              {/* </Grid> */}
+              {/* </Grid> */}
+            </div>
           </div>
-        </div>
-        {/* <UserPlayLists type="add" /> */}
-        <div className="SearchPageBody-FoundedVideosYouTube">
-          <FoundedVideosYouTube
-            className="Body-FoundedSongsYouTube"
-            searchVideoResults={searchVideoApiResults}
-          />
-        </div>
-      </HandleSearchVideoApi.Provider>
+
+          {/* </div> */}
+          {/* <UserPlayLists type="add" /> */}
+          {/* <div className="SearchPageBody-FoundedVideosYouTube"> */}
+          {/* <Grid item xs={12} md={6}> */}
+          <div className="SearchPageBody-right">
+            <FoundedVideosYouTube searchVideoResults={searchVideoApiResults} />
+            {/* </Grid> */}
+            {/* </Grid> */}
+            {/* </div> */}
+            <p className="SearchPageBody-clickPlaylist">
+              {" "}
+              To see your playlist press <Link to="/playlists">here</Link>
+            </p>
+          </div>
+        </HandleSearchVideoApi.Provider>
+
+        {/* </Box> */}
+      </div>
     </div>
   );
 };
