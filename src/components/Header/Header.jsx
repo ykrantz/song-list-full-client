@@ -13,6 +13,8 @@ import UserAvatar from "../archive/UserAvatar/UserAvatar";
 import AvatarMenu from "../archive/AvatarMenu/AvatarMenu";
 import AccountMenu from "./AccountMenu/AccountMenu";
 import handleHeader from "../../context/archive/handleHeader";
+import MenuDrower2 from "./MenuDrower2/MenuDrower2";
+import PermanentDrawerLeftMenu from "./PermanentDrawerLeftMenu/PermanentDrawerLeftMenu";
 
 const Header = () => {
   // const { currentUser, setCurrentUser } = useContext(handleUser);
@@ -90,6 +92,10 @@ const Header = () => {
     <div className="Header-container">
       {/* <HamburgerMenu /> */}
       <MenuDrower />
+      {/* <MenuDrower2 /> */}
+      {/* <div className="test2">
+        <PermanentDrawerLeftMenu />
+      </div> */}
       {/* <div className="Header-titles"> */}
       {/* <h1 className="Header-titlePlaylist">Video play list</h1> */}
       {/* <h1 className="Header-titlePageName">{currentPage}</h1> */}

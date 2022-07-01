@@ -11,15 +11,15 @@
   font-size: 2vh;
   font-family: Georgia, "Times New Roman", Times, serif;
   /* margin-left: 1vw; */
-      padding-left: 0px;
-      width: 60%;
+      /* padding-left: 0px; */
+      width: 80%;
 }
 .Header-titlePageName{
   /* float: left; */
   /* width: 60%; */
   float: left;
   padding-left: 0px;
-      width: 60%;
+      width: 80%;
   font-size: 3vh;
   font-family: Georgia, "Times New Roman", Times, serif;
   /* margin-left: 1vw; */
@@ -72,5 +72,7 @@ right: 0px; */
     .Header-titlePlaylist {
           font-size: 7vh;
     }
-
+    .Header-titlePageName{
+      font-size: 7vh;
+      }
   }

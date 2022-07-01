@@ -51,7 +51,7 @@ const SearchVideoPageBody = () => {
     localStorage.youtubeId = JSON.stringify(videoId);
   };
   return (
-    <div>
+    <div className="SearchPageBody-container">
       <HandleSearchVideoApi.Provider
         value={{
           searchVideoApiResults,
@@ -62,16 +62,19 @@ const SearchVideoPageBody = () => {
           updateVideoResurce,
         }}
       >
-        <SearchVideo />
-        <div className="SearchPageBody-VideoPlay">
-          <VideoPlay videoSrc={videoSrc} />
+        <div className="SearchPageBody-SearchAndVideoPlay">
+          <SearchVideo />
+          <div className="SearchPageBody-VideoPlay">
+            <VideoPlay videoSrc={videoSrc} />
+          </div>
         </div>
-
         {/* <UserPlayLists type="add" /> */}
-        <FoundedVideosYouTube
-          className="Body-FoundedSongsYouTube"
-          searchVideoResults={searchVideoApiResults}
-        />
+        <div className="SearchPageBody-FoundedVideosYouTube">
+          <FoundedVideosYouTube
+            className="Body-FoundedSongsYouTube"
+            searchVideoResults={searchVideoApiResults}
+          />
+        </div>
       </HandleSearchVideoApi.Provider>
     </div>
   );
