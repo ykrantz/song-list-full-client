@@ -24,7 +24,7 @@ const FoundedVideosYouTube = ({ searchVideoResults }) => {
     width: "100%",
     fontSize: "2vh",
     maxWidth: 600,
-    bgcolor: " rgb(122, 240, 122)",
+    // bgcolor: " rgb(122, 240, 122)",
   };
   return (
     <div className="FoundedVideosYouTube-container">

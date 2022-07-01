@@ -15,7 +15,9 @@ import { Container } from "@mui/material";
 import handleMessage from "../../../context/handleMessage";
 
 export default function BasicListPlaylist({ id, addVideoToPlaylistServer }) {
-  const { userPlaylists } = React.useContext(handlePlaylistMainState);
+  const { userPlaylists, handleSetCurrentPlaylist } = React.useContext(
+    handlePlaylistMainState
+  );
   const { changeMessage } = React.useContext(handleMessage);
 
   console.log({ userPlaylists }, 63);
@@ -45,9 +47,10 @@ export default function BasicListPlaylist({ id, addVideoToPlaylistServer }) {
                     </ListItemIcon> */}
                     <ListItemText
                       primary={playlist.playlistName}
-                      onClick={() =>
-                        addVideoToPlaylistServer(id, playlist.playlistName)
-                      }
+                      onClick={() => {
+                        addVideoToPlaylistServer(id, playlist.playlistName);
+                        handleSetCurrentPlaylist(playlist.playlistName);
+                      }}
                     />
                   </ListItemButton>
                 </ListItem>

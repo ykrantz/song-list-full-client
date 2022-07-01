@@ -1,3 +1,9 @@
-.Footer-container{
- 
-}
+
+  @media only screen and (min-width: 600px) { 
+
+    .Footer-container{
+    /* height: 60px; */
+    height: 10vh;
+    background-color: antiquewhite;
+    }
+  }

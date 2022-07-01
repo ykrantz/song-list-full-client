@@ -29,6 +29,10 @@ function App() {
     setFavoritePlaylist(favorites);
   };
 
+  const handleSetCurrentPlaylist = (value) => {
+    setCurrentPlaylist(value);
+    localStorage.currentPlaylist = JSON.stringify(value);
+  };
   const changeMessage = (str, type = "success") => {
     setMessage({ message: str, type: type });
 
@@ -55,6 +59,7 @@ function App() {
             value={{
               currentPlaylist,
               setCurrentPlaylist,
+              handleSetCurrentPlaylist,
               userPlaylists,
               setUserPlaylists,
               favoritePlaylist,

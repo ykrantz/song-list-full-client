@@ -11,7 +11,7 @@ import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 const UserPlayLists = ({ type }) => {
   const {
     currentPlaylist,
-    setCurrentPlaylist,
+    handleSetCurrentPlaylist,
     userPlaylists,
     setUserPlaylists,
   } = useContext(handlePlaylistMainState);
@@ -24,12 +24,16 @@ const UserPlayLists = ({ type }) => {
       if (userPlaylistsFromServer?.data.length > 0) {
         if (
           userPlaylistsFromServer.data.find(
-            (value) => value.playlistName === currentPlaylist
+            (value) =>
+              // value.playlistName === JSON.parse(localStorage.currentPlaylist)
+              value.playlistName === currentPlaylist
           )
         ) {
-          setCurrentPlaylist(currentPlaylist);
+          handleSetCurrentPlaylist(currentPlaylist);
         } else {
-          setCurrentPlaylist(userPlaylistsFromServer.data[0].playlistName);
+          handleSetCurrentPlaylist(
+            userPlaylistsFromServer.data[0].playlistName
+          );
         }
       } else {
         console.log("user playlist didn't change");
@@ -53,7 +57,7 @@ const UserPlayLists = ({ type }) => {
             label={playlistLabel}
             onChange={(e) => {
               console.log(e.target.value, 27);
-              setCurrentPlaylist(e.target.value);
+              handleSetCurrentPlaylist(e.target.value);
             }}
           >
             {userPlaylists.map((playlist) => (
