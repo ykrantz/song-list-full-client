@@ -18,7 +18,9 @@ import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import HandleHeader from "./context/archive/handleHeader";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState(
+    localStorage.currentUser ? JSON.parse(localStorage.currentUser) : ""
+  );
   const [currentPlaylist, setCurrentPlaylist] = useState("");
   const [message, setMessage] = useState("");
   const [userPlaylists, setUserPlaylists] = useState([]);

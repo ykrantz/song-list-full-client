@@ -15,6 +15,7 @@ import PlayVideoButton from "../../generalComponents/PlayVideoButton/PlayVideoBu
 import handleUser from "../../../context/handleUser";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import handleMessage from "../../../context/handleMessage";
+import AddVideoToPlaylist from "../AddVideoToPlaylist/AddVideoToPlaylist";
 
 const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
   const { searchVideoApiResults, updateVideoResurce } =
@@ -22,7 +23,9 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
   const { favoritePlaylist } = useContext(handlePlaylistMainState);
   const { changeMessage } = useContext(handleMessage);
 
-  const { currentPlaylist } = useContext(handlePlaylistMainState);
+  const { currentPlaylist, setCurrentPlaylist } = useContext(
+    handlePlaylistMainState
+  );
   const { currentUser } = useContext(handleUser);
 
   const formolizeVideoToServer = (videoApiDitails) => {
@@ -70,8 +73,9 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
 
       if (ans.status === 200) {
         console.log("video was updated in server");
-        changeMessage(`video added succsesfully 
-        (${videoDitails.title.substring(0, 25)} )`);
+        setCurrentPlaylist(playlistName);
+        changeMessage(`Added to playlist:  
+        ${playlistName.substring(0, 25)}`);
       } else {
         // console.log(data);
 
@@ -113,7 +117,7 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
           className="FoundedVideoYouTube-img"
           onClick={() => updateVideoResurce(id)}
         ></img>
-        {localStorage.currentUser && (
+        {/* {localStorage.currentUser && (
           <Tooltip title={"add video to playlist"}>
             <AddCircleIcon
               fontSize="large"
@@ -122,7 +126,12 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
               }}
             />
           </Tooltip>
-        )}
+        )} */}
+        <AddVideoToPlaylist
+          id={id}
+          addVideoToPlaylistServer={addVideoToPlaylistServer}
+          currentPlaylist={currentPlaylist}
+        />
       </ListItem>
       <Divider />
     </div>

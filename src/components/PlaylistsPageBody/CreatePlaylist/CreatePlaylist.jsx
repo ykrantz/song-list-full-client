@@ -8,15 +8,23 @@ import handleMessage from "../../../context/handleMessage";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import CancelIcon from "@mui/icons-material/Cancel";
 import IconButton from "@mui/material/IconButton";
+import handleUser from "../../../context/handleUser";
+
 const CreatePlaylist = () => {
   const [playlistInput, setPlaylistInput] = useState("");
   const { changeMessage } = useContext(handleMessage);
   const { setCurrentPlaylist, setUserPlaylists } = useContext(
     handlePlaylistMainState
   );
+  const { currentUser } = React.useContext(handleUser);
 
   const createPlayListInServer = async () => {
     try {
+      if (!currentUser) {
+        changeMessage(`Please log in to create playlist`, "error");
+        return;
+      }
+
       if (playlistInput) {
         if (playlistInput.length < 20) {
           const accessToken = JSON.parse(localStorage.accessToken);
@@ -62,20 +70,28 @@ const CreatePlaylist = () => {
   return (
     <div className="CreatePlaylist-container">
       <div className="CreatePlaylist-createPlaylist">
-        <Stack spacing={4} direction="row" marginLeft="10px">
-          <Stack spacing={2} direction="row" marginLeft="60px">
-            <Button
-              style={{
-                backgroundColor: "#21b6ae",
-                fontSize: "1.7vh",
-              }}
-              onClick={() => createPlayListInServer()}
-              variant="contained"
-            >
-              create playlist
-            </Button>
+        <Stack
+          spacing={2}
+          direction="row"
+          marginLeft="10%"
+          marginRight="5%"
+          justifyContent="center"
+          alignContent="center"
+          alignItems={"center"}
+        >
+          <Button
+            style={{
+              backgroundColor: "#21b6ae",
+              fontSize: "1.4vh",
+              // width: "100px ",
+            }}
+            onClick={() => createPlayListInServer()}
+            variant="contained"
+          >
+            create playlist
+          </Button>
 
-            {/* <Button
+          {/* <Button
               onClick={() => {
                 setPlaylistInput("");
               }}
@@ -87,15 +103,21 @@ const CreatePlaylist = () => {
             >
               <CancelIcon />
             </Button> */}
-            <TextField
-              value={playlistInput}
-              onChange={(e) => setPlaylistInput(e.target.value)}
-              id="outlined-basic"
-              placeholder="playlist name"
-              label="enter playlist name"
-              variant="outlined"
-            />
-          </Stack>
+          <TextField
+            value={playlistInput}
+            onChange={(e) => setPlaylistInput(e.target.value)}
+            id="outlined-basic"
+            placeholder="playlist name"
+            label="enter playlist name"
+            variant="outlined"
+            // style={{
+            //   // backgroundColor: "#21b6ae",
+            //   fontSize: "1vh",
+            //   // width: "100px ",
+            // }}
+            // sx={{ fontSize: "large" }}
+          />
+
           <IconButton
             onClick={() => {
               setPlaylistInput("");
@@ -107,7 +129,7 @@ const CreatePlaylist = () => {
             // }}
             // size="small"
           >
-            <CancelIcon />
+            <CancelIcon fontSize="large" />
           </IconButton>
         </Stack>
       </div>

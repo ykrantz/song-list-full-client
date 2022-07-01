@@ -45,6 +45,7 @@ const Header = () => {
       "/register": "register",
       "/login": "login",
       "/about": "About Me",
+      "/": "Search Video",
     };
     return pathDictonary[path];
   };

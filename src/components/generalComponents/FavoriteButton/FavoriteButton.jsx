@@ -7,11 +7,14 @@ import { useNavigate } from "react-router";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import deleteVideoFromPlaylist from "../../../controllers/deleteVideoFromPlaylist";
 import handleMessage from "../../../context/handleMessage";
+import handleUser from "../../../context/handleUser";
 
 const FavoriteButton = ({ id, addVideoToPlaylistServer }) => {
   const { getFavoritePlaylistFromServer, favoritePlaylist } = useContext(
     handlePlaylistMainState
   );
+  const { currentUser } = React.useContext(handleUser);
+
   const { changeMessage } = useContext(handleMessage);
 
   const navigate = useNavigate();
@@ -48,7 +51,12 @@ const FavoriteButton = ({ id, addVideoToPlaylistServer }) => {
         ) : (
           <FavoriteBorderIcon
             onClick={() => {
-              handleAddToFavorite(id);
+              currentUser
+                ? handleAddToFavorite(id)
+                : changeMessage(
+                    `Please log in to add video to playlist`,
+                    "error"
+                  );
             }}
           />
         )}

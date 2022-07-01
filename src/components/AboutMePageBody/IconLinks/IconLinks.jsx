@@ -54,29 +54,39 @@ export default function IconLinks() {
           <GitHubButton gitHubUrl="https://github.com/ykrantz" urlType="link" />
         </div>
         {/* </Item> */}
-
-        {/* <Item> */}
-        <div className="AboutMePageBody-Cv">
-          <div className="AboutMePageBody-myCvTitle">My CV:</div>
-          <div className="AboutMePageBody-cvDiv">
-            <a
-              className="AboutMePageBody-cvFile"
-              // if want to show  directly in google
-              // href="https://drive.google.com/file/d/1giY5P58xg94jsrnIFpy_ZC9mfUBgV0Xs/view?usp=sharing"
-              href={CV_LINK}
-            >
-              <Tooltip title={"downlaod CV"}>
-                <FileDownloadIcon
-                  className="AboutMePageBody-cvFile"
-                  variant="contained"
-                  fontSize="large"
-                />
-              </Tooltip>
-            </a>
-          </div>
-        </div>
-        {/* </Item> */}
       </Stack>
+      {/* <Item> */}
+      <Stack
+        direction="row"
+        spacing={1}
+        justifyContent="center"
+        alignContent="center"
+        alignItems={"center"}
+        marginTop={1}
+      >
+        {/* <div className="AboutMePageBody-Cv"> */}
+        <div className="AboutMePageBody-myCvTitle">My CV: </div>
+
+        <div className="AboutMePageBody-cvDiv">
+          <a
+            className="AboutMePageBody-cvFile"
+            // if want to show  directly in google
+            // href="https://drive.google.com/file/d/1giY5P58xg94jsrnIFpy_ZC9mfUBgV0Xs/view?usp=sharing"
+            href={CV_LINK}
+          >
+            <Tooltip title={"downlaod CV"}>
+              <FileDownloadIcon
+                className="AboutMePageBody-cvFile"
+                variant="contained"
+                fontSize="medium"
+              />
+            </Tooltip>
+          </a>
+        </div>
+        {/* </div> */}
+      </Stack>
+
+      {/* </Item> */}
     </div>
   );
 }

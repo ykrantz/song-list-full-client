@@ -10,13 +10,13 @@ import UserPlayLists from "../generalComponents/UserPlayLists/UserPlayLists";
 import getFavoritePlayList from "../../controllers/getPlaylistVideo";
 import handlePlaylistMainState from "../../context/handlePlaylistMainState";
 import handleHeader from "../../context/archive/handleHeader";
+import getUserPlaylistsFromServer from "../../controllers/getUserPlaylistsFromServer";
 
 const SearchVideoPageBody = () => {
   const [searchVideoApiResults, setSearchVideoApiResults] = useState([]);
   const [currentPlayList, setCurrentPlayList] = useState();
-  const { favoritePlaylist, setFavoritePlaylist } = useContext(
-    handlePlaylistMainState
-  );
+  const { favoritePlaylist, setFavoritePlaylist, setUserPlaylists } =
+    useContext(handlePlaylistMainState);
 
   const [videoSrc, setVideoSrc] = useState(
     localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
@@ -24,8 +24,15 @@ const SearchVideoPageBody = () => {
   // const { changeMessage } = useContext(handleMessage);
 
   useEffect(async () => {
-    const myFavorits = await getFavoritePlayList("My Favorites");
-    setFavoritePlaylist(myFavorits);
+    try {
+      const myFavorits = await getFavoritePlayList("My Favorites");
+      setFavoritePlaylist(myFavorits);
+
+      const userPlaylistsFromServer = await getUserPlaylistsFromServer();
+      setUserPlaylists(userPlaylistsFromServer.data);
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
   const updateVideoResurce = (videoId) => {
@@ -60,7 +67,7 @@ const SearchVideoPageBody = () => {
           <VideoPlay videoSrc={videoSrc} />
         </div>
 
-        <UserPlayLists type="add" />
+        {/* <UserPlayLists type="add" /> */}
         <FoundedVideosYouTube
           className="Body-FoundedSongsYouTube"
           searchVideoResults={searchVideoApiResults}

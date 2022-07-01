@@ -138,10 +138,11 @@ const Playlist = ({ removeSong }) => {
               </div>
             );
           })}
-          <Divider />
-          Press {<Link to="/search"> here</Link>} to add more videos
         </div>
       </List>
+      <Divider />
+
+      <p> Press {<Link to="/search"> here</Link>} to add more videos</p>
     </div>
   );
 };
