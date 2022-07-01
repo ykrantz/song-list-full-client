@@ -2,8 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "plyr-react/dist/plyr.css";
-import Register from "./components/Register/Register";
-import LogIn from "./components/LogIn/LogIn";
+
 import LoginRegisterPage from "./pages/LoginRegisterPage/LoginRegisterPage";
 import { useState } from "react";
 import UserFavoriteList from "./components/UserFavoriteList/UserFavoriteList";
@@ -15,7 +14,6 @@ import HandleMessage from "./context/handleMessage";
 import HandleUser from "./context/handleUser";
 import getPlaylistVideoFromServer from "./controllers/getPlaylistVideo";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
-import HandleHeader from "./context/archive/handleHeader";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(

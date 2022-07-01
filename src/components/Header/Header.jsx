@@ -2,19 +2,14 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
-import { Button, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useLocation, useNavigate } from "react-router";
-import ButtonSized from "../../components/generalComponents/ButtonSized/ButtonSized";
 import { useContext } from "react";
 import handleUser from "../../context/handleUser";
 // import HamburgerMenu from "../HamburgerIcon/HamburgerMenu";
 import MenuDrower from "./MenuDrower/MenuDrower";
-import UserAvatar from "../archive/UserAvatar/UserAvatar";
-import AvatarMenu from "../archive/AvatarMenu/AvatarMenu";
+
 import AccountMenu from "./AccountMenu/AccountMenu";
-import handleHeader from "../../context/archive/handleHeader";
-import MenuDrower2 from "./MenuDrower2/MenuDrower2";
-import PermanentDrawerLeftMenu from "./PermanentDrawerLeftMenu/PermanentDrawerLeftMenu";
 
 const Header = () => {
   // const { currentUser, setCurrentUser } = useContext(handleUser);

@@ -8,7 +8,6 @@ import Modal from "@mui/material/Modal";
 import { IconButton, Tooltip } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import UserPlayLists from "../../generalComponents/UserPlayLists/UserPlayLists";
-import VirtualizedList from "../../archive/VirtualizedList/VirtualizedList";
 import BasicListPlaylist from "../../generalComponents/BasicListPlaylist/BasicListPlaylist";
 import handleUser from "../../../context/handleUser";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";

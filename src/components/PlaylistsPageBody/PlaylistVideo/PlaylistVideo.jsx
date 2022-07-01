@@ -12,7 +12,6 @@ import { TITLE_LENGTH } from "../../../general/main_var";
 import PlayVideoButton from "../../generalComponents/PlayVideoButton/PlayVideoButton";
 import handlePlaylists from "../../../context/handlePlaylists";
 import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
-import FavoriteFindButton from "../../MainPage/Body/FavoriteFindButton/FavoriteFindButton";
 import FavoriteButton from "../../generalComponents/FavoriteButton/FavoriteButton";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 
