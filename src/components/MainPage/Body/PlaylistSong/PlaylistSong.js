@@ -29,7 +29,7 @@ const PlaylistSong = ({ song: { _id, id, title, img } }) => {
           className="PlaylistSong-img"
           onClick={() => updateSongResurce(id)}
         ></img>
-        <RemoveSongButton _id={_id} />
+        <RemoveSongButton id={id} />
       </ListItem>
       <Divider />
     </div>

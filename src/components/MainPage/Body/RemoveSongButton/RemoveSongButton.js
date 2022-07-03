@@ -8,12 +8,12 @@ import { BASE_URL } from "../../../../general/main_var";
 import handlePlaylist from "../../../../context/handlePlaylist";
 import handleChangeMesage from "../../../../context/handleChangeMesage";
 
-const RemoveSongButton = ({ _id }) => {
+const RemoveSongButton = ({ id }) => {
   const { currentPlayList } = useContext(handleMainStates);
   const { getPlaylistFromServer } = useContext(handlePlaylist);
   const { changeMessage } = useContext(handleChangeMesage);
 
-  const deleteSongFromServer = async (songId) => {
+  const deleteSongFromServer = async (id) => {
     const accessToken = JSON.parse(localStorage.accessToken);
     const ans = await fetch(`${BASE_URL}/playlist/deletesong`, {
       method: "PUT",
@@ -23,7 +23,7 @@ const RemoveSongButton = ({ _id }) => {
       },
       body: JSON.stringify({
         playlistName: currentPlayList,
-        songId: songId,
+        id: id,
       }),
     });
     const data = await ans.json();
@@ -39,7 +39,7 @@ const RemoveSongButton = ({ _id }) => {
       <Tooltip title={"delete song"}>
         <DeleteForeverIcon
           fontSize="large"
-          onClick={() => deleteSongFromServer(_id)}
+          onClick={() => deleteSongFromServer(id)}
         />
       </Tooltip>
     </div>
