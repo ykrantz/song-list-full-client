@@ -7,7 +7,6 @@ import handleVideoSrc from "../../../context/handleVideoSrc";
 const PlayVideoButton = ({ id }) => {
   const { updateVideoSource } = useContext(handleVideoSrc);
 
-  // const { updateVideoResurce } = useContext(handlePlaylist);
   return (
     <div className="PlayVideoButton-div">
       <Tooltip title={"play Video"}>

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Playlist.css";
 
 import List from "@mui/material/List";
@@ -7,22 +7,16 @@ import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import Tooltip from "@mui/material/Tooltip";
 
 import { useContext, useState } from "react";
-// import handlePlaylist from "../../context/handlePlaylist";
-// import Playlists from "../MainPage/Body/Playlists/Playlists";
+
 import { BASE_URL } from "../../../general/main_var";
-// import handleMainStates from "../../context/handleMainStates";
-// import handleChangeMesage from "../../context/handleChangeMesage";
+
 import handlePlaylists from "../../../context/handlePlaylists";
-// import PlaylistVideo from "../PlaylistVideo/PlaylistVideo";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import { IconButton } from "@mui/material";
 import { useEffect } from "react";
 import UserPlayLists from "../../generalComponents/UserPlayLists/UserPlayLists";
-// import handleMainStates from "../../../context/handleMainStates";
 import handleMessage from "../../../context/handleMessage";
 import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFromServer";
-import handleUser from "../../../context/handleUser";
-// import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
 import VideoItem from "../../generalComponents/VideoItem/VideoItem";
 import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
 
@@ -30,19 +24,9 @@ const Playlist = ({ removeSong }) => {
   const style = {
     width: "100%",
     maxWidth: 500,
-    // bgcolor: "cornsilk",
   };
 
-  // const { getPlaylistsUserFromServer } = useContext(handlePlaylist);
-  // const { changeMessage } = useContext(handleChangeMesage);
-
-  const {
-    playlist,
-    getPlaylistFromServer,
-    getPlaylistsUserFromServer,
-    favoritePlaylist,
-  } = useContext(handlePlaylists);
-  // const { currentUser } = useContext(handleUser);
+  const { playlist, getPlaylistFromServer } = useContext(handlePlaylists);
   const { changeMessage } = useContext(handleMessage);
   const {
     currentPlaylist,
@@ -134,22 +118,10 @@ const Playlist = ({ removeSong }) => {
               />
             </IconButton>
           </Tooltip>
-          {/* )} */}
         </div>
         <Divider />
         <div className="PlayList-videoContainer">
           {JSON.parse(localStorage.currentUser) ? (
-            // playlist.map((song) => {
-            //   return (
-            //     <div className="PlayList-list">
-            //       <PlaylistVideo
-            //         key={song._id}
-            //         song={song}
-            //         removeSong={removeSong}
-            //       />
-            //     </div>
-            //   );
-            // })
             playlist.map((video) => {
               return (
                 <div className="PlayList-list">
@@ -159,8 +131,6 @@ const Playlist = ({ removeSong }) => {
                     iconOne={<RemoveVideoButtonComponent id={video.id} />}
                     type="exist"
                     getPlaylistFromServer={getPlaylistFromServer}
-                    // iconOne={RemoveVideoButton}
-                    // iconTwo={RemoveVideoButtonComponent}
                   />
                 </div>
               );

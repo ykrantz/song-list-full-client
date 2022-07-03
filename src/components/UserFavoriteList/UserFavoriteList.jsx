@@ -14,19 +14,12 @@ const UserFavoriteList = () => {
   const [masseage, setMasseage] = useState("");
 
   const { songid } = useParams();
-  // const navigate=useNavigate()
   const { changeMessage } = useContext(handleMessage);
-
-  // const changeMessage = (str) => {
-  //   setMasseage(str);
-  // };
 
   useEffect(() => {
     showAllUserSongFavorite(songid);
-    // console.log(songid);
   }, []);
-  // const {  changeMessage,setSongUserFavoriteList}= useContext(handleFoundedSongPlayList)
-  // const {  changeMessage,setSongUserFavoriteList}= useContext(handleFoundedSongPlayList)
+
   const getAllUserSongFavoriteFromServer = async (songId) => {
     if (!localStorage.currentUser) {
       setMasseage(
@@ -43,7 +36,6 @@ const UserFavoriteList = () => {
       },
     });
     const userList = await ans.json();
-    // console.log(userList);
     if (ans.status === 200) {
       return [...userList];
     } else {
@@ -52,7 +44,6 @@ const UserFavoriteList = () => {
   };
   const showAllUserSongFavorite = async (songId) => {
     const userList = await getAllUserSongFavoriteFromServer(songId);
-    // console.log(userList);
     if (userList?.message) {
       setSongUserFavoriteList([]);
       changeMessage(userList.message);
@@ -61,13 +52,11 @@ const UserFavoriteList = () => {
     }
   };
 
-  // console.log(songUserFavoriteList);
   const countFavorites = songUserFavoriteList.length;
 
   return (
     <div>
       <div>
-        {/* <HomeIcon fontSize="large" onClick={()=>navigate("/")} className="UserFavoriteList-home"/> */}
         <BackToHome />
 
         <h1>{countFavorites} User liked this song in Playlists:</h1>

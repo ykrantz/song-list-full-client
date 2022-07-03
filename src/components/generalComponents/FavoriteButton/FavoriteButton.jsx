@@ -3,14 +3,12 @@ import React, { useContext, useEffect, useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Tooltip from "@mui/material/Tooltip";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useNavigate } from "react-router";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import deleteVideoFromPlaylist from "../../../controllers/deleteVideoFromPlaylist";
 import handleMessage from "../../../context/handleMessage";
 import handleUser from "../../../context/handleUser";
 import { BASE_URL } from "../../../general/main_var";
 import formolizeVideoToServer from "../../../controllers/formolizeVideoToServer";
-import getPlaylistVideoFromServer from "../../../controllers/getPlaylistVideo";
 
 const FavoriteButton = ({
   id,
@@ -29,19 +27,15 @@ const FavoriteButton = ({
   const { changeMessage } = useContext(handleMessage);
 
   const checkIfVideoIsFavorite = (id) => {
-    // console.log(30, { favoritePlaylist });
-
     if (favoritePlaylist.find((favorite) => favorite?.id === id)) {
       return true;
     } else {
       return false;
     }
   };
-  // console.log({ type }, 29);
-  // const navigate = useNavigate();
+
   const [isFavorite, setIsFavorite] = useState(checkIfVideoIsFavorite(id));
 
-  // const isFavorite = checkIfVideoIsFavorite(id);
   useEffect(() => {
     setIsFavorite(checkIfVideoIsFavorite(id));
   }, [favoritePlaylist]);
@@ -49,7 +43,6 @@ const FavoriteButton = ({
   const getVideoApiDitails = (videoId) => {
     return searchVideoApiResults.find((video) => video?.id === videoId);
   };
-  // TODO: fix
   const addVideoToPlaylistInServer = async (videoId, playlistName, type) => {
     try {
       if (!playlistName) {
@@ -118,12 +111,6 @@ const FavoriteButton = ({
     await getFavoritePlaylistFromServer();
 
     if (currentPlaylist === "My Favorites" && type !== "new") {
-      //when in playlist page , need to get update playlist when delete from favorites
-      // const updatedFavoritePlaylist = await getPlaylistVideoFromServer(
-      //   currentPlaylist
-      // );
-      // TODO: set it so wont need to use .
-
       getPlaylistFromServer();
     }
   };

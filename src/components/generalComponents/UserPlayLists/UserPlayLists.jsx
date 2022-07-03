@@ -24,9 +24,7 @@ const UserPlayLists = ({ type }) => {
       if (userPlaylistsFromServer?.data.length > 0) {
         if (
           userPlaylistsFromServer.data.find(
-            (value) =>
-              // value.playlistName === JSON.parse(localStorage.currentPlaylist)
-              value.playlistName === currentPlaylist
+            (value) => value.playlistName === currentPlaylist
           )
         ) {
           handleSetCurrentPlaylist(currentPlaylist);
@@ -43,11 +41,14 @@ const UserPlayLists = ({ type }) => {
     }
   }, []);
 
-  const playlistLabel = `${type === "add" ? "add to my " : ""} Playlist`;
+  // const playlistLabel = `${type === "add" ? "add to my " : ""} Playlist`;
 
   return (
     <div>
-      <Box sx={{ width: 150, maxWidth: 300 }} className="UserPlayListselect">
+      <Box
+        sx={{ width: 150, maxWidth: 300, height: "50px" }}
+        className="UserPlayListselect"
+      >
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">
             {/* {playlistLabel} */}
@@ -56,6 +57,11 @@ const UserPlayLists = ({ type }) => {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={currentPlaylist}
+            sx={{
+              height: "50px",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
             // label={playlistLabel}
             onChange={(e) => {
               console.log(e.target.value, 27);

@@ -20,11 +20,9 @@ const LoginRegisterPageBody = ({ type }) => {
   const { changeMessage, waitingMessage } = useContext(handleMessage);
   const { handleSetCurrentUser } = useContext(handleUser);
 
-  // const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const logInRegisterServer = async (apiPath) => {
-    // setMessage({ message: "Waiting for data from server", isEror: false });
     waitingMessage();
     const ErorUserDetails = checkUserDetailsInput(userName, password);
     if (ErorUserDetails) {
@@ -41,14 +39,11 @@ const LoginRegisterPageBody = ({ type }) => {
     const accessTokenRes = await ans.json();
 
     if (ans.status === 200) {
-      // localStorage.currentUser = JSON.stringify(userName);
       localStorage.accessToken = JSON.stringify(accessTokenRes.accessToken);
-      // setCurrentUser(userName);
       handleSetCurrentUser(userName);
       navigate("/");
     } else {
       console.log(accessTokenRes);
-      // setMessage({ message: accessTokenRes.message, isEror: true });
       changeMessage(accessTokenRes.message, "error");
     }
   };
@@ -56,13 +51,11 @@ const LoginRegisterPageBody = ({ type }) => {
   return (
     <div>
       <div className="LoginRegisterPageBody-container">
-        {/* <BackToHome /> */}
         {type === "register" && (
           <p className="LoginRegisterPageBody-registerTitle">
             Please select a User Name and Password
           </p>
         )}
-        {/* <h1 className="LoginRegisterPageBody-header">Log In:</h1> */}
         <div className="LoginRegisterPageBody-Inputs">
           <Box
             component="form"
@@ -119,9 +112,6 @@ const LoginRegisterPageBody = ({ type }) => {
             </Button>
           </Stack>
         </div>
-
-        {/* <p className="LoginRegisterPageBody-message">{message}</p> */}
-        {/* <MessageNote message={message?.message} type={message?.isEror} /> */}
       </div>
       <Divider />
       <div className="LoginRegisterPageBody-changePage">

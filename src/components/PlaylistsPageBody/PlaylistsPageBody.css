@@ -22,8 +22,7 @@ flex-direction: column; */
 
     }
     .PlaylistsPageBody-left{
-        /* display: flex; */
-        /* flex-direction: column; */
+    
         float: left;
         width:50%;
         height: 10vh;

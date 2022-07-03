@@ -6,22 +6,17 @@ import VideoPlay from "../generalComponents/VideoPlay/VideoPlay";
 import { BASE_URL } from "../../general/main_var";
 import HandlePlaylists from "../../context/handlePlaylists";
 import Playlist from "./Playlist/Playlist";
-import UserPlayLists from "../generalComponents/UserPlayLists/UserPlayLists";
 import handlePlaylistMainState from "../../context/handlePlaylistMainState";
 import handleMessage from "../../context/handleMessage";
 import InputAndButton from "../generalComponents/InputAndButton/InputAndButton";
 import handleUser from "../../context/handleUser";
 import getUserPlaylistsFromServer from "../../controllers/getUserPlaylistsFromServer";
 import handleVideoSrc from "../../context/handleVideoSrc";
-// import Playlist from "../Playlist/Playlist";
 
 const PlaylistsPageBody = () => {
-  // const [message, setMessage] = useState("");
-  // const [userPlaylists, setUserPlaylists] = useState("");
   const {
     currentPlaylist,
     setCurrentPlaylist,
-    favoritePlaylist,
     userPlaylists,
     setUserPlaylists,
   } = useContext(handlePlaylistMainState);
@@ -31,46 +26,13 @@ const PlaylistsPageBody = () => {
   const [playlist, setPlaylist] = useState([]);
   const { videoSrc } = useContext(handleVideoSrc);
 
-  // const [videoSrc, setVideoSrc] = useState(
-  //   localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
-  // );
-  // TODO: fix bug when current playlist is My favorites.when remove from favorties need to remove from playlist
-
   useEffect(async () => {
     try {
       await getPlaylistFromServer();
-      // changeMessage("", "");
     } catch (e) {
       console.log(e);
     }
   }, [currentPlaylist]);
-
-  // useEffect(async () => {
-  //   try {
-  //     if (currentPlaylist === "My Favorites") {
-  //       await getPlaylistFromServer();
-  //     }
-  //     // changeMessage("", "");
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }, [favoritePlaylist]);
-
-  // const updateVideoResurce = (videoId) => {
-  //   // setAutoplayFlag(true);
-  //   const youtubeId = videoId;
-
-  //   setVideoSrc({
-  //     type: "video",
-  //     sources: [
-  //       {
-  //         src: youtubeId,
-  //         provider: "youtube",
-  //       },
-  //     ],
-  //   });
-  //   localStorage.youtubeId = JSON.stringify(videoId);
-  // };
 
   const getPlaylistFromServer = async () => {
     try {
@@ -163,7 +125,6 @@ const PlaylistsPageBody = () => {
       <div className="PlaylistsPageBody-content">
         <div className="PlaylistsPageBody-left">
           <div className="PlaylistsPageBody-videoPlay">
-            {/* <CreatePlaylist /> */}
             <InputAndButton
               buttonFunc={createPlayListInServer}
               icon={"create"}
@@ -174,24 +135,16 @@ const PlaylistsPageBody = () => {
         </div>
         <HandlePlaylists.Provider
           value={{
-            // message,
-            // setMessage,
             userPlaylists,
             setUserPlaylists,
-            // changeMessage,
-            // currentPlaylist,
-            // setCurrentPlaylist,
+
             playlist,
             setPlaylist,
             getPlaylistFromServer,
-
-            // updateVideoResurce,
           }}
         >
           <div className="PlaylistsPageBody-right">
             <div className="PlaylistsPageBody-Playlist">
-              {/* <Playlists /> */}
-
               <Playlist />
             </div>
           </div>

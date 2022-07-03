@@ -7,17 +7,14 @@
     
 }
 .VideoPlay-Plyr{
-    /* height: 10px; */
-    /* width: 90vw;
-    height: 15vw; */
-  
+ 
     justify-content: center;
     text-align: center;
     justify-items: center;
-    /* margin-left: 10vw; */
     margin: 5vw;
     margin-top: 3vh;
     margin-bottom: 3vh;
+ 
     
     
 }
@@ -25,11 +22,6 @@
 @media only screen and (min-width: 600px) {
     .VideoPlay-Plyr{
         margin: 2vw;
-
-        /* width: 50vw; */
-        /* float: left; */
-        /* height: 10px; */
-     
 
     }
 }

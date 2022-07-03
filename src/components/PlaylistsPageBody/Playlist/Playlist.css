@@ -2,12 +2,10 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* margin-left: 3%; */
 
 
   background-color: #dfcfbe;
-  /* height: 300px; */
-  /* border: solid blue 1px; */
+
 }
 
 .PlayList-container-header {
@@ -19,11 +17,7 @@
   float: left;
   width: 25%;
  
-  /* align-content: center;
-  align-items: center;
-  align-content: center; */
-  /* margin-top: 16px;
-  margin-bottom: 16px; */
+
 }
 .PlayList-currentPlaylistName{
   width: 50%;
@@ -33,10 +27,7 @@
 }
 
 .PlayList-videoContainer {
-  /* overflow: hidden;
-  height: 40%; */
-  /* overflow-y: scroll; */
-  /* height: 500; */
+
   overflow: hidden;
   overflow-y: scroll;
   min-height: 80px;
@@ -45,32 +36,21 @@
 }
 
 .PlayList-DeleteSweepIcon {
-  /* justify-content: center; */
   align-self: center;
-  /* align-items: center; */
-  /* justify-items: center; */
-  /* align-content: center; */
+
   margin-left: 35px;
 }
-/* .PlayList-list {
-  overflow: hidden;
-  height: 40%;
-} */
+
 @media only screen and (min-width: 600px) {
   .PlayList-container {
-   /* margin-lef  t: 3%; */
     float: right;
     width: 95%;
-    /* height: 100%; */
     justify-content: center;
     align-items: center;
-    /* height: 100px; */
     margin-top: 0;
-    /* margin-left: 200px; */
 
   }
   .PlayList-videoContainer{
-    /* max-height: 50vh; */
     height: 40vh;
     max-height:  40vh;
 
@@ -79,10 +59,6 @@
     float: left;
     width: 100px;
     
-    /* align-content: center;
-    align-items: center;
-    align-content: center; */
-    /* margin-top: 16px;
-    margin-bottom: 16px; */
+
   }
 }

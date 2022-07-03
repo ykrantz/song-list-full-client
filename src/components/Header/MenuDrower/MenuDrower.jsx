@@ -1,6 +1,5 @@
 import "./MenuDrower.css";
 
-// import React from 'react'
 import MenuIcon from "@mui/icons-material/Menu";
 
 import * as React from "react";
@@ -8,7 +7,6 @@ import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -64,7 +62,6 @@ export default function MenuDrower() {
           </ListItem>
         ))}
       </List>
-      {/* <Divider /> */}
     </Box>
   );
   const anchor = "left";
@@ -83,7 +80,6 @@ export default function MenuDrower() {
           {list(anchor)}
         </SwipeableDrawer>
       </React.Fragment>
-      {/* ))} */}
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import { BASE_URL } from "../general/main_var";
 
 const getPlaylistVideoFromServer = async (playlistName) => {
-  // const getPlaylistFromServer = async () => {
   try {
     if (!JSON.parse(localStorage?.currentUser)) {
       console.log("no user");

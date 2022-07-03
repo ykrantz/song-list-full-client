@@ -9,8 +9,7 @@
   min-height: 80px;
   max-height: 500px;
   background-color: bisque;
-  /* height: 300px; */
-  /* border: solid blue 1px; */
+
 }
 
 .UserUserPlayList-container-header {
@@ -26,21 +25,12 @@
 }
 
 .UserUserPlayList-songs {
-  /* overflow: hidden;
-  height: 40%; */
-  /* overflow-y: scroll; */
-  /* height: 500; */
+
 }
 
 .UserUserPlayList-DeleteSweepIcon {
-  /* justify-content: center; */
   align-self: center;
-  /* align-items: center; */
-  /* justify-items: center; */
-  /* align-content: center; */
+
   margin-left: 35px;
 }
-/* .UserUserPlayList-list {
-  overflow: hidden;
-  height: 40%;
-} */
+

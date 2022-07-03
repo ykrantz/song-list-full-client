@@ -1,10 +1,8 @@
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import "./FoundedVideosYouTube.css";
-// import FoundedVideoYouTube from "../FoundedVideoYouTube/FoundedVideoYouTube";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import { useContext, useEffect } from "react";
-import getPlaylistVideoFromServer from "../../../controllers/getPlaylistVideo";
 
 import { Link } from "react-router-dom";
 import AddVideoToPlaylist from "../AddVideoToPlaylist/AddVideoToPlaylist";
@@ -14,12 +12,9 @@ import { BASE_URL } from "../../../general/main_var";
 import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
 import VideoItem from "../../generalComponents/VideoItem/VideoItem";
 const FoundedVideosYouTube = ({ searchVideoResults }) => {
-  const {
-    favoritePlaylist,
-    setFavoritePlaylist,
-    getFavoritePlaylistFromServer,
-    setCurrentPlaylist,
-  } = useContext(handlePlaylistMainState);
+  const { getFavoritePlaylistFromServer, setCurrentPlaylist } = useContext(
+    handlePlaylistMainState
+  );
   const { changeMessage } = useContext(handleMessage);
   const { searchVideoApiResults } = useContext(handleSearchVideoApi);
 
@@ -51,7 +46,6 @@ const FoundedVideosYouTube = ({ searchVideoResults }) => {
         return;
       }
       const videoDitails = getVideoApiDitails(videoId);
-      // TODO: think if need to check if song already exist in playlist in client side;
       const accessToken = JSON.parse(localStorage.accessToken);
       const ans = await fetch(`${BASE_URL}/playlist`, {
         method: "PUT",
@@ -85,9 +79,7 @@ const FoundedVideosYouTube = ({ searchVideoResults }) => {
 
   const style = {
     width: "100%",
-    // fontSize: "2vh",
     maxWidth: 500,
-    // bgcolor: " rgb(122, 240, 122)",
   };
 
   return (
@@ -99,9 +91,6 @@ const FoundedVideosYouTube = ({ searchVideoResults }) => {
         </p>
         <Divider />
         <div className="FoundedVideosYouTube-searchVideoResults">
-          {/* {searchVideoResults.map((video) => (
-            <FoundedVideoYouTube key={video.id} video={video} />
-          ))} */}
           {searchVideoResults.map((video) => {
             video.img = video?.thumbnails[0].url;
             return (

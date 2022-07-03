@@ -18,7 +18,7 @@ const SearchVideo = () => {
 
   const { setSearchVideoApiResults } = useContext(handleSearchVideoApi);
   const { changeMessage, waitingMessage } = useContext(handleMessage);
-  const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
+  const { updateVideoSource } = useContext(handleVideoSrc);
 
   const searchVideosFromServer = async (searchValue) => {
     try {
@@ -82,62 +82,21 @@ const SearchVideo = () => {
           variant="outlined"
           style={{
             maxWidth: "20%",
-            // maxHeight: "5px",
             minWidth: "40%",
-            // minHeight: "5px",
-            // height: "1px",
-            // fontSize: "0.8vh",
           }}
           size="small"
         ></TextField>
-        {/* <Stack
-          spacing={2}
-          direction="row"
-          // justifyContent="end"
-          marginLeft=
-          "1px"
-        > */}
-        {/* <IconButton
-          onClick={() => {
-            searchVideosFromServer(inputVideo);
-            // setInputVideo("");
-          }}
-          color={"primary"}
-        >
-          <SearchIcon />
-        </IconButton> */}
+
         <Tooltip title={"Search for video"}>
           <Button
             onClick={() => {
               searchVideosFromServer(inputVideo);
-              // setInputVideo("");
             }}
             variant="contained"
-            // color={"primary"}
           >
             <SearchIcon />
           </Button>
         </Tooltip>
-        {/* <Button
-            onClick={() => {
-              setInputVideo("");
-            }}
-            variant="contained"
-            style={{
-              backgroundColor: "red",
-
-              maxWidth: "90px    ",
-              maxHeight: "30px",
-              minWidth: "2%",
-              minHeight: "20px",
-              // fontSize: "0.8vh",
-            }}
-            size="small"
-            // centerRipple="true"
-            // style={{="center"}}
-          >
-            X
-          </Button>{" "} */}
       </Stack>
     </div>
   );

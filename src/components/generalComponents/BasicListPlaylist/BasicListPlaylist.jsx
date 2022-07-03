@@ -5,22 +5,15 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
-import { Container } from "@mui/material";
-import handleMessage from "../../../context/handleMessage";
 
 export default function BasicListPlaylist({ id, addVideoToPlaylistServer }) {
   const { userPlaylists, handleSetCurrentPlaylist } = React.useContext(
     handlePlaylistMainState
   );
-  const { changeMessage } = React.useContext(handleMessage);
 
-  console.log({ userPlaylists }, 63);
   return (
     <div className="BasicListPlaylist-Container">
       <b>Add to Playlist:</b>

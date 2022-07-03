@@ -7,9 +7,7 @@
   }
   
   .LoginRegisterPageBody-buttons {
-    /* align-items: center;
-    align-tracks: center; */
-    /* margin-left: 41%; */
+    
     display: flex;
     justify-content: center;
   }
@@ -22,12 +20,10 @@
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
-    /* flex-direction: column; */
   }
   
   .LoginRegisterPageBody-header {
     margin-top: 80px;
-    /* background-color: cornsilk; */
   }
 
   .LoginRegisterPageBody-registerTitle{

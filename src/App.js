@@ -102,13 +102,11 @@ function App() {
                   <Route exact path="/search" element={<SearchVideoPage />} />
                   <Route exact path="/favorites" element={<FavoritePage />} />
                   <Route exact path="/about" element={<AboutPage />} />
-                  {/* <Route exact path="/register" element={<Register />} /> */}
                   <Route
                     exact
                     path="/register"
                     element={<LoginRegisterPage type="register" />}
                   />
-                  {/* <Route exact path="/login" element={<LogIn />} /> */}
                   <Route
                     exact
                     path="/login"

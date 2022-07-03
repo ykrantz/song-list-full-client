@@ -8,10 +8,8 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import handleUser from "../../../context/handleUser";
 import { useNavigate } from "react-router";
@@ -54,12 +52,8 @@ export default function AccountMenu({ userName }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const { handleSetCurrentUser } = React.useContext(handleUser);
-  const {
-    setCurrentPlaylist,
-    setUserPlaylists,
-    setFavoritePlaylist,
-    handleSetCurrentPlaylist,
-  } = React.useContext(handlePlaylistMainState);
+  const { setUserPlaylists, setFavoritePlaylist, handleSetCurrentPlaylist } =
+    React.useContext(handlePlaylistMainState);
   const navigate = useNavigate();
 
   const handleClick = (event) => {
@@ -74,22 +68,10 @@ export default function AccountMenu({ userName }) {
     localStorage.accessToken = JSON.stringify(null);
     handleSetCurrentPlaylist(null);
     handleSetCurrentUser(null);
-    // setCurrentPlaylist("");
     setUserPlaylists([]);
     setFavoritePlaylist([]);
-    // TODO: to empty after logotu. at least the playlist anf currentuser and token
-    // setNewPlayList([]);
-    // setUserPlayLists([]);
-    // setCurrentPlayList([]);
-    // setSearchSongApiResults([]);
-    // setSearchPlaylistResults([]);
+
     navigate("/");
-
-    // if (anchorRef.current && anchorRef.current.contains(event.target)) {
-    //   return;
-    // }
-
-    // setOpen(false);
   };
 
   const handleChangeUser = () => {
@@ -99,8 +81,6 @@ export default function AccountMenu({ userName }) {
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        {/* <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-        <Typography sx={{ minWidth: 100 }}>Profile</Typography> */}
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
@@ -110,11 +90,7 @@ export default function AccountMenu({ userName }) {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            {/* <Avatar  sx={{ width: 32, height: 32 }}>M</Avatar> */}
-            <Avatar
-              {...stringAvatar(userName)}
-              // sx={{ width: 32, height: 32 }}
-            ></Avatar>
+            <Avatar {...stringAvatar(userName)}></Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -165,16 +141,11 @@ export default function AccountMenu({ userName }) {
           }}
         >
           <div className="AcountMenu-userNameAvatar">
-            <Avatar
-              {...stringAvatar(userName)}
-              // sx={{ width: 32, height: 32 }}
-            ></Avatar>
+            <Avatar {...stringAvatar(userName)}></Avatar>
             {userName}
           </div>
         </MenuItem>
-        {/* <MenuItem>
-          <Avatar /> {userName}
-        </MenuItem> */}
+
         <Divider />
         <MenuItem onClick={() => handleChangeUser()}>
           <ListItemIcon>
@@ -182,12 +153,7 @@ export default function AccountMenu({ userName }) {
           </ListItemIcon>
           change user
         </MenuItem>
-        {/* <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem> */}
+
         <MenuItem onClick={() => handleLogOut()}>
           <ListItemIcon>
             <Logout fontSize="small" />

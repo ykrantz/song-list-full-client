@@ -7,62 +7,41 @@
 
 .Header-titles{
   float: left;
-  /* width: 60%; */
   font-size: 2vh;
   font-family: Georgia, "Times New Roman", Times, serif;
-  /* margin-left: 1vw; */
-      /* padding-left: 0px; */
-      width: 80%;
+  width: 80%;
 }
 .Header-titlePageName{
-  /* float: left; */
-  /* width: 60%; */
+ 
   float: left;
   padding-left: 0px;
       width: 80%;
   font-size: 3vh;
   font-family: Georgia, "Times New Roman", Times, serif;
-  /* margin-left: 1vw; */
-      /* padding-left: 0px;
-      width: 60%; */
+ 
 }
 .Header-titlePlaylist {
-  /* float: left; */
-  /* width: 60%; */
+
   font-size: 2vh;
   font-family: Georgia, "Times New Roman", Times, serif;
-  /* margin-left: 1vw;
-      padding-left: 0px;
-      width: 60%; */
+ 
 
 }
-/* .Header-logout{
-  font-size: 2vh;
-} */
+
 .Header-Header-logInOutAcountMenu{
   float: right;
   width: 30%;
 }
 
   .Header-logInOutDiv{
-    /* float: right; */
     font-size:1vh;
     text-align:right;
     margin-right: 2vw;
-    /* font-size: 1vh; */
-    /* width: 100%; */
-    /* width: 150px; */
-    /* margin-top: 0px; */
-    /* position: absolute;
-right: 0px; */
-    /* padding-left: 0px; */
- /* width: 30vw; */
+
 
   }
   .Header-currentUser{
-    /* margin-bottom: 2vh; */
         margin-top: 0.5vh;
-        /* width: 100%; */
             font-size: 2vh;
 
 

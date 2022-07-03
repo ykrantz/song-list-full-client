@@ -30,12 +30,6 @@ export default function IconLinks() {
         alignContent="center"
         alignItems={"center"}
       >
-        {/* <Item> */}
-        {/* <div className="AboutMe-linkesDiv"> */}
-        {/* <Box display="flex" alignItems="center" justifyContent="center"> */}
-        {/* </div> */}
-        {/* </div> */}
-        {/* <br></br> */}
         <div className="AboutMe-linkedinLink">
           <a
             className="AboutMe-linkedinIcon"
@@ -53,9 +47,7 @@ export default function IconLinks() {
         <div className="AboutMe-gitHubLink">
           <GitHubButton gitHubUrl="https://github.com/ykrantz" urlType="link" />
         </div>
-        {/* </Item> */}
       </Stack>
-      {/* <Item> */}
       <Stack
         direction="row"
         spacing={1}
@@ -64,7 +56,6 @@ export default function IconLinks() {
         alignItems={"center"}
         marginTop={1}
       >
-        {/* <div className="AboutMePageBody-Cv"> */}
         <div className="AboutMePageBody-myCvTitle">My CV: </div>
 
         <div className="AboutMePageBody-cvDiv">
@@ -83,10 +74,7 @@ export default function IconLinks() {
             </Tooltip>
           </a>
         </div>
-        {/* </div> */}
       </Stack>
-
-      {/* </Item> */}
     </div>
   );
 }

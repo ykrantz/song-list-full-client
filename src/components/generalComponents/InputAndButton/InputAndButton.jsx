@@ -1,5 +1,4 @@
 import "./InputAndButton.css";
-// import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import SearchIcon from "@mui/icons-material/Search";
