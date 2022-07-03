@@ -13,6 +13,7 @@ import handleHeader from "../../context/archive/handleHeader";
 import InputAndButton from "../generalComponents/InputAndButton/InputAndButton";
 import handleUser from "../../context/handleUser";
 import getUserPlaylistsFromServer from "../../controllers/getUserPlaylistsFromServer";
+import handleVideoSrc from "../../context/handleVideoSrc";
 // import Playlist from "../Playlist/Playlist";
 
 const PlaylistsPageBody = () => {
@@ -29,10 +30,11 @@ const PlaylistsPageBody = () => {
   const { currentUser } = useContext(handleUser);
 
   const [playlist, setPlaylist] = useState([]);
+  const { videoSrc } = useContext(handleVideoSrc);
 
-  const [videoSrc, setVideoSrc] = useState(
-    localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
-  );
+  // const [videoSrc, setVideoSrc] = useState(
+  //   localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
+  // );
   // TODO: fix bug when current playlist is My favorites.when remove from favorties need to remove from playlist
 
   useEffect(async () => {
@@ -55,21 +57,21 @@ const PlaylistsPageBody = () => {
   //   }
   // }, [favoritePlaylist]);
 
-  const updateVideoResurce = (videoId) => {
-    // setAutoplayFlag(true);
-    const youtubeId = videoId;
+  // const updateVideoResurce = (videoId) => {
+  //   // setAutoplayFlag(true);
+  //   const youtubeId = videoId;
 
-    setVideoSrc({
-      type: "video",
-      sources: [
-        {
-          src: youtubeId,
-          provider: "youtube",
-        },
-      ],
-    });
-    localStorage.youtubeId = JSON.stringify(videoId);
-  };
+  //   setVideoSrc({
+  //     type: "video",
+  //     sources: [
+  //       {
+  //         src: youtubeId,
+  //         provider: "youtube",
+  //       },
+  //     ],
+  //   });
+  //   localStorage.youtubeId = JSON.stringify(videoId);
+  // };
 
   const getPlaylistFromServer = async () => {
     try {
@@ -184,7 +186,7 @@ const PlaylistsPageBody = () => {
             setPlaylist,
             getPlaylistFromServer,
 
-            updateVideoResurce,
+            // updateVideoResurce,
           }}
         >
           <div className="PlaylistsPageBody-right">

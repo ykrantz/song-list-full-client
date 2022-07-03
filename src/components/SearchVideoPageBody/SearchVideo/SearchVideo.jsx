@@ -12,12 +12,13 @@ import handleMessage from "../../../context/handleMessage";
 import CancelIcon from "@mui/icons-material/Cancel";
 import IconButton from "@mui/material/IconButton";
 import { Tooltip } from "@mui/material";
+import handleVideoSrc from "../../../context/handleVideoSrc";
 const SearchVideo = () => {
   const [inputVideo, setInputVideo] = useState("");
 
-  const { setSearchVideoApiResults, updateVideoResurce } =
-    useContext(handleSearchVideoApi);
+  const { setSearchVideoApiResults } = useContext(handleSearchVideoApi);
   const { changeMessage, waitingMessage } = useContext(handleMessage);
+  const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
 
   const searchVideosFromServer = async (searchValue) => {
     try {
@@ -39,7 +40,7 @@ const SearchVideo = () => {
       if (ans.status === 200) {
         setSearchVideoApiResults(data);
 
-        updateVideoResurce(data[0].id);
+        updateVideoSource(data[0].id);
         console.log("found", 61);
         changeMessage(
           "Great. we founded videos for you from YouTube",

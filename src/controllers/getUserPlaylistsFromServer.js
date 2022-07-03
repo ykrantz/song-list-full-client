@@ -2,7 +2,8 @@ import { BASE_URL } from "../general/main_var";
 
 const getUserPlaylistsFromServer = async () => {
   try {
-    if (!localStorage.currentUser) {
+    if (!JSON.parse(localStorage?.currentUser)) {
+      console.log("no user");
       return { status: 400, data: [] };
     }
     const ans = await fetch(`${BASE_URL}/playList/userplaylists`, {
@@ -13,7 +14,7 @@ const getUserPlaylistsFromServer = async () => {
       },
     });
     const myPlayLists = await ans.json();
-    if (ans.status === 200) {
+    if (ans?.status === 200) {
       console.log("got play lists from server");
       return { status: 200, data: myPlayLists };
     } else {

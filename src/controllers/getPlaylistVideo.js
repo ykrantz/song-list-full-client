@@ -3,7 +3,7 @@ import { BASE_URL } from "../general/main_var";
 const getPlaylistVideoFromServer = async (playlistName) => {
   // const getPlaylistFromServer = async () => {
   try {
-    if (!localStorage.currentUser) {
+    if (!JSON.parse(localStorage?.currentUser)) {
       console.log("no user");
 
       return [];
@@ -14,11 +14,11 @@ const getPlaylistVideoFromServer = async (playlistName) => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
-        authorization: `bearer ${JSON.parse(localStorage.accessToken)}`,
+        authorization: `bearer ${JSON.parse(localStorage?.accessToken)}`,
       },
     });
     const myPlaylist = await ans.json();
-    if (ans.status === 200) {
+    if (ans?.status === 200) {
       return [...myPlaylist];
     } else {
       return [];

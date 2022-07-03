@@ -18,7 +18,7 @@ const LoginRegisterPageBody = ({ type }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { changeMessage, waitingMessage } = useContext(handleMessage);
-  const { setCurrentUser } = useContext(handleUser);
+  const { handleSetCurrentUser } = useContext(handleUser);
 
   // const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -41,9 +41,10 @@ const LoginRegisterPageBody = ({ type }) => {
     const accessTokenRes = await ans.json();
 
     if (ans.status === 200) {
-      localStorage.currentUser = JSON.stringify(userName);
+      // localStorage.currentUser = JSON.stringify(userName);
       localStorage.accessToken = JSON.stringify(accessTokenRes.accessToken);
-      setCurrentUser(userName);
+      // setCurrentUser(userName);
+      handleSetCurrentUser(userName);
       navigate("/");
     } else {
       console.log(accessTokenRes);

@@ -22,6 +22,9 @@ import UserPlayLists from "../../generalComponents/UserPlayLists/UserPlayLists";
 import handleMessage from "../../../context/handleMessage";
 import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFromServer";
 import handleUser from "../../../context/handleUser";
+// import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
+import VideoItem from "../../generalComponents/VideoItem/VideoItem";
+import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
 
 const Playlist = ({ removeSong }) => {
   const style = {
@@ -35,7 +38,7 @@ const Playlist = ({ removeSong }) => {
 
   const {
     playlist,
-
+    getPlaylistFromServer,
     getPlaylistsUserFromServer,
     favoritePlaylist,
   } = useContext(handlePlaylists);
@@ -49,6 +52,9 @@ const Playlist = ({ removeSong }) => {
     getFavoritePlaylistFromServer,
   } = useContext(handlePlaylistMainState);
   const [disableDeletePlaylist, setDisableDeletePlaylist] = useState(true);
+  const RemoveVideoButtonComponent = ({ id }) => {
+    return <RemoveVideoButton id={id} />;
+  };
 
   useEffect(() => {
     setDisableDeletePlaylist(
@@ -105,6 +111,7 @@ const Playlist = ({ removeSong }) => {
       console.log(e);
     }
   };
+
   return (
     <div className="PlayList-container">
       <List sx={style} component="nav" aria-label="mailbox folders">
@@ -131,14 +138,29 @@ const Playlist = ({ removeSong }) => {
         </div>
         <Divider />
         <div className="PlayList-videoContainer">
-          {localStorage.currentUser ? (
-            playlist.map((song) => {
+          {JSON.parse(localStorage.currentUser) ? (
+            // playlist.map((song) => {
+            //   return (
+            //     <div className="PlayList-list">
+            //       <PlaylistVideo
+            //         key={song._id}
+            //         song={song}
+            //         removeSong={removeSong}
+            //       />
+            //     </div>
+            //   );
+            // })
+            playlist.map((video) => {
               return (
                 <div className="PlayList-list">
-                  <PlaylistVideo
-                    key={song._id}
-                    song={song}
-                    removeSong={removeSong}
+                  <VideoItem
+                    key={video._id}
+                    video={video}
+                    iconOne={<RemoveVideoButtonComponent id={video.id} />}
+                    type="exist"
+                    getPlaylistFromServer={getPlaylistFromServer}
+                    // iconOne={RemoveVideoButton}
+                    // iconTwo={RemoveVideoButtonComponent}
                   />
                 </div>
               );

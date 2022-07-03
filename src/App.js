@@ -14,6 +14,7 @@ import HandleMessage from "./context/handleMessage";
 import HandleUser from "./context/handleUser";
 import getPlaylistVideoFromServer from "./controllers/getPlaylistVideo";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
+import HandleVideoSrc from "./context/handleVideoSrc";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(
@@ -23,6 +24,24 @@ function App() {
   const [message, setMessage] = useState("");
   const [userPlaylists, setUserPlaylists] = useState([]);
   const [favoritePlaylist, setFavoritePlaylist] = useState([]);
+  const [videoSrc, setVideoSrc] = useState(
+    localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
+  );
+  const updateVideoSource = (videoId) => {
+    // setAutoplayFlag(true);
+    const youtubeId = videoId;
+
+    setVideoSrc({
+      type: "video",
+      sources: [
+        {
+          src: youtubeId,
+          provider: "youtube",
+        },
+      ],
+    });
+    localStorage.youtubeId = JSON.stringify(videoId);
+  };
 
   const getFavoritePlaylistFromServer = async () => {
     const favorites = await getPlaylistVideoFromServer("My Favorites");
@@ -30,10 +49,14 @@ function App() {
   };
 
   const handleSetCurrentPlaylist = (value) => {
-    setCurrentPlaylist(value);
     localStorage.currentPlaylist = JSON.stringify(value);
+    setCurrentPlaylist(value);
   };
 
+  const handleSetCurrentUser = (value) => {
+    localStorage.currentUser = JSON.stringify(value);
+    setCurrentUser(value);
+  };
   const changeMessage = (str, type = "success") => {
     setMessage({ message: str, type: type });
 
@@ -51,51 +74,56 @@ function App() {
         value={{
           currentUser,
           setCurrentUser,
+          handleSetCurrentUser,
         }}
       >
-        <HandleMessage.Provider
-          value={{ message, setMessage, changeMessage, waitingMessage }}
+        <HandleVideoSrc.Provider
+          value={{ videoSrc, updateVideoSource, setVideoSrc }}
         >
-          <HandlePlaylistMainState.Provider
-            value={{
-              currentPlaylist,
-              setCurrentPlaylist,
-              handleSetCurrentPlaylist,
-              userPlaylists,
-              setUserPlaylists,
-              favoritePlaylist,
-              setFavoritePlaylist,
-              getFavoritePlaylistFromServer,
-            }}
+          <HandleMessage.Provider
+            value={{ message, setMessage, changeMessage, waitingMessage }}
           >
-            <Router>
-              <Routes>
-                <Route exact path="/" element={<SearchVideoPage />} />
-                <Route exact path="/playlists" element={<PlaylistsPage />} />
-                <Route exact path="/search" element={<SearchVideoPage />} />
-                <Route exact path="/favorites" element={<FavoritePage />} />
-                <Route exact path="/about" element={<AboutPage />} />
-                {/* <Route exact path="/register" element={<Register />} /> */}
-                <Route
-                  exact
-                  path="/register"
-                  element={<LoginRegisterPage type="register" />}
-                />
-                {/* <Route exact path="/login" element={<LogIn />} /> */}
-                <Route
-                  exact
-                  path="/login"
-                  element={<LoginRegisterPage type="logIn" />}
-                />
-                <Route
-                  exact
-                  path="/songfavorites/:songid"
-                  element={<UserFavoriteList />}
-                />
-              </Routes>
-            </Router>
-          </HandlePlaylistMainState.Provider>
-        </HandleMessage.Provider>
+            <HandlePlaylistMainState.Provider
+              value={{
+                currentPlaylist,
+                setCurrentPlaylist,
+                handleSetCurrentPlaylist,
+                userPlaylists,
+                setUserPlaylists,
+                favoritePlaylist,
+                setFavoritePlaylist,
+                getFavoritePlaylistFromServer,
+              }}
+            >
+              <Router>
+                <Routes>
+                  <Route exact path="/" element={<SearchVideoPage />} />
+                  <Route exact path="/playlists" element={<PlaylistsPage />} />
+                  <Route exact path="/search" element={<SearchVideoPage />} />
+                  <Route exact path="/favorites" element={<FavoritePage />} />
+                  <Route exact path="/about" element={<AboutPage />} />
+                  {/* <Route exact path="/register" element={<Register />} /> */}
+                  <Route
+                    exact
+                    path="/register"
+                    element={<LoginRegisterPage type="register" />}
+                  />
+                  {/* <Route exact path="/login" element={<LogIn />} /> */}
+                  <Route
+                    exact
+                    path="/login"
+                    element={<LoginRegisterPage type="logIn" />}
+                  />
+                  <Route
+                    exact
+                    path="/songfavorites/:songid"
+                    element={<UserFavoriteList />}
+                  />
+                </Routes>
+              </Router>
+            </HandlePlaylistMainState.Provider>
+          </HandleMessage.Provider>
+        </HandleVideoSrc.Provider>
       </HandleUser.Provider>
     </div>
   );

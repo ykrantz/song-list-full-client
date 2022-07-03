@@ -53,9 +53,13 @@ function stringAvatar(name) {
 export default function AccountMenu({ userName }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const { setCurrentUser } = React.useContext(handleUser);
-  const { setCurrentPlaylist, setUserPlaylists, setFavoritePlaylist } =
-    React.useContext(handlePlaylistMainState);
+  const { handleSetCurrentUser } = React.useContext(handleUser);
+  const {
+    setCurrentPlaylist,
+    setUserPlaylists,
+    setFavoritePlaylist,
+    handleSetCurrentPlaylist,
+  } = React.useContext(handlePlaylistMainState);
   const navigate = useNavigate();
 
   const handleClick = (event) => {
@@ -67,10 +71,10 @@ export default function AccountMenu({ userName }) {
 
   const handleLogOut = (event) => {
     console.log("loged out");
-    localStorage.currentUser = "";
-    localStorage.accessToken = "";
-    setCurrentUser("");
-    setCurrentPlaylist("");
+    localStorage.accessToken = JSON.stringify(null);
+    handleSetCurrentPlaylist(null);
+    handleSetCurrentUser(null);
+    // setCurrentPlaylist("");
     setUserPlaylists([]);
     setFavoritePlaylist([]);
     // TODO: to empty after logotu. at least the playlist anf currentuser and token

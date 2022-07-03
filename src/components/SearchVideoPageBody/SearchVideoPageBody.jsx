@@ -17,21 +17,23 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from "../../general/main_var";
 import InputAndButton from "../generalComponents/InputAndButton/InputAndButton";
 import handleMessage from "../../context/handleMessage";
+import handleVideoSrc from "../../context/handleVideoSrc";
 
 const SearchVideoPageBody = () => {
   const [searchVideoApiResults, setSearchVideoApiResults] = useState(
-    localStorage.searchVideoApiResults.length
-      ? JSON.parse(localStorage.searchVideoApiResults)
+    localStorage?.searchVideoApiResults?.length
+      ? JSON.parse(localStorage?.searchVideoApiResults)
       : []
   );
-  const [currentPlayList, setCurrentPlayList] = useState();
+  // const [currentPlayList, setCurrentPlayList] = useState();
   const { favoritePlaylist, setFavoritePlaylist, setUserPlaylists } =
     useContext(handlePlaylistMainState);
   const { changeMessage, waitingMessage } = useContext(handleMessage);
+  const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
 
-  const [videoSrc, setVideoSrc] = useState(
-    localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
-  );
+  // const [videoSrc, setVideoSrc] = useState(
+  //   localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
+  // );
   // const { changeMessage } = useContext(handleMessage);
 
   useEffect(async () => {
@@ -42,32 +44,31 @@ const SearchVideoPageBody = () => {
       const userPlaylistsFromServer = await getUserPlaylistsFromServer();
       setUserPlaylists(userPlaylistsFromServer.data);
       if (localStorage.searchVideoApiResults.length) {
-        updateVideoResurce(searchVideoApiResults[0].id);
+        updateVideoSource(searchVideoApiResults[0].id);
       }
     } catch (e) {
       console.log(e);
     }
   }, []);
 
-  const updateVideoResurce = (videoId) => {
-    // setAutoplayFlag(true);
-    const youtubeId = videoId;
+  // const updateVideoResurce = (videoId) => {
+  //   // setAutoplayFlag(true);
+  //   const youtubeId = videoId;
 
-    setVideoSrc({
-      type: "video",
-      sources: [
-        {
-          src: youtubeId,
-          provider: "youtube",
-        },
-      ],
-    });
-    localStorage.youtubeId = JSON.stringify(videoId);
-  };
+  //   setVideoSrc({
+  //     type: "video",
+  //     sources: [
+  //       {
+  //         src: youtubeId,
+  //         provider: "youtube",
+  //       },
+  //     ],
+  //   });
+  //   localStorage.youtubeId = JSON.stringify(videoId);
+  // };
 
   const searchVideosFromServer = async (searchValue) => {
     try {
-      console.log({ searchValue });
       if (searchValue === "") {
         changeMessage("You didn't enter search value", "error");
         return;
@@ -86,8 +87,7 @@ const SearchVideoPageBody = () => {
         setSearchVideoApiResults(data);
 
         localStorage.searchVideoApiResults = JSON.stringify(data);
-        updateVideoResurce(data[0].id);
-        console.log("found", 61);
+        updateVideoSource(data[0].id);
         changeMessage(
           "Great. we founded videos for you from YouTube",
           "success"
@@ -108,10 +108,10 @@ const SearchVideoPageBody = () => {
           value={{
             searchVideoApiResults,
             setSearchVideoApiResults,
-            currentPlayList,
-            setCurrentPlayList,
+            // currentPlayList,
+            // setCurrentPlayList,
 
-            updateVideoResurce,
+            // updateVideoResurce,
           }}
         >
           {/* <Grid container spacing={2}> */}

@@ -29,12 +29,15 @@ const FavoriteButton = ({
   const { changeMessage } = useContext(handleMessage);
 
   const checkIfVideoIsFavorite = (id) => {
-    if (favoritePlaylist.find((favorite) => favorite.id === id)) {
+    // console.log(30, { favoritePlaylist });
+
+    if (favoritePlaylist.find((favorite) => favorite?.id === id)) {
       return true;
     } else {
       return false;
     }
   };
+  // console.log({ type }, 29);
   // const navigate = useNavigate();
   const [isFavorite, setIsFavorite] = useState(checkIfVideoIsFavorite(id));
 
@@ -44,7 +47,7 @@ const FavoriteButton = ({
   }, [favoritePlaylist]);
 
   const getVideoApiDitails = (videoId) => {
-    return searchVideoApiResults.find((video) => video.id === videoId);
+    return searchVideoApiResults.find((video) => video?.id === videoId);
   };
   // TODO: fix
   const addVideoToPlaylistInServer = async (videoId, playlistName, type) => {
@@ -114,10 +117,13 @@ const FavoriteButton = ({
 
     await getFavoritePlaylistFromServer();
 
-    if (currentPlaylist === "My Favorites") {
+    if (currentPlaylist === "My Favorites" && type !== "new") {
+      //when in playlist page , need to get update playlist when delete from favorites
       // const updatedFavoritePlaylist = await getPlaylistVideoFromServer(
       //   currentPlaylist
       // );
+      // TODO: set it so wont need to use .
+
       getPlaylistFromServer();
     }
   };

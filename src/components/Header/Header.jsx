@@ -19,7 +19,6 @@ const Header = () => {
   const navigate = useNavigate();
   // console.log({displayAcountLogInRegister});
   useEffect(() => {
-    console.log("FFF");
     isDisplayAcountLogInRegister();
   }, []);
 
@@ -50,7 +49,6 @@ const Header = () => {
   const isDisplayAcountLogInRegister = () => {
     // const pageName = HeaderView();
     const pageName = pathLocation;
-    console.log({ pageName });
     if (
       pageName === "/" ||
       pageName === "/search" ||
