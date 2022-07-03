@@ -49,12 +49,14 @@ const UserPlayLists = ({ type }) => {
     <div>
       <Box sx={{ width: 150, maxWidth: 300 }} className="UserPlayListselect">
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">{playlistLabel}</InputLabel>
+          <InputLabel id="demo-simple-select-label">
+            {/* {playlistLabel} */}
+          </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={currentPlaylist}
-            label={playlistLabel}
+            // label={playlistLabel}
             onChange={(e) => {
               console.log(e.target.value, 27);
               handleSetCurrentPlaylist(e.target.value);
