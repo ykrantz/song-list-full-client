@@ -41,7 +41,7 @@ export default function MenuDrower() {
   const menuOptions = [
     { text: "Search", link: "/search", icon: "" },
     { text: "Playlists", link: "/playlists", icon: "" },
-    { text: "Favorites", link: "/favorites", icon: "" },
+    // { text: "Favorites", link: "/favorites", icon: "" },
     { text: "About", link: "/about", icon: "" },
   ];
 
