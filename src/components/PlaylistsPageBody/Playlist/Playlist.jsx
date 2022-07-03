@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Playlist.css";
 
 import List from "@mui/material/List";
@@ -21,12 +21,13 @@ import UserPlayLists from "../../generalComponents/UserPlayLists/UserPlayLists";
 // import handleMainStates from "../../../context/handleMainStates";
 import handleMessage from "../../../context/handleMessage";
 import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFromServer";
+import handleUser from "../../../context/handleUser";
 
 const Playlist = ({ removeSong }) => {
   const style = {
     width: "100%",
     maxWidth: 500,
-    bgcolor: "cornsilk",
+    // bgcolor: "cornsilk",
   };
 
   // const { getPlaylistsUserFromServer } = useContext(handlePlaylist);
@@ -36,7 +37,9 @@ const Playlist = ({ removeSong }) => {
     playlist,
 
     getPlaylistsUserFromServer,
+    favoritePlaylist,
   } = useContext(handlePlaylists);
+  // const { currentUser } = useContext(handleUser);
   const { changeMessage } = useContext(handleMessage);
   const {
     currentPlaylist,
@@ -106,7 +109,9 @@ const Playlist = ({ removeSong }) => {
     <div className="PlayList-container">
       <List sx={style} component="nav" aria-label="mailbox folders">
         <div className="PlayList-container-header">
-          <p className="PlayList-title">Play list: </p>
+          <p className="PlayList-title">
+            <b>Play list:</b>
+          </p>
           <UserPlayLists />
 
           <Tooltip title={"delete playlist"}>
@@ -126,17 +131,25 @@ const Playlist = ({ removeSong }) => {
         </div>
         <Divider />
         <div className="PlayList-videoContainer">
-          {playlist.map((song) => {
-            return (
-              <div className="PlayList-list">
-                <PlaylistVideo
-                  key={song._id}
-                  song={song}
-                  removeSong={removeSong}
-                />
-              </div>
-            );
-          })}
+          {localStorage.currentUser ? (
+            playlist.map((song) => {
+              return (
+                <div className="PlayList-list">
+                  <PlaylistVideo
+                    key={song._id}
+                    song={song}
+                    removeSong={removeSong}
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <p>
+              Please {<Link to="/login"> log in</Link>} /{" "}
+              {<Link to="/register"> register</Link>}
+              <br></br> to get your playlists
+            </p>
+          )}
         </div>
       </List>
       <Divider />

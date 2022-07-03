@@ -47,7 +47,7 @@ const UserPlayLists = ({ type }) => {
 
   return (
     <div>
-      <Box sx={{ maxWidth: 200 }} className="UserPlayListselect">
+      <Box sx={{ width: 150, maxWidth: 300 }} className="UserPlayListselect">
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">{playlistLabel}</InputLabel>
           <Select

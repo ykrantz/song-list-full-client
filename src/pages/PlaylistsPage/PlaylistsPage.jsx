@@ -7,7 +7,7 @@ import PlaylistsPageBody from "../../components/PlaylistsPageBody/PlaylistsPageB
 
 const PlaylistsPage = () => {
   return (
-    <div>
+    <div className="PlaylistsPage-container">
       <Header />
       <PlaylistsPageBody />
       <Footer />

@@ -14,24 +14,29 @@ import handlePlaylists from "../../../context/handlePlaylists";
 import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
 import FavoriteButton from "../../generalComponents/FavoriteButton/FavoriteButton";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
+import { Stack } from "@mui/material";
 
 const PlaylistVideo = ({ song: { id, title, img } }) => {
-  const { updateVideoResurce } = useContext(handlePlaylists);
+  const { updateVideoResurce, getPlaylistFromServer } =
+    useContext(handlePlaylists);
 
-  const addVideoByIdToPlaylistServer = () => {
-    // TODO: write code /also in server
-  };
   return (
     <div className="PlaylistVideo-container">
+      {/* <Stack spacing={2} direction="row" justifyContent="center"> */}
       <ListItem button>
         <PlayVideoButton id={id} updateVideoResurce={updateVideoResurce} />
         <ListItemText
+          className="PlaylistVideo-title"
+          primaryTypographyProps={{ fontSize: "2.3vh" }}
+          sx={{ width: "15vw", marginLeft: "1vw", marginRight: "1vw" }}
           onClick={() => updateVideoResurce(id)}
           primary={`${title.substring(0, TITLE_LENGTH)}`}
         />
         <FavoriteButton
           id={id}
-          addVideoToPlaylistServer={addVideoByIdToPlaylistServer}
+          type="exist"
+          getPlaylistFromServer={getPlaylistFromServer}
+          // addVideoToPlaylistServer={addVideoByIdToPlaylistServer}
         />
         <img
           src={img}
@@ -41,6 +46,7 @@ const PlaylistVideo = ({ song: { id, title, img } }) => {
         ></img>
         <RemoveVideoButton id={id} />
       </ListItem>
+      {/* </Stack> */}
       <Divider />
     </div>
   );

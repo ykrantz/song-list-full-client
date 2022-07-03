@@ -1,12 +1,14 @@
 .FoundedVideoYouTube-container {
   display: flex;
+  width: 100%;
+
   /* border: royalblue 1px solid; */
 }
 
-.FoundedVideoYouTube-Video {
+/* .FoundedVideoYouTube-Video {
   width: 90%;
   align-self: center;
-}
+} */
 
 .FoundedVideoYouTube-img {
   /* height: 100px; */
@@ -15,8 +17,8 @@
   /* margin-right: 10px; */
 }
 .FoundedVideoYouTube-button {
-  margin-left: 2vw;
-  margin-right: 2vw;
+  /* margin-left: 2vw;
+  margin-right: 2vw; */
 }
 
 .FoundedVideoPlaylist-text {

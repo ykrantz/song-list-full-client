@@ -11,6 +11,7 @@ import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
 import handleMessage from "../../../context/handleMessage";
 import CancelIcon from "@mui/icons-material/Cancel";
 import IconButton from "@mui/material/IconButton";
+import { Tooltip } from "@mui/material";
 const SearchVideo = () => {
   const [inputVideo, setInputVideo] = useState("");
 
@@ -104,16 +105,18 @@ const SearchVideo = () => {
         >
           <SearchIcon />
         </IconButton> */}
-        <Button
-          onClick={() => {
-            searchVideosFromServer(inputVideo);
-            // setInputVideo("");
-          }}
-          variant="contained"
-          // color={"primary"}
-        >
-          <SearchIcon />
-        </Button>
+        <Tooltip title={"Search for video"}>
+          <Button
+            onClick={() => {
+              searchVideosFromServer(inputVideo);
+              // setInputVideo("");
+            }}
+            variant="contained"
+            // color={"primary"}
+          >
+            <SearchIcon />
+          </Button>
+        </Tooltip>
         {/* <Button
             onClick={() => {
               setInputVideo("");

@@ -3,7 +3,7 @@ import React from "react";
 
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
-
+// import { makeStyles } from "@material-ui/core/styles";
 // export default function BasicAlerts() {
 //   return (
 //     <Stack sx={{ width: '100%' }} spacing={2}>
@@ -14,12 +14,28 @@ import Stack from "@mui/material/Stack";
 //     </Stack>
 //   );
 // }
-
+// const useStyles = makeStyles({
+//   cookieAlert: {
+//     "& .MuiAlert-font": {
+//       fontSize: "5",
+//     },
+//   },
+// });
 const MessageNote = ({ message, type }) => {
+  // const classes = useStyles();
+
   return (
     <div>
-      <Stack sx={{ width: "100%" }} spacing={2}>
-        {type && <Alert severity={type}>{message}</Alert>}
+      <Stack sx={{ width: "100%" }} spacing={2} justifyContent="center">
+        {type && (
+          <Alert
+            // className={classes.cookieAlert}
+            // sx={{ fontSize: "10px" }}
+            severity={type}
+          >
+            {message}
+          </Alert>
+        )}
       </Stack>
     </div>
   );

@@ -101,7 +101,7 @@ const Header = () => {
           <Stack spacing={0.5} direction="column">
             {/* {!localStorage.currentUser && ( */}
             {!currentUser && (
-              <>
+              <div>
                 {/* <Button
                 size={"small"}
                 onClick={() => navigate("/register")}
@@ -111,7 +111,9 @@ const Header = () => {
               </Button> */}
                 {/* TODO: check if it works with naviagte */}
                 {/* <ButtonSized onClickFunc={navigateRegister} title="register" /> */}
-                {<Link to="/login"> log in / register</Link>}
+                {<Link to="/login"> log in</Link>}
+                {" / "}
+                {<Link to="/register">register</Link>}
                 {/* <ButtonSized onClickFunc={navigateLogin} title="Log in" /> */}
                 {/* 
               <Button
@@ -121,7 +123,7 @@ const Header = () => {
               >
                 Log in
               </Button> */}
-              </>
+              </div>
             )}
             {/* {localStorage.currentUser && ( */}
             {currentUser && (

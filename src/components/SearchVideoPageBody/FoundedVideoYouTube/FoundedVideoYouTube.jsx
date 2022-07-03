@@ -16,6 +16,7 @@ import handleUser from "../../../context/handleUser";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import handleMessage from "../../../context/handleMessage";
 import AddVideoToPlaylist from "../AddVideoToPlaylist/AddVideoToPlaylist";
+import formolizeVideoToServer from "../../../controllers/formolizeVideoToServer";
 
 const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
   const { searchVideoApiResults, updateVideoResurce } =
@@ -28,17 +29,17 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
   );
   const { currentUser } = useContext(handleUser);
 
-  const formolizeVideoToServer = (videoApiDitails) => {
-    return {
-      title: videoApiDitails.title,
-      artist: videoApiDitails?.author.name,
-      src: videoApiDitails.url,
-      user: JSON.parse(localStorage.currentUser),
-      provider: "youTube",
-      img: videoApiDitails.thumbnails[0].url,
-      id: videoApiDitails.id,
-    };
-  };
+  // const formolizeVideoToServer = (videoApiDitails) => {
+  //   return {
+  //     title: videoApiDitails.title,
+  //     artist: videoApiDitails?.author.name,
+  //     src: videoApiDitails.url,
+  //     user: JSON.parse(localStorage.currentUser),
+  //     provider: "youTube",
+  //     img: videoApiDitails.thumbnails[0].url,
+  //     id: videoApiDitails.id,
+  //   };
+  // };
 
   const getVideoApiDitails = (videoId) => {
     return searchVideoApiResults.find((video) => video.id === videoId);
@@ -102,14 +103,18 @@ const FoundedVideoYouTube = ({ video: { id, title, thumbnails } }) => {
           <ListItemText
             primary={`${title.substring(0, TITLE_LENGTH)}`}
             onClick={() => updateVideoResurce(id)}
-            style={{
-              fontSize: "0.5px",
-            }}
+            // style={{
+            //   fontSize: "0.5px",
+            // }}
+            primaryTypographyProps={{ fontSize: "2.3vh" }}
+            sx={{ width: "15vh", marginLeft: "1vw", marginRight: "1vw" }}
           />
         </div>
         <FavoriteButton
           id={id}
-          addVideoToPlaylistServer={addVideoToPlaylistServer}
+          // addVideoToPlaylistServer={addVideoToPlaylistServer}
+          type="new"
+          searchVideoApiResults={searchVideoApiResults}
         />
         <img
           src={thumbnails[0].url}

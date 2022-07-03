@@ -1,6 +1,6 @@
 .PlaylistsPageBody-container{
-display: flex;
-flex-direction: column;
+/* display: flex;
+flex-direction: column; */
 }
 
 .PlaylistsPageBody-videoPlay{
@@ -8,5 +8,42 @@ flex-direction: column;
 }
 
 .PlaylistsPageBody-Playlist{
+
+}
+
+@media only screen and (min-width: 600px) {
+    .PlaylistsPageBody-container{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .PlaylistsPageBody-content{
+        display: flex;
+
+    }
+    .PlaylistsPageBody-left{
+        /* display: flex; */
+        /* flex-direction: column; */
+        float: left;
+        width:50%;
+        height: 10vh;
+        
+    
+        
+    }
+
+    .PlaylistsPageBody-right{
+        /* height: 500px; */
+        position: relative; 
+        display: flex;
+        flex-direction: column;
+        float: right;
+        /* background-color: aqua; */
+        width: 50%;
+        /* justify-content: center; */
+        align-items: center;
+    }
+
+
 
 }

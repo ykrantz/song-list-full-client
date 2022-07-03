@@ -56,7 +56,11 @@ const LoginRegisterPageBody = ({ type }) => {
     <div>
       <div className="LoginRegisterPageBody-container">
         {/* <BackToHome /> */}
-
+        {type === "register" && (
+          <p className="LoginRegisterPageBody-registerTitle">
+            Please select a User Name and Password
+          </p>
+        )}
         {/* <h1 className="LoginRegisterPageBody-header">Log In:</h1> */}
         <div className="LoginRegisterPageBody-Inputs">
           <Box
@@ -123,7 +127,7 @@ const LoginRegisterPageBody = ({ type }) => {
         <p>
           {type === "logIn" ? "New User?  " : "Already Registered?  "}
           <Link to={`/${type === "logIn" ? "register" : "login"}`}>
-            Sign {type === "logIn" ? "up" : "in"}
+            {type === "logIn" ? "Register" : "Sign in"}
           </Link>
         </p>
       </div>

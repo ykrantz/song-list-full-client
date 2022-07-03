@@ -3,6 +3,8 @@
   flex-direction: column;
   width: 100vw;
   justify-content: center;
+  /* margin-left: 3%; */
+
   /* background-color: rgb(122, 240, 122); */
   background-color: #dfcfbe;
   /* background-color: blue; */
@@ -14,13 +16,16 @@ margin-top: 3vh;
   max-height: 500px; */
   /* border: 1px solid red; */
 }
-
+.FoundedVideosYouTube-title{
+  font-size: 2.5vh;
+  margin: 1vh;
+}
 .FoundedVideosYouTube-searchVideoResults{
 
   overflow: hidden;
   overflow-y: scroll;
-  min-height: 80px;
-  max-height: 25vh;
+  min-height: 120px;
+  max-height: 30vh;
 
 }
 
@@ -28,7 +33,7 @@ margin-top: 3vh;
   .FoundedVideosYouTube-container {
    
     float: right;
-    width: 90%;
+    width: 95%;
     /* height: 100%; */
     justify-content: center;
     /* height: 100px; */
@@ -40,5 +45,9 @@ margin-top: 3vh;
     height: 50vh;
     max-height:  50vh;
 
+  }
+  
+  .FoundedVideosYouTube-clickPlaylist{
+    font-size:15px;
   }
 }

@@ -24,6 +24,8 @@
 
 @media only screen and (min-width: 600px) {
     .VideoPlay-Plyr{
+        margin: 2vw;
+
         /* width: 50vw; */
         /* float: left; */
         /* height: 10px; */

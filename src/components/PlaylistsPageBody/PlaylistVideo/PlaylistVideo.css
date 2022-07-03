@@ -6,12 +6,30 @@
   /* height: 100px; */
 }
 
-.PlaylistVideo-song {
+.PlaylistVideo-title{
+ /* fontSize: "2px" ; */
+ width: 80vw;
+  padding-left: 2vh;
+  padding-right: 2vh;
+
+}
+/* .PlaylistVideo-song {
   width: 90%;
   align-self: center;
-}
+} */
 
 .PlaylistVideo-img {
   /* height: 100px; */
-  width: 100px;
+  /* width: 80px; */
+  width: 20vw;
+
+  margin: 1vw;
+}
+
+@media only screen and (min-width: 600px) {
+
+.PlaylistVideo-img {
+  /* height: 100px; */
+  width: 8vw;
+}
 }

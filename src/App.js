@@ -33,6 +33,7 @@ function App() {
     setCurrentPlaylist(value);
     localStorage.currentPlaylist = JSON.stringify(value);
   };
+
   const changeMessage = (str, type = "success") => {
     setMessage({ message: str, type: type });
 

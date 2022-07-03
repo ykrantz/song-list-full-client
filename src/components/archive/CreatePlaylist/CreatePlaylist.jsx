@@ -9,6 +9,9 @@ import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import CancelIcon from "@mui/icons-material/Cancel";
 import IconButton from "@mui/material/IconButton";
 import handleUser from "../../../context/handleUser";
+import { Tooltip } from "@mui/material";
+
+import AddIcon from "@mui/icons-material/Add";
 
 const CreatePlaylist = () => {
   const [playlistInput, setPlaylistInput] = useState("");
@@ -73,13 +76,26 @@ const CreatePlaylist = () => {
         <Stack
           spacing={2}
           direction="row"
-          marginLeft="10%"
-          marginRight="5%"
+          // marginLeft="10%"
+          // marginRight="5%"
           justifyContent="center"
-          alignContent="center"
-          alignItems={"center"}
+          // alignContent="center"
+          // alignItems={"center"}
         >
-          <Button
+          <IconButton
+            onClick={() => {
+              setPlaylistInput("");
+            }}
+            color="error"
+            // variant="contained"
+            // style={{
+            //   backgroundColor: "red",
+            // }}
+            // size="small"
+          >
+            <CancelIcon fontSize="large" />
+          </IconButton>
+          {/* <Button
             style={{
               backgroundColor: "#21b6ae",
               fontSize: "1.4vh",
@@ -89,7 +105,7 @@ const CreatePlaylist = () => {
             variant="contained"
           >
             create playlist
-          </Button>
+          </Button> */}
 
           {/* <Button
               onClick={() => {
@@ -110,6 +126,7 @@ const CreatePlaylist = () => {
             placeholder="playlist name"
             label="enter playlist name"
             variant="outlined"
+            size="small"
             // style={{
             //   // backgroundColor: "#21b6ae",
             //   fontSize: "1vh",
@@ -117,20 +134,18 @@ const CreatePlaylist = () => {
             // }}
             // sx={{ fontSize: "large" }}
           />
-
-          <IconButton
-            onClick={() => {
-              setPlaylistInput("");
-            }}
-            color="error"
-            // variant="contained"
-            // style={{
-            //   backgroundColor: "red",
-            // }}
-            // size="small"
-          >
-            <CancelIcon fontSize="large" />
-          </IconButton>
+          <Tooltip title={"Create Playlist"}>
+            <Button
+              onClick={() => {
+                createPlayListInServer();
+                // setInputVideo("");
+              }}
+              variant="contained"
+              // color={"primary"}
+            >
+              <AddIcon />
+            </Button>
+          </Tooltip>
         </Stack>
       </div>
     </div>

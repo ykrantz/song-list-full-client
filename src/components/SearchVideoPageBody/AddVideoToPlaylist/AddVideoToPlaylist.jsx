@@ -40,7 +40,7 @@ export default function AddVideoToPlaylist({ id, addVideoToPlaylistServer }) {
       ? setOpen(true)
       : changeMessage(`Please log in to add video to playlist`, "error");
   const handleClose = () => setOpen(false);
-  console.log({ currentUser }, { userPlaylists }, 65);
+  // console.log({ currentUser }, { userPlaylists }, 65);
   return (
     <div>
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
@@ -49,7 +49,7 @@ export default function AddVideoToPlaylist({ id, addVideoToPlaylistServer }) {
         {/* <IconButton onClick={handleOpen} disabled={!currentUser}> */}
         <IconButton onClick={handleOpen}>
           <AddCircleIcon
-            fontSize="large"
+            fontSize="meduim"
             // color="primary"
             // sx={{ backgroundColor: "black" }}
             // disable="true"
