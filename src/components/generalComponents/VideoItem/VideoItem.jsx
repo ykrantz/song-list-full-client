@@ -23,12 +23,15 @@ const VideoItem = ({
 
   return (
     <div className="VideoItem-container">
-      <ListItem button style={{ padding: 2 }}>
+      <ListItem
+        button
+        style={{ padding: 3, marginLeft: "0.5vw", marginRight: "0.5vw" }}
+      >
         <PlayVideoButton id={id} updateVideoSource={updateVideoSource} />
         <ListItemText
           className="VideoItem-title"
           primaryTypographyProps={{ fontSize: "2.3vh" }}
-          sx={{ width: "15vw", marginLeft: "1vw", marginRight: "1vw" }}
+          sx={{ width: "15vw", marginLeft: "0.5vw", marginRight: "0.5vw" }}
           onClick={() => updateVideoSource(id)}
           primary={`${title.substring(0, TITLE_LENGTH)}`}
         />

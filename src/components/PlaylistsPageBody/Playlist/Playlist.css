@@ -1,7 +1,9 @@
 .PlayList-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* width: 90%; */
+  border-radius: 20px;
+  margin:2vw;
 
 
   background-color: #dfcfbe;
@@ -9,6 +11,8 @@
 }
 
 .PlayList-container-header {
+  border-radius: 20px;
+
   display: flex;
   background-color: #dfcfbe;
   margin-bottom: 1vh;

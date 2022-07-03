@@ -1,11 +1,11 @@
 .FoundedVideosYouTube-container {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 95vw;
   justify-content: center;
-
+  margin:2vw;
   background-color: #dfcfbe;
-  
+  border-radius: 20px;
 margin-top: 3vh;
  
 }
@@ -26,7 +26,7 @@ margin-top: 3vh;
   .FoundedVideosYouTube-container {
    
     float: right;
-    width: 95%;
+    width: 70%;
     justify-content: center;
     margin-top: 0;
 
