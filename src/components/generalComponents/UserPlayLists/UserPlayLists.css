@@ -1,0 +1,36 @@
+.UserUserPlayList-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-left: 3%;
+
+  overflow: hidden;
+  overflow-y: scroll;
+  min-height: 80px;
+  max-height: 500px;
+  background-color: bisque;
+
+}
+
+.UserUserPlayList-container-header {
+  display: flex;
+  background-color: bisque;
+}
+.UserUserPlayList-h1 {
+  float: left;
+  width: 25%;
+  align-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.UserUserPlayList-songs {
+
+}
+
+.UserUserPlayList-DeleteSweepIcon {
+  align-self: center;
+
+  margin-left: 35px;
+}
+

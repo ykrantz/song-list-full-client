@@ -1,0 +1,46 @@
+.FoundedVideosYouTube-container {
+  display: flex;
+  flex-direction: column;
+  width: 95vw;
+  justify-content: center;
+  margin:2vw;
+  background-color: #dfcfbe;
+  border-radius: 20px;
+margin-top: 3vh;
+ 
+}
+.FoundedVideosYouTube-title{
+  font-size: 2.5vh;
+  margin: 1vh;
+}
+.FoundedVideosYouTube-searchVideoResults{
+
+  overflow: hidden;
+  overflow-y: scroll;
+  min-height: 120px;
+  max-height: 30vh;
+
+}
+
+@media only screen and (min-width: 600px) {
+  .FoundedVideosYouTube-container {
+   
+    float: right;
+    width: 70%;
+    justify-content: center;
+    margin-top: 0;
+
+  }
+  .FoundedVideosYouTube-searchVideoResults{
+    height: 50vh;
+    max-height:  50vh;
+
+  }
+  
+  .FoundedVideosYouTube-clickPlaylist{
+    font-size:15px;
+  }
+  .FoundedVideosYouTube-title{
+    font-size: 4vh;
+  }
+}

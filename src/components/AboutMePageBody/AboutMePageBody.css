@@ -1,0 +1,156 @@
+
+
+.AboutMePageBody-linkesDiv {
+  display: flex;
+
+}
+
+
+.AboutMePageBody-linkedinLink{
+
+  /* text-align: left;
+  margin-left: 30px;
+  margin-top: 30px; */
+  
+}
+
+.AboutMePageBody-gitHubLink{
+ 
+  /* margin-top:20px;
+  margin-left: 30px; */
+
+  
+}
+.AboutMePageBody-linkedinIcon {
+
+}
+.AboutMePageBody-page {
+
+
+  width: 100vw;
+  /* padding-bottom: 0; */
+  /* height: 100%; */
+}
+
+.AboutMePageBody-headerContainer {
+  
+  /* display: flex; */
+  justify-content: center;
+  align-content: center;
+  /* flex-direction: column; */
+}
+
+.AboutMePageBody-mainPage {
+  /* background: linear-gradient(
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.7)
+    ),
+    url("../../images/resume-6627200.jpg");
+  background-size: cover;
+  height: 100vh; */
+  /* padding: 20px; */
+  /* margin-bottom: 0; */
+}
+
+
+.AboutMePageBody-title {
+  /* display: flex; */
+  /* float: right; */
+  /* margin-left: 30px; */
+  color:crimson;
+  font-size: 35px ;
+  /* width: 100%; */
+ 
+
+  
+}
+.AboutMePageBody-myCvTitle{
+color: darkgreen;
+
+}
+.AboutMePageBody-cvDiv {
+  /* align-content: center; */
+  /* display: inline-flex;
+  position: relative;
+  top: 10px;
+  left: 30px; */
+}
+
+.AboutMePageBody-cvFile {
+  align-content: center;
+}
+.AboutMePageBody-ulDetails {
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin-top: 5%;
+  margin-left: 20%;
+  display: table;
+}
+
+.AboutMePageBody-aboutMeTitle {
+  justify-content: left;
+  /* margin-left: 0px; */
+}
+
+
+@media only screen  and (max-width:600px) {
+ 
+  .AboutMePageBody-mainPage {
+    margin-left: 0px;
+  
+  }
+  .AboutMePageBody-Nav-div{
+    margin-left: 0px;
+    /* margin-top: 60px; */
+  }
+  .AboutMePageBody-page {
+  
+    padding-bottom: 0;
+  }
+  .AboutMePageBody-aboutMeTitle {
+    /* justify-content: left; */
+    text-align: left;
+
+    font-size: 20px;
+    /* margin -left: 50px; */
+  }
+  .AboutMePageBody-myCvTitle{
+    /* text-align: left;
+    margin-left: 80px; */
+    /* font-size: 20px; */
+  }
+  .AboutMePageBody-ulDetails {
+    margin-top: 10%;
+    margin-left: 0%;
+    padding-right: 10px;
+      font-size: 3vh;
+      /* font-size: 25px; */
+      /* padding-left: 20px; */
+     
+  }
+  .AboutMePageBody-title{
+    font-size: 25px;
+    /* margin-left: 25px; */
+  }
+  .AboutMePageBody-links{
+    display: flex;
+  }
+
+  .AboutMePageBody-linkedinLink{
+   
+    margin-top: 10px;
+    
+  }
+  
+  .AboutMePageBody-gitHubLink{
+    margin-left: 10px;
+    margin-top: 3px;
+  
+    
+  }
+ 
+}
+
+.AboutMePageBody-portfolio{
+  font-size: 14px;
+}

@@ -1,0 +1,44 @@
+
+
+@media only screen and (min-width: 600px) {
+    .SearchPageBody-container{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .SearchPageBody-content{
+        display: flex;
+
+    }
+    .SearchPageBody-left{
+      
+        float: left;
+        width: 50%;
+        height: 10vh;
+        
+    
+        
+    }
+
+    .SearchPageBody-right{
+        position: relative; 
+        display: flex;
+        flex-direction: column;
+        float: right;
+        width:50%;
+        align-items: center;
+    }
+    .SearchPageBody-SearchVideo{
+
+    }
+    .SearchPageBody-VideoPlay{
+     
+
+    }
+    .SearchPageBody-clickPlaylist{
+    
+    }
+  
+
+
+}

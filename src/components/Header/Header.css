@@ -1,0 +1,62 @@
+.Header-container{
+
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  display: flex;
+}
+
+.Header-titles{
+  float: left;
+  font-size: 2vh;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  width: 80%;
+}
+.Header-titlePageName{
+ 
+  float: left;
+  padding-left: 0px;
+      width: 80%;
+  font-size: 3vh;
+  font-family: Georgia, "Times New Roman", Times, serif;
+ 
+}
+.Header-titlePlaylist {
+
+  font-size: 2vh;
+  font-family: Georgia, "Times New Roman", Times, serif;
+ 
+
+}
+
+.Header-Header-logInOutAcountMenu{
+  float: right;
+  width: 30%;
+}
+
+  .Header-logInOutDiv{
+    font-size:1vh;
+    text-align:right;
+    margin-right: 2vw;
+
+
+  }
+  .Header-currentUser{
+        margin-top: 0.5vh;
+            font-size: 2vh;
+
+
+  }
+
+  @media only screen and (min-width: 600px) { 
+    .Header-container{
+      margin-bottom: 2vh;
+    }   
+    .Header-titlePlaylist {
+          font-size: 7vh;
+    }
+    .Header-titlePageName{
+      font-size: 5vh;
+      width:80%;
+      }
+    
+  }

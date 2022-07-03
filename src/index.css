@@ -7,11 +7,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   /*  */
-  background: linear-gradient(
+  /* background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
+    ), */
+    /* url("./images/guitar-564924.png"); */
+    background: linear-gradient(
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.8)
     ),
-    url("./images/guitar-564924.png");
+    url("./images/musicImg2.jpg");
+
+  object-fit: cover
+
 }
 
 code {

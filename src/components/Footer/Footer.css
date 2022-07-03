@@ -1,0 +1,13 @@
+
+.Footer-container{
+  position: absolute;
+  bottom: 2vh;
+  width: 100%;
+}
+  @media only screen and (min-width: 600px) { 
+
+    .Footer-container{
+  
+    background-color: antiquewhite;
+    }
+  }

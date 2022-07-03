@@ -1,0 +1,15 @@
+.AddVideoToPlaylist-boxModal{
+    width: 360px;
+    position: absolute;
+  
+    top:20vh
+}
+
+@media only screen and (min-width: 600px) { 
+
+.AddVideoToPlaylist-boxModal{
+ 
+    right: 5vw;
+  
+}
+}
