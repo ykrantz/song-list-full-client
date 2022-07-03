@@ -23,41 +23,44 @@ export default function BasicListPlaylist({ id, addVideoToPlaylistServer }) {
   console.log({ userPlaylists }, 63);
   return (
     <div className="BasicListPlaylist-Container">
-      <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        <nav aria-label="main mailbox folders">
-          <List
-            sx={{
-              width: "100%",
-              maxWidth: 360,
-              bgcolor: "background.paper",
-              position: "relative",
-              overflow: "auto",
-              maxHeight: "40vh",
-              "& ul": { padding: 0 },
-            }}
-          >
-            {/* {userPlaylists.length > 0 */}
-            {/* {userPlaylists.length > 0 && */}
-            {userPlaylists.map((playlist) => {
-              return (
-                <ListItem disablePadding key={playlist.id}>
-                  <ListItemButton>
-                    {/* <ListItemIcon>
+      <b>Add to Playlist:</b>
+      {/* <Box sx={{ width: "100%", maxWidth: "360", bgcolor: "background.paper" }}> */}
+      <nav aria-label="main mailbox folders">
+        <p></p>
+        <Divider />
+        <List
+          sx={{
+            width: "100%",
+            maxWidth: 360,
+            bgcolor: "background.paper",
+            position: "relative",
+            overflow: "auto",
+            maxHeight: "40vh",
+            "& ul": { padding: 0 },
+          }}
+        >
+          {/* {userPlaylists.length > 0 */}
+          {/* {userPlaylists.length > 0 && */}
+          {userPlaylists.map((playlist) => {
+            return (
+              <ListItem disablePadding key={playlist.id}>
+                <ListItemButton>
+                  {/* <ListItemIcon>
                       <InboxIcon />
                     </ListItemIcon> */}
-                    <ListItemText
-                      primary={playlist.playlistName}
-                      onClick={() => {
-                        addVideoToPlaylistServer(id, playlist.playlistName);
-                        handleSetCurrentPlaylist(playlist.playlistName);
-                      }}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
-            {/* : changeMessage("plese sign in", "error")} */}
-            {/* <ListItem disablePadding>
+                  <ListItemText
+                    primary={playlist.playlistName}
+                    onClick={() => {
+                      addVideoToPlaylistServer(id, playlist.playlistName);
+                      handleSetCurrentPlaylist(playlist.playlistName);
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+          {/* : changeMessage("plese sign in", "error")} */}
+          {/* <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <InboxIcon />
@@ -73,9 +76,9 @@ export default function BasicListPlaylist({ id, addVideoToPlaylistServer }) {
               <ListItemText primary="Drafts" />
             </ListItemButton>
           </ListItem> */}
-          </List>
-        </nav>
-      </Box>
+        </List>
+      </nav>
+      {/* </Box> */}
     </div>
   );
 }

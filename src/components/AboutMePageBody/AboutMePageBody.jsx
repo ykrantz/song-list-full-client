@@ -8,7 +8,6 @@ import Detail from "./Detail/Detail";
 import Tooltip from "@mui/material/Tooltip";
 import GitHubButton from "../AboutMePageBody/GitHubButton/GitHubButton";
 // import { Box, Grid } from "@mui/material";
-import handleHeader from "../../context/archive/handleHeader";
 import { Stack } from "@mui/material";
 import IconLinks from "./IconLinks/IconLinks";
 
