@@ -110,8 +110,7 @@ const FoundedVideosYouTube = ({ searchVideoResults }) => {
           })}
         </div>
         <Divider />
-        <p className="FoundedVideosYouTube-clickPlaylist">
-          {" "}
+        <p className="FoundedVideosYouTube-linkToPlaylist">
           To see your playlist press <Link to="/playlists">here</Link>
         </p>
       </List>

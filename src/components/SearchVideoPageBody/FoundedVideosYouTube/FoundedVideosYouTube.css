@@ -7,11 +7,15 @@
   background-color: #dfcfbe;
   border-radius: 20px;
 margin-top: 3vh;
+padding-top: 0;
  
 }
 .FoundedVideosYouTube-title{
   font-size: 2.5vh;
-  margin: 1vh;
+  /* margin: 1vh; */
+  margin: 3vh;
+  justify-content: center;
+  align-items: center;
 }
 .FoundedVideosYouTube-searchVideoResults{
 
@@ -21,7 +25,9 @@ margin-top: 3vh;
   max-height: 30vh;
 
 }
-
+.FoundedVideosYouTube-linkToPlaylist{
+  margin: 1vh;
+}
 @media only screen and (min-width: 600px) {
   .FoundedVideosYouTube-container {
    
@@ -37,10 +43,13 @@ margin-top: 3vh;
 
   }
   
-  .FoundedVideosYouTube-clickPlaylist{
+  /* .FoundedVideosYouTube-clickPlaylist{
     font-size:15px;
-  }
+  } */
   .FoundedVideosYouTube-title{
     font-size: 4vh;
+  }
+  .FoundedVideosYouTube-linkToPlaylist{
+    margin: 2vh;
   }
 }

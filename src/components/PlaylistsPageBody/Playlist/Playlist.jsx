@@ -110,6 +110,7 @@ const Playlist = ({ removeSong }) => {
               aria-label="delete"
               disabled={disableDeletePlaylist}
               onClick={() => deleteUserPlaylist(currentPlaylist)}
+              sx={{ marginLeft: 1 }}
             >
               <DeleteSweepIcon
                 className="PlayList-DeleteSweepIcon"
@@ -146,8 +147,9 @@ const Playlist = ({ removeSong }) => {
         </div>
       </List>
       <Divider />
-
-      <p> Press {<Link to="/search"> here</Link>} to add more videos</p>
+      <span className="Playlist-link">
+        Press {<Link to="/search"> here</Link>} to add more videos
+      </span>
     </div>
   );
 };
