@@ -53,7 +53,9 @@ export default function MenuDrower() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 200 }}
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 200,
+      }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -78,8 +80,11 @@ export default function MenuDrower() {
   return (
     <div>
       <React.Fragment key={anchor}>
-        <IconButton size="large" onClick={toggleDrawer(anchor, true)}>
-          {/* <Button onClick={toggleDrawer(anchor, true)}> */}
+        <IconButton
+          size="large"
+          onClick={toggleDrawer(anchor, true)}
+          sx={{ marginLeft: 1 }}
+        >
           <MenuIcon fontSize="large" color="primary" size="large" />
           {/* </Button> */}
         </IconButton>

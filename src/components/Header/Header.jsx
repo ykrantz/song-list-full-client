@@ -65,7 +65,7 @@ const Header = () => {
             )}
             {currentUser && (
               <div className="Header-AccountMenuaAvatar">
-                <AccountMenu userName={JSON.parse(localStorage?.currentUser)} />
+                <AccountMenu userName={currentUser} />
               </div>
             )}
           </Stack>

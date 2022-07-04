@@ -9,9 +9,11 @@ import BackToHome from "../generalComponents/BackToHome/BackToHome";
 import { useEffect } from "react";
 import { BASE_URL } from "../../general/main_var";
 import handleMessage from "../../context/handleMessage";
+import handleUser from "../../context/handleUser";
 const UserFavoriteList = () => {
   const [songUserFavoriteList, setSongUserFavoriteList] = useState([]);
   const [masseage, setMasseage] = useState("");
+  const { currentUser } = useContext(handleUser);
 
   const { songid } = useParams();
   const { changeMessage } = useContext(handleMessage);
@@ -21,7 +23,7 @@ const UserFavoriteList = () => {
   }, []);
 
   const getAllUserSongFavoriteFromServer = async (songId) => {
-    if (!localStorage?.currentUser || !JSON.parse(localStorage?.currentUser)) {
+    if (!currentUser) {
       setMasseage(
         "You aren't a Knowen user. plaese connect and then try again"
       );

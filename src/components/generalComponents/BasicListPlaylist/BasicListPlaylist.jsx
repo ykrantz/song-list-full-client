@@ -13,7 +13,7 @@ export default function BasicListPlaylist({ id, addVideoToPlaylistServer }) {
   const { userPlaylists, handleSetCurrentPlaylist } = React.useContext(
     handlePlaylistMainState
   );
-
+  console.log({ userPlaylists }, 31);
   return (
     <div className="BasicListPlaylist-Container">
       <b>Add to Playlist:</b>
@@ -36,7 +36,7 @@ export default function BasicListPlaylist({ id, addVideoToPlaylistServer }) {
           {/* {userPlaylists.length > 0 && */}
           {userPlaylists.map((playlist) => {
             return (
-              <ListItem disablePadding key={playlist.id}>
+              <ListItem disablePadding key={playlist?.playlistName}>
                 <ListItemButton>
                   {/* <ListItemIcon>
                       <InboxIcon />
