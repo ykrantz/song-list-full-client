@@ -20,15 +20,29 @@ function App() {
   const [currentUser, setCurrentUser] = useState(
     localStorage?.currentUser ? JSON.parse(localStorage?.currentUser) : ""
   );
-  const [currentPlaylist, setCurrentPlaylist] = useState("");
+  const [currentPlaylist, setCurrentPlaylist] = useState(
+    localStorage?.currentPlaylist
+      ? JSON.parse(localStorage?.currentPlaylist)
+      : ""
+  );
   const [message, setMessage] = useState("");
   const [userPlaylists, setUserPlaylists] = useState([]);
   const [favoritePlaylist, setFavoritePlaylist] = useState([]);
   const [videoSrc, setVideoSrc] = useState(
-    localStorage?.youtubeId ? JSON.parse(localStorage?.youtubeId) : ""
+    localStorage?.youtubeId
+      ? {
+          type: "video",
+          sources: [
+            {
+              src: JSON.parse(localStorage?.youtubeId),
+              provider: "youtube",
+            },
+          ],
+        }
+      : ""
   );
+  // const [autoPlayFlag, setAutoPlayFlag] = useState(false);
   const updateVideoSource = (videoId) => {
-    // setAutoplayFlag(true);
     const youtubeId = videoId;
 
     setVideoSrc({
@@ -78,7 +92,13 @@ function App() {
         }}
       >
         <HandleVideoSrc.Provider
-          value={{ videoSrc, updateVideoSource, setVideoSrc }}
+          value={{
+            videoSrc,
+            updateVideoSource,
+            setVideoSrc,
+            // autoPlayFlag,
+            // setAutoPlayFlag,
+          }}
         >
           <HandleMessage.Provider
             value={{ message, setMessage, changeMessage, waitingMessage }}

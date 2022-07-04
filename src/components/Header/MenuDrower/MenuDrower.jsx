@@ -1,11 +1,14 @@
 import "./MenuDrower.css";
 
 import MenuIcon from "@mui/icons-material/Menu";
+import MusicVideoIcon from "@mui/icons-material/MusicVideo";
 
 import * as React from "react";
 import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
+import HelpCenterOutlinedIcon from "@mui/icons-material/HelpCenterOutlined";
+import ScreenSearchDesktopOutlinedIcon from "@mui/icons-material/ScreenSearchDesktopOutlined";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -14,6 +17,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { useNavigate } from "react-router";
+import { IconButton } from "@mui/material";
 
 export default function MenuDrower() {
   const navigate = useNavigate();
@@ -37,27 +41,35 @@ export default function MenuDrower() {
   };
 
   const menuOptions = [
-    { text: "Search", link: "/search", icon: "" },
-    { text: "Playlists", link: "/playlists", icon: "" },
+    {
+      text: "Search",
+      link: "/search",
+      icon: <ScreenSearchDesktopOutlinedIcon />,
+    },
+    { text: "Playlists", link: "/playlists", icon: <MusicVideoIcon /> },
     // { text: "Favorites", link: "/favorites", icon: "" },
-    { text: "About", link: "/about", icon: "" },
+    { text: "About", link: "/about", icon: <HelpCenterOutlinedIcon /> },
   ];
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 200,
+      }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
+      <List style={{ marginTop: "4vh", marginLeft: "2vh" }}>
         {menuOptions.map(({ text, link, icon }, index) => (
           <ListItem key={text} disablePadding onClick={() => navigate(link)}>
             <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemIcon>{icon}</ListItemIcon>
+              <ListItemText
+                primaryTypographyProps={{ fontSize: "3vh" }}
+                primary={text}
+                // sx={{ justifyContent: "center" }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -68,9 +80,14 @@ export default function MenuDrower() {
   return (
     <div>
       <React.Fragment key={anchor}>
-        <Button onClick={toggleDrawer(anchor, true)}>
-          <MenuIcon color="primary" />
-        </Button>
+        <IconButton
+          size="large"
+          onClick={toggleDrawer(anchor, true)}
+          sx={{ marginLeft: 1 }}
+        >
+          <MenuIcon fontSize="large" color="primary" size="large" />
+          {/* </Button> */}
+        </IconButton>
         <SwipeableDrawer
           anchor={anchor}
           open={state[anchor]}

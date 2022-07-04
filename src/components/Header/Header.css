@@ -16,7 +16,7 @@
   float: left;
   padding-left: 0px;
       width: 80%;
-  font-size: 3vh;
+  font-size: 3.5vh;
   font-family: Georgia, "Times New Roman", Times, serif;
  
 }
@@ -28,13 +28,17 @@
 
 }
 
-.Header-Header-logInOutAcountMenu{
+.Header-logInOutAcountMenu{
   float: right;
   width: 30%;
+  font-size:2.5vh;
+  margin-top: 1vh;
+
+
 }
 
   .Header-logInOutDiv{
-    font-size:1vh;
+    font-size:2vh;
     text-align:right;
     margin-right: 2vw;
 
@@ -58,5 +62,12 @@
       font-size: 5vh;
       width:80%;
       }
-    
+    .Header-logInOutAcountMenu{
+      font-size: 4vh;
+
+    }
+    .Header-AccountMenuaAvatar{
+      position: absolute;
+      right: 5vw;
+    }
   }

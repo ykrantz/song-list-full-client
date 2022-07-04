@@ -12,7 +12,7 @@
 
 .PlayList-container-header {
   border-radius: 20px;
-
+justify-content: center;
   display: flex;
   background-color: #dfcfbe;
   margin-bottom: 1vh;
@@ -20,6 +20,7 @@
 .PlayList-title {
   float: left;
   width: 25%;
+  /* margin-right: "20%"; */
  
 
 }
@@ -27,6 +28,7 @@
   width: 50%;
   text-justify: center;
   font-weight: bold;
+  margin-left: "5vw";
  
 }
 
@@ -40,23 +42,29 @@
 }
 
 .PlayList-DeleteSweepIcon {
-  align-self: center;
+  
+  /* align-self: center; */
 
-  margin-left: 35px;
+  /* margin-left: "120px"; */
+}
+.Playlist-link{
+  margin: 2vh;
+  /* margin-top: 2vh; */
 }
 
 @media only screen and (min-width: 600px) {
   .PlayList-container {
     float: right;
     width: 95%;
-    justify-content: center;
-    align-items: center;
+    max-width: 400px;
+    /* justify-content: center; */
+    /* align-items: center; */
     margin-top: 0;
 
   }
   .PlayList-videoContainer{
-    height: 40vh;
-    max-height:  40vh;
+    height: 45vh;
+    max-height:  45vh;
 
   }
   .PlayList-title {

@@ -24,19 +24,29 @@ const PlaylistsPageBody = () => {
   const { currentUser } = useContext(handleUser);
 
   const [playlist, setPlaylist] = useState([]);
-  const { videoSrc } = useContext(handleVideoSrc);
+  const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
 
   useEffect(async () => {
     try {
       await getPlaylistFromServer();
+
+      if (playlist.length > 0) {
+        updateVideoSource(playlist[0].id);
+      }
     } catch (e) {
       console.log(e);
     }
   }, [currentPlaylist]);
 
+  useEffect(async () => {
+    if (playlist.length > 0 && videoSrc?.sources[0]?.src !== playlist[0].id) {
+      updateVideoSource(playlist[0].id);
+    }
+  }, [playlist]);
+
   const getPlaylistFromServer = async () => {
     try {
-      if (!localStorage.currentUser || !JSON.parse(localStorage?.currentUser)) {
+      if (!currentUser) {
         changeMessage("Please log in / register to see your playlist");
         console.log("no user");
         setPlaylist([]);
@@ -92,13 +102,11 @@ const PlaylistsPageBody = () => {
             }),
           });
           const data = await ans.json();
-          console.log(data);
+          // console.log(data);
           if (ans.status === 200) {
-            console.log({ data }, ans.status);
-            console.log("plallist was updated in server");
+            console.log("plalist was updated in server");
 
             const userPlaylistsFromServer = await getUserPlaylistsFromServer();
-            console.log(userPlaylistsFromServer, 16);
             setUserPlaylists(userPlaylistsFromServer.data);
 
             setCurrentPlaylist(playlistName);

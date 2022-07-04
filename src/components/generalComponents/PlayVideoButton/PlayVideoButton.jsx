@@ -5,7 +5,10 @@ import Tooltip from "@mui/material/Tooltip";
 import handleVideoSrc from "../../../context/handleVideoSrc";
 
 const PlayVideoButton = ({ id }) => {
-  const { updateVideoSource } = useContext(handleVideoSrc);
+  const {
+    updateVideoSource,
+    //  setAutoPlayFlag
+  } = useContext(handleVideoSrc);
 
   return (
     <div className="PlayVideoButton-div">
@@ -13,8 +16,8 @@ const PlayVideoButton = ({ id }) => {
         <PlayCircleFilledWhiteIcon
           fontSize="large"
           onClick={() => {
-            // setAutoplayFlag(true);
             updateVideoSource(id);
+            // setAutoPlayFlag(true);
           }}
         />
       </Tooltip>

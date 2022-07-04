@@ -19,6 +19,7 @@ import handleMessage from "../../../context/handleMessage";
 import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFromServer";
 import VideoItem from "../../generalComponents/VideoItem/VideoItem";
 import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
+import handleUser from "../../../context/handleUser";
 
 const Playlist = ({ removeSong }) => {
   const style = {
@@ -35,6 +36,8 @@ const Playlist = ({ removeSong }) => {
     setUserPlaylists,
     getFavoritePlaylistFromServer,
   } = useContext(handlePlaylistMainState);
+  const { currentUser } = useContext(handleUser);
+
   const [disableDeletePlaylist, setDisableDeletePlaylist] = useState(true);
   const RemoveVideoButtonComponent = ({ id }) => {
     return <RemoveVideoButton id={id} />;
@@ -65,7 +68,7 @@ const Playlist = ({ removeSong }) => {
   const deleteUserPlaylist = async (playlistName) => {
     try {
       const accessToken = JSON.parse(localStorage?.accessToken);
-      const user = JSON.parse(localStorage?.currentUser);
+      // const user = currentUser;
       const ans = await fetch(
         `${BASE_URL}/playlist/deleteplaylist/${playlistName}`,
         {
@@ -106,23 +109,25 @@ const Playlist = ({ removeSong }) => {
           <UserPlayLists />
 
           <Tooltip title={"delete playlist"}>
-            <IconButton
-              aria-label="delete"
-              disabled={disableDeletePlaylist}
-              onClick={() => deleteUserPlaylist(currentPlaylist)}
-            >
-              <DeleteSweepIcon
-                className="PlayList-DeleteSweepIcon"
-                fontSize="large"
-                color={`${disableDeletePlaylist ? "disabled" : "primary"}`}
-              />
-            </IconButton>
+            <span>
+              <IconButton
+                aria-label="delete"
+                disabled={disableDeletePlaylist}
+                onClick={() => deleteUserPlaylist(currentPlaylist)}
+                sx={{ marginLeft: 1 }}
+              >
+                <DeleteSweepIcon
+                  className="PlayList-DeleteSweepIcon"
+                  fontSize="large"
+                  color={`${disableDeletePlaylist ? "disabled" : "primary"}`}
+                />
+              </IconButton>
+            </span>
           </Tooltip>
         </div>
         <Divider />
         <div className="PlayList-videoContainer">
-          {localStorage?.currentUser &&
-          JSON.parse(localStorage?.currentUser) ? (
+          {currentUser ? (
             playlist.map((video) => {
               return (
                 <div className="PlayList-list">
@@ -146,8 +151,9 @@ const Playlist = ({ removeSong }) => {
         </div>
       </List>
       <Divider />
-
-      <p> Press {<Link to="/search"> here</Link>} to add more videos</p>
+      <span className="Playlist-link">
+        Press {<Link to="/search"> here</Link>} to add more videos
+      </span>
     </div>
   );
 };

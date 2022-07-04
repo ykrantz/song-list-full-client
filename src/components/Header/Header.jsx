@@ -1,6 +1,5 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
-
 import React, { useEffect, useState } from "react";
 import { Stack } from "@mui/material";
 import { useLocation, useNavigate } from "react-router";
@@ -65,8 +64,8 @@ const Header = () => {
               </div>
             )}
             {currentUser && (
-              <div className="Header-logInOutDiv">
-                <AccountMenu userName={JSON.parse(localStorage?.currentUser)} />
+              <div className="Header-AccountMenuaAvatar">
+                <AccountMenu userName={currentUser} />
               </div>
             )}
           </Stack>
