@@ -18,14 +18,14 @@ import HandleVideoSrc from "./context/handleVideoSrc";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(
-    localStorage.currentUser ? JSON.parse(localStorage.currentUser) : ""
+    localStorage?.currentUser ? JSON.parse(localStorage?.currentUser) : ""
   );
   const [currentPlaylist, setCurrentPlaylist] = useState("");
   const [message, setMessage] = useState("");
   const [userPlaylists, setUserPlaylists] = useState([]);
   const [favoritePlaylist, setFavoritePlaylist] = useState([]);
   const [videoSrc, setVideoSrc] = useState(
-    localStorage.youtubeId ? JSON.parse(localStorage.youtubeId) : ""
+    localStorage?.youtubeId ? JSON.parse(localStorage?.youtubeId) : ""
   );
   const updateVideoSource = (videoId) => {
     // setAutoplayFlag(true);

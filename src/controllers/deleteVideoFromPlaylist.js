@@ -8,7 +8,7 @@ const deleteVideoFromPlaylist = async (videoId, playlistName) => {
         message: "Please choose/create playlist before adding a video",
       };
     }
-    const accessToken = JSON.parse(localStorage.accessToken);
+    const accessToken = JSON.parse(localStorage?.accessToken);
     const ans = await fetch(`${BASE_URL}/playlist/deletesong`, {
       method: "PUT",
       headers: {

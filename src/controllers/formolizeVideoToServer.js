@@ -3,7 +3,7 @@ const formolizeVideoToServer = (videoApiDitails) => {
     title: videoApiDitails?.title,
     artist: videoApiDitails?.author?.name,
     src: videoApiDitails?.url,
-    user: JSON.parse(localStorage.currentUser),
+    user: JSON.parse(localStorage?.currentUser),
     provider: "youTube",
     img: videoApiDitails?.thumbnails[0].url,
     id: videoApiDitails?.id,

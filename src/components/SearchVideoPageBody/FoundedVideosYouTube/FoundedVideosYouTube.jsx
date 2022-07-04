@@ -46,7 +46,7 @@ const FoundedVideosYouTube = ({ searchVideoResults }) => {
         return;
       }
       const videoDitails = getVideoApiDitails(videoId);
-      const accessToken = JSON.parse(localStorage.accessToken);
+      const accessToken = JSON.parse(localStorage?.accessToken);
       const ans = await fetch(`${BASE_URL}/playlist`, {
         method: "PUT",
         headers: {

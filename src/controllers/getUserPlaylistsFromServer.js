@@ -2,7 +2,7 @@ import { BASE_URL } from "../general/main_var";
 
 const getUserPlaylistsFromServer = async () => {
   try {
-    if (!JSON.parse(localStorage?.currentUser)) {
+    if (!localStorage?.currentUser || !JSON.parse(localStorage?.currentUser)) {
       console.log("no user");
       return { status: 400, data: [] };
     }
@@ -10,7 +10,7 @@ const getUserPlaylistsFromServer = async () => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
-        authorization: `bearer ${JSON.parse(localStorage.accessToken)}`,
+        authorization: `bearer ${JSON.parse(localStorage?.accessToken)}`,
       },
     });
     const myPlayLists = await ans.json();
