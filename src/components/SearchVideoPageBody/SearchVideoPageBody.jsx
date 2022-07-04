@@ -31,7 +31,7 @@ const SearchVideoPageBody = () => {
 
       const userPlaylistsFromServer = await getUserPlaylistsFromServer();
       setUserPlaylists(userPlaylistsFromServer.data);
-      if (localStorage.searchVideoApiResults.length) {
+      if (localStorage?.searchVideoApiResults?.length) {
         updateVideoSource(searchVideoApiResults[0].id);
       }
     } catch (e) {

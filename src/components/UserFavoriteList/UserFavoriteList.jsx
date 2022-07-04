@@ -21,7 +21,7 @@ const UserFavoriteList = () => {
   }, []);
 
   const getAllUserSongFavoriteFromServer = async (songId) => {
-    if (!localStorage.currentUser) {
+    if (!localStorage?.currentUser || !JSON.parse(localStorage?.currentUser)) {
       setMasseage(
         "You aren't a Knowen user. plaese connect and then try again"
       );

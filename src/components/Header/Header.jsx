@@ -66,7 +66,7 @@ const Header = () => {
             )}
             {currentUser && (
               <div className="Header-logInOutDiv">
-                <AccountMenu userName={JSON.parse(localStorage.currentUser)} />
+                <AccountMenu userName={JSON.parse(localStorage?.currentUser)} />
               </div>
             )}
           </Stack>

@@ -16,7 +16,7 @@ const RemoveVideoButton = ({ id }) => {
   const { currentPlaylist } = useContext(handlePlaylistMainState);
 
   const deleteSongFromServer = async (songId) => {
-    const accessToken = JSON.parse(localStorage.accessToken);
+    const accessToken = JSON.parse(localStorage?.accessToken);
     const ans = await fetch(`${BASE_URL}/playlist/deletesong`, {
       method: "PUT",
       headers: {

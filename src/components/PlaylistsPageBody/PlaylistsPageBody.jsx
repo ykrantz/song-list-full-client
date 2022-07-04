@@ -36,7 +36,7 @@ const PlaylistsPageBody = () => {
 
   const getPlaylistFromServer = async () => {
     try {
-      if (!localStorage.currentUser) {
+      if (!localStorage.currentUser || !JSON.parse(localStorage?.currentUser)) {
         changeMessage("Please log in / register to see your playlist");
         console.log("no user");
         setPlaylist([]);
@@ -53,7 +53,7 @@ const PlaylistsPageBody = () => {
           method: "get",
           headers: {
             "Content-Type": "application/json",
-            authorization: `bearer ${JSON.parse(localStorage.accessToken)}`,
+            authorization: `bearer ${JSON.parse(localStorage?.accessToken)}`,
           },
         }
       );
@@ -80,7 +80,7 @@ const PlaylistsPageBody = () => {
 
       if (playlistName) {
         if (playlistName.length < 20) {
-          const accessToken = JSON.parse(localStorage.accessToken);
+          const accessToken = JSON.parse(localStorage?.accessToken);
           const ans = await fetch(`${BASE_URL}/playlist`, {
             method: "POST",
             headers: {

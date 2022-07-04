@@ -64,8 +64,8 @@ const Playlist = ({ removeSong }) => {
 
   const deleteUserPlaylist = async (playlistName) => {
     try {
-      const accessToken = JSON.parse(localStorage.accessToken);
-      const user = JSON.parse(localStorage.currentUser);
+      const accessToken = JSON.parse(localStorage?.accessToken);
+      const user = JSON.parse(localStorage?.currentUser);
       const ans = await fetch(
         `${BASE_URL}/playlist/deleteplaylist/${playlistName}`,
         {
@@ -121,7 +121,8 @@ const Playlist = ({ removeSong }) => {
         </div>
         <Divider />
         <div className="PlayList-videoContainer">
-          {JSON.parse(localStorage.currentUser) ? (
+          {localStorage?.currentUser &&
+          JSON.parse(localStorage?.currentUser) ? (
             playlist.map((video) => {
               return (
                 <div className="PlayList-list">
