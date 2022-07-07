@@ -11,7 +11,7 @@ import handleMessage from "../../../context/handleMessage";
 import { BASE_URL } from "../../../general/main_var";
 import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
 import VideoItem from "../../generalComponents/VideoItem/VideoItem";
-const FoundedVideosYouTube = ({ searchVideoResults }) => {
+const FoundedVideosYouTube = () => {
   const { getFavoritePlaylistFromServer, setCurrentPlaylist } = useContext(
     handlePlaylistMainState
   );
@@ -23,7 +23,7 @@ const FoundedVideosYouTube = ({ searchVideoResults }) => {
   }, []);
   useEffect(() => {
     getFavoritePlaylistFromServer();
-  }, [searchVideoResults]);
+  }, [searchVideoApiResults]);
 
   const AddVideoToPlaylistComponent = ({ id, addVideoToPlaylistServer }) => {
     return (
@@ -91,8 +91,9 @@ const FoundedVideosYouTube = ({ searchVideoResults }) => {
         </p>
         <Divider />
         <div className="FoundedVideosYouTube-searchVideoResults">
-          {searchVideoResults.map((video) => {
+          {searchVideoApiResults.map((video) => {
             video.img = video?.thumbnails[0].url;
+
             return (
               <VideoItem
                 key={video.id}

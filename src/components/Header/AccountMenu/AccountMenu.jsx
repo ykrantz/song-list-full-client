@@ -14,6 +14,8 @@ import Logout from "@mui/icons-material/Logout";
 import handleUser from "../../../context/handleUser";
 import { useNavigate } from "react-router";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
+import handleMessage from "../../../context/handleMessage";
+import { useContext } from "react";
 
 function stringToColor(string) {
   let hash = 0;
@@ -54,6 +56,8 @@ export default function AccountMenu({ userName }) {
   const { handleSetCurrentUser } = React.useContext(handleUser);
   const { setUserPlaylists, setFavoritePlaylist, handleSetCurrentPlaylist } =
     React.useContext(handlePlaylistMainState);
+  const { changeMessage, waitingMessage } = useContext(handleMessage);
+
   const navigate = useNavigate();
 
   const handleClick = (event) => {
@@ -65,6 +69,7 @@ export default function AccountMenu({ userName }) {
 
   const handleLogOut = (event) => {
     console.log("loged out");
+    changeMessage("You are loged out");
     localStorage.accessToken = JSON.stringify(null);
     handleSetCurrentPlaylist(null);
     handleSetCurrentUser(null);

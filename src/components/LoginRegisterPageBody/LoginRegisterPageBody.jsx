@@ -41,6 +41,8 @@ const LoginRegisterPageBody = ({ type }) => {
     if (ans.status === 200) {
       localStorage.accessToken = JSON.stringify(accessTokenRes.accessToken);
       handleSetCurrentUser(userName);
+      changeMessage("");
+
       navigate("/");
     } else {
       console.log(accessTokenRes);
