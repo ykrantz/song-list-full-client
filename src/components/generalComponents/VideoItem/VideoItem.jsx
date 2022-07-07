@@ -20,7 +20,6 @@ const VideoItem = ({
   searchVideoApiResults,
 }) => {
   const { updateVideoSource } = useContext(handleVideoSrc);
-
   return (
     <div className="VideoItem-container">
       <ListItem

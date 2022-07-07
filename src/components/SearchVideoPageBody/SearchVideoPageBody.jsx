@@ -8,7 +8,7 @@ import FoundedVideosYouTube from "./FoundedVideosYouTube/FoundedVideosYouTube";
 import getFavoritePlayList from "../../controllers/getPlaylistVideo";
 import handlePlaylistMainState from "../../context/handlePlaylistMainState";
 import getUserPlaylistsFromServer from "../../controllers/getUserPlaylistsFromServer";
-import { BASE_URL } from "../../general/main_var";
+import { BASE_URL, initSearchApiResults } from "../../general/main_var";
 import InputAndButton from "../generalComponents/InputAndButton/InputAndButton";
 import handleMessage from "../../context/handleMessage";
 import handleVideoSrc from "../../context/handleVideoSrc";
@@ -17,21 +17,28 @@ const SearchVideoPageBody = () => {
   const [searchVideoApiResults, setSearchVideoApiResults] = useState(
     localStorage?.searchVideoApiResults?.length
       ? JSON.parse(localStorage?.searchVideoApiResults)
-      : []
+      : initSearchApiResults
   );
-  const { favoritePlaylist, setFavoritePlaylist, setUserPlaylists } =
-    useContext(handlePlaylistMainState);
+
+  const {
+    favoritePlaylist,
+    setFavoritePlaylist,
+    setUserPlaylists,
+    currentUser,
+  } = useContext(handlePlaylistMainState);
   const { changeMessage, waitingMessage } = useContext(handleMessage);
   const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
 
   useEffect(async () => {
     try {
-      const myFavorits = await getFavoritePlayList("My Favorites");
-      setFavoritePlaylist(myFavorits);
+      if (currentUser) {
+        const myFavorits = await getFavoritePlayList("My Favorites");
+        setFavoritePlaylist(myFavorits);
 
-      const userPlaylistsFromServer = await getUserPlaylistsFromServer();
-      setUserPlaylists(userPlaylistsFromServer.data);
-      if (localStorage?.searchVideoApiResults?.length && !videoSrc) {
+        const userPlaylistsFromServer = await getUserPlaylistsFromServer();
+        setUserPlaylists(userPlaylistsFromServer.data);
+      }
+      if (searchVideoApiResults.length && !videoSrc) {
         updateVideoSource(searchVideoApiResults[0].id);
       }
     } catch (e) {
@@ -57,7 +64,7 @@ const SearchVideoPageBody = () => {
       const data = await ans.json();
       if (ans.status === 200) {
         setSearchVideoApiResults(data);
-
+        // console.log(data);
         localStorage.searchVideoApiResults = JSON.stringify(data);
         updateVideoSource(data[0].id);
         changeMessage(
@@ -96,7 +103,7 @@ const SearchVideoPageBody = () => {
           </div>
 
           <div className="SearchPageBody-right">
-            <FoundedVideosYouTube searchVideoResults={searchVideoApiResults} />
+            <FoundedVideosYouTube />
           </div>
         </HandleSearchVideoApi.Provider>
       </div>
