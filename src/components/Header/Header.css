@@ -4,18 +4,19 @@
   margin-bottom: 2vh;
   display: flex;
 }
-
-.Header-titles{
-  float: left;
-  font-size: 2vh;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  width: 80%;
+.Header-AcountMenuDiv{
+  width: 20%;
 }
+.Header-MenuDrower{
+  width: 20%;
+ text-align: left;
+}
+
 .Header-titlePageName{
  
   float: left;
   padding-left: 0px;
-      width: 80%;
+  width: 60%;
   font-size: 3.5vh;
   font-family: Georgia, "Times New Roman", Times, serif;
  
@@ -30,20 +31,13 @@
 
 .Header-logInOutAcountMenu{
   float: right;
-  width: 30%;
-  font-size:2.5vh;
+  /* width: 20%; */
+  font-size:5vw;
   margin-top: 1vh;
-
+  padding-right: 2vw;
 
 }
 
-  .Header-logInOutDiv{
-    font-size:2vh;
-    text-align:right;
-    margin-right: 2vw;
-
-
-  }
   .Header-currentUser{
         margin-top: 0.5vh;
             font-size: 2vh;
@@ -60,14 +54,17 @@
     }
     .Header-titlePageName{
       font-size: 5vh;
-      width:80%;
+      width:60%;
       }
     .Header-logInOutAcountMenu{
-      font-size: 4vh;
-
+      font-size: 2vw;
+      /* text-align: left; */
+      padding-right: 3vw;
+      align-items: center;
     }
     .Header-AccountMenuaAvatar{
       position: absolute;
       right: 5vw;
     }
+  
   }

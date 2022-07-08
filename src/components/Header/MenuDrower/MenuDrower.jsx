@@ -83,9 +83,17 @@ export default function MenuDrower() {
         <IconButton
           size="large"
           onClick={toggleDrawer(anchor, true)}
-          sx={{ marginLeft: 1 }}
+          sx={{
+            marginLeft: 1,
+            //  justifyContent: "left", alignItems: "left"
+          }}
         >
-          <MenuIcon fontSize="large" color="primary" size="large" />
+          <MenuIcon
+            fontSize="large"
+            color="primary"
+            size="large"
+            // sx={{ justifyContent: "left", alignItems: "left" }}
+          />
           {/* </Button> */}
         </IconButton>
         <SwipeableDrawer
