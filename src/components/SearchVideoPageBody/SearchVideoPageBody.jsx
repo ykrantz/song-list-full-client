@@ -12,6 +12,8 @@ import { BASE_URL, initSearchApiResults } from "../../general/main_var";
 import InputAndButton from "../generalComponents/InputAndButton/InputAndButton";
 import handleMessage from "../../context/handleMessage";
 import handleVideoSrc from "../../context/handleVideoSrc";
+import handleUser from "../../context/handleUser";
+import initConnectToServer from "../../controllers/initConnectToServer";
 
 const SearchVideoPageBody = () => {
   const [searchVideoApiResults, setSearchVideoApiResults] = useState(
@@ -20,13 +22,10 @@ const SearchVideoPageBody = () => {
       : initSearchApiResults
   );
 
-  const {
-    favoritePlaylist,
-    setFavoritePlaylist,
-    setUserPlaylists,
-    currentUser,
-  } = useContext(handlePlaylistMainState);
+  const { favoritePlaylist, setFavoritePlaylist, setUserPlaylists } =
+    useContext(handlePlaylistMainState);
   const { changeMessage, waitingMessage } = useContext(handleMessage);
+  const { currentUser, checkConnectionStatus } = useContext(handleUser);
   const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
 
   useEffect(async () => {
@@ -36,7 +35,10 @@ const SearchVideoPageBody = () => {
         setFavoritePlaylist(myFavorits);
 
         const userPlaylistsFromServer = await getUserPlaylistsFromServer();
+        console.log({ userPlaylistsFromServer }, 29);
         setUserPlaylists(userPlaylistsFromServer.data);
+      } else {
+        await checkConnectionStatus();
       }
       if (searchVideoApiResults.length && !videoSrc) {
         updateVideoSource(searchVideoApiResults[0].id);
@@ -48,6 +50,7 @@ const SearchVideoPageBody = () => {
 
   const searchVideosFromServer = async (searchValue) => {
     try {
+      console.log(26);
       if (searchValue === "") {
         changeMessage("You didn't enter search value", "error");
         return;

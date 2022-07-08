@@ -15,7 +15,6 @@ const UserPlayLists = ({ type }) => {
     userPlaylists,
     setUserPlaylists,
   } = useContext(handlePlaylistMainState);
-
   useEffect(async () => {
     try {
       const userPlaylistsFromServer = await getUserPlaylistsFromServer();
@@ -56,7 +55,7 @@ const UserPlayLists = ({ type }) => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={currentPlaylist}
+            value={currentPlaylist ? currentPlaylist : ""}
             sx={{
               height: "50px",
               alignItems: "center",

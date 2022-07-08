@@ -27,7 +27,8 @@ const AboutMePageBody = () => {
           </div>
         </div>
         <p className="AboutMePageBody-portfolio">
-          <b>Portfolio: </b>
+          <b className="AboutMePageBody-portfolioTitle">Portfolio: </b>
+          <br></br>
           <a href="https://portfolio-ykrantz.netlify.app/" target="_blank">
             https://portfolio-ykrantz.netlify.app
           </a>{" "}

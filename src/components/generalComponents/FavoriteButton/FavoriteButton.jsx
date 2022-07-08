@@ -25,7 +25,7 @@ const FavoriteButton = ({
   const { currentUser } = React.useContext(handleUser);
 
   const { changeMessage } = useContext(handleMessage);
-
+  // console.log({ favoritePlaylist }, 36);
   const checkIfVideoIsFavorite = (id) => {
     if (favoritePlaylist.find((favorite) => favorite?.id === id)) {
       return true;

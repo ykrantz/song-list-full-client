@@ -15,6 +15,7 @@ import HandleUser from "./context/handleUser";
 import getPlaylistVideoFromServer from "./controllers/getPlaylistVideo";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import HandleVideoSrc from "./context/handleVideoSrc";
+import initConnectToServer from "./controllers/initConnectToServer";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(
@@ -82,6 +83,13 @@ function App() {
     changeMessage("Waiting for results from server", "info");
   };
 
+  const checkConnectionStatus = async () => {
+    const connectionStatus = await initConnectToServer();
+    if (connectionStatus?.status !== 200) {
+      changeMessage(connectionStatus?.message, "error");
+    }
+  };
+
   return (
     <div className="App">
       <HandleUser.Provider
@@ -89,6 +97,7 @@ function App() {
           currentUser,
           setCurrentUser,
           handleSetCurrentUser,
+          checkConnectionStatus,
         }}
       >
         <HandleVideoSrc.Provider

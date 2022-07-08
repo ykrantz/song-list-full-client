@@ -21,13 +21,22 @@ const PlaylistsPageBody = () => {
     setUserPlaylists,
   } = useContext(handlePlaylistMainState);
   const { changeMessage, waitingMessage } = useContext(handleMessage);
-  const { currentUser } = useContext(handleUser);
+  const { currentUser, checkConnectionStatus } = useContext(handleUser);
 
   const [playlist, setPlaylist] = useState([]);
   const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
 
   useEffect(async () => {
     try {
+      await checkConnectionStatus();
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
+  useEffect(async () => {
+    try {
+      // console.log(37);
       await getPlaylistFromServer();
 
       if (playlist.length > 0) {

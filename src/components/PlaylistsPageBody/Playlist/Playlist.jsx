@@ -20,8 +20,9 @@ import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFro
 import VideoItem from "../../generalComponents/VideoItem/VideoItem";
 import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
 import handleUser from "../../../context/handleUser";
+import { useCallback } from "react";
 
-const Playlist = ({ removeSong }) => {
+const Playlist = () => {
   const style = {
     width: "100%",
     maxWidth: 500,
@@ -39,9 +40,15 @@ const Playlist = ({ removeSong }) => {
   const { currentUser } = useContext(handleUser);
 
   const [disableDeletePlaylist, setDisableDeletePlaylist] = useState(true);
-  const RemoveVideoButtonComponent = ({ id }) => {
+
+  const getPlaylistFromServerFunc = useCallback(
+    () => getPlaylistFromServer,
+    []
+  );
+
+  const RemoveVideoButtonComponent = useCallback(({ id }) => {
     return <RemoveVideoButton id={id} />;
-  };
+  }, []);
 
   useEffect(() => {
     setDisableDeletePlaylist(
@@ -136,7 +143,7 @@ const Playlist = ({ removeSong }) => {
                     video={video}
                     iconOne={<RemoveVideoButtonComponent id={video.id} />}
                     type="exist"
-                    getPlaylistFromServer={getPlaylistFromServer}
+                    getPlaylistFromServer={getPlaylistFromServerFunc}
                   />
                 </div>
               );
