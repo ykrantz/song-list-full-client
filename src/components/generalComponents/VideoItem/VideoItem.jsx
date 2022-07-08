@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 
 import "./VideoItem.css";
 
@@ -20,6 +20,12 @@ const VideoItem = ({
   searchVideoApiResults,
 }) => {
   const { updateVideoSource } = useContext(handleVideoSrc);
+
+  const getPlaylistFromServerFunc = useCallback(
+    () => getPlaylistFromServer,
+    []
+  );
+
   return (
     <div className="VideoItem-container">
       <ListItem
@@ -45,7 +51,8 @@ const VideoItem = ({
         <FavoriteButton
           id={id}
           type={type}
-          getPlaylistFromServer={getPlaylistFromServer}
+          getPlaylistFromServer={getPlaylistFromServerFunc}
+          // getPlaylistFromServer={getPlaylistFromServer}
           searchVideoApiResults={searchVideoApiResults}
         />
         <div className="VideoItem-divImg">

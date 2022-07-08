@@ -4,92 +4,68 @@
   display: flex;
 
 }
+.AboutMePageBody-portfolio{
+  font-size: 14px;
+  margin-top: 5vh;
+}
+.AboutMePageBody-portfolioTitle{
 
-
+}
 .AboutMePageBody-linkedinLink{
 
-  /* text-align: left;
-  margin-left: 30px;
-  margin-top: 30px; */
-  
 }
 
 .AboutMePageBody-gitHubLink{
- 
-  /* margin-top:20px;
-  margin-left: 30px; */
 
-  
 }
 .AboutMePageBody-linkedinIcon {
 
 }
 .AboutMePageBody-page {
-
-
   width: 100vw;
-  /* padding-bottom: 0; */
-  /* height: 100%; */
+
 }
 
 .AboutMePageBody-headerContainer {
-  
-  /* display: flex; */
+ 
   justify-content: center;
   align-content: center;
-  /* flex-direction: column; */
+
 }
 
 .AboutMePageBody-mainPage {
-  /* background: linear-gradient(
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.7)
-    ),
-    url("../../images/resume-6627200.jpg");
-  background-size: cover;
-  height: 100vh; */
-  /* padding: 20px; */
-  /* margin-bottom: 0; */
+
 }
 
 
 .AboutMePageBody-title {
-  /* display: flex; */
-  /* float: right; */
-  /* margin-left: 30px; */
+ margin-bottom: 1vh;
   color:crimson;
   font-size: 35px ;
-  /* width: 100%; */
  
-
-  
 }
 .AboutMePageBody-myCvTitle{
 color: darkgreen;
+margin-top: 0;
 
 }
 .AboutMePageBody-cvDiv {
-  /* align-content: center; */
-  /* display: inline-flex;
-  position: relative;
-  top: 10px;
-  left: 30px; */
+
 }
 
 .AboutMePageBody-cvFile {
   align-content: center;
 }
 .AboutMePageBody-ulDetails {
-  /* margin-left: auto;
-  margin-right: auto; */
-  margin-top: 5%;
+
+  margin-top: 1%;
   margin-left: 20%;
   display: table;
 }
 
 .AboutMePageBody-aboutMeTitle {
   justify-content: left;
-  /* margin-left: 0px; */
+
 }
 
 
@@ -107,6 +83,7 @@ color: darkgreen;
   
     padding-bottom: 0;
   }
+ 
   .AboutMePageBody-aboutMeTitle {
     /* justify-content: left; */
     text-align: left;
@@ -119,8 +96,11 @@ color: darkgreen;
     margin-left: 80px; */
     /* font-size: 20px; */
   }
+  .AboutMePageBody-portfolio{
+    font-size: 5vw;
+  }
   .AboutMePageBody-ulDetails {
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 0%;
     padding-right: 10px;
       font-size: 3vh;
@@ -151,6 +131,3 @@ color: darkgreen;
  
 }
 
-.AboutMePageBody-portfolio{
-  font-size: 14px;
-}

@@ -1,5 +1,11 @@
 
+  .SearchPageBody-SearchVideo{
+  
+        }
 
+        .SearchPageBody-VideoPlay{
+      
+        }
 @media only screen and (min-width: 600px) {
     .SearchPageBody-container{
         display: flex;
@@ -30,7 +36,7 @@
         justify-content: center;
     }
     .SearchPageBody-SearchVideo{
-
+/* max-width: 50vw; */
     }
     .SearchPageBody-VideoPlay{
      

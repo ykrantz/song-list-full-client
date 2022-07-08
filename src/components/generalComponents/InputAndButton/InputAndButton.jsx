@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import { Tooltip } from "@mui/material";
 
 const InputAndButton = ({ buttonFunc, icon, type }) => {
-  const [inputVideo, setInputVideo] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   const butttonIconType = {
     search: <SearchIcon />,
@@ -21,7 +21,7 @@ const InputAndButton = ({ buttonFunc, icon, type }) => {
         <Tooltip title={`clear ${icon} `}>
           <IconButton
             onClick={() => {
-              setInputVideo("");
+              setInputValue("");
             }}
             color={"error"}
           >
@@ -31,13 +31,13 @@ const InputAndButton = ({ buttonFunc, icon, type }) => {
 
         <TextField
           className="SearchVideos-input"
-          value={inputVideo}
+          value={inputValue}
           onChange={(e) => {
-            setInputVideo(e.target.value);
+            setInputValue(e.target.value);
           }}
           onKeyPress={(event) => {
             if (event.key === "Enter") {
-              buttonFunc(inputVideo);
+              buttonFunc(inputValue);
             }
           }}
           placeholder={`${type} name`}
@@ -54,7 +54,7 @@ const InputAndButton = ({ buttonFunc, icon, type }) => {
           <IconButton
             color={"primary"}
             onClick={() => {
-              buttonFunc(inputVideo);
+              buttonFunc(inputValue);
             }}
           >
             {butttonIconType[icon]}

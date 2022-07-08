@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -18,9 +18,18 @@ const LoginRegisterPageBody = ({ type }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { changeMessage, waitingMessage } = useContext(handleMessage);
-  const { handleSetCurrentUser } = useContext(handleUser);
+  const { handleSetCurrentUser, checkConnectionStatus } =
+    useContext(handleUser);
 
   const navigate = useNavigate();
+
+  useEffect(async () => {
+    try {
+      await checkConnectionStatus();
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
   const logInRegisterServer = async (apiPath) => {
     waitingMessage();
