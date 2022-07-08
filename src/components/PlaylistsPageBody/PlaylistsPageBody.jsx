@@ -25,6 +25,7 @@ const PlaylistsPageBody = () => {
 
   const [playlist, setPlaylist] = useState([]);
   const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
+  console.log({ playlist }, 35);
 
   useEffect(async () => {
     try {
@@ -146,6 +147,8 @@ const PlaylistsPageBody = () => {
               buttonFunc={createPlayListInServer}
               icon={"create"}
               type="playlist"
+              itemsList={playlist}
+              setItemsListState={setPlaylist}
             />
             <VideoPlay videoSrc={videoSrc}></VideoPlay>
           </div>

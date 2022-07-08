@@ -27,7 +27,7 @@ const SearchVideoPageBody = () => {
   const { changeMessage, waitingMessage } = useContext(handleMessage);
   const { currentUser, checkConnectionStatus } = useContext(handleUser);
   const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
-
+  console.log({ searchVideoApiResults }, 35);
   useEffect(async () => {
     try {
       if (currentUser) {
@@ -97,6 +97,8 @@ const SearchVideoPageBody = () => {
                 buttonFunc={searchVideosFromServer}
                 icon={"search"}
                 type="video"
+                itemsList={searchVideoApiResults}
+                setItemsListState={setSearchVideoApiResults}
               />
             </div>
 

@@ -7,14 +7,28 @@ import { useState } from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import IconButton from "@mui/material/IconButton";
 import { Tooltip } from "@mui/material";
+import findItemsInList from "../../../controllers/findItemsInList";
 
-const InputAndButton = ({ buttonFunc, icon, type }) => {
+const InputAndButton = ({
+  buttonFunc,
+  icon,
+  type,
+  setItemsListState,
+  itemsList,
+}) => {
   const [inputValue, setInputValue] = useState("");
 
   const butttonIconType = {
     search: <SearchIcon />,
     create: <AddCircleOutlinedIcon />,
   };
+
+  const itemsFoundInExistingList = () => {
+    findItemsInList(inputValue, itemsList, "title");
+    console.log({ itemsFoundInExistingList });
+    setItemsListState(itemsFoundInExistingList);
+  };
+
   return (
     <div className="SearchVideos-container">
       <Stack spacing={2} direction="row" justifyContent="center">
