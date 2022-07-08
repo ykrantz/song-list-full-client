@@ -50,27 +50,30 @@ const Header = () => {
 
   return (
     <div className="Header-container">
-      <MenuDrower />
-
+      <div className="Header-MenuDrower">
+        <MenuDrower />
+      </div>
       <h1 className="Header-titlePageName">{getHeaderPageTitle()}</h1>
-      {displayAcountLogInRegister && (
-        <div className="Header-logInOutAcountMenu">
-          <Stack spacing={0.5} direction="column">
-            {!currentUser && (
-              <div>
-                {<Link to="/login"> log in</Link>}
-                {" / "}
-                {<Link to="/register">register</Link>}
-              </div>
-            )}
-            {currentUser && (
-              <div className="Header-AccountMenuaAvatar">
-                <AccountMenu userName={currentUser} />
-              </div>
-            )}
-          </Stack>
-        </div>
-      )}
+      <div className="Header-AcountMenuDiv">
+        {displayAcountLogInRegister && (
+          <div className="Header-logInOutAcountMenu">
+            <Stack spacing={0.5} direction="column">
+              {!currentUser && (
+                <div>
+                  {<Link to="/login"> log in</Link>}
+                  {" / "}
+                  {<Link to="/register">register</Link>}
+                </div>
+              )}
+              {currentUser && (
+                <div className="Header-AccountMenuaAvatar">
+                  <AccountMenu userName={currentUser} />
+                </div>
+              )}
+            </Stack>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
