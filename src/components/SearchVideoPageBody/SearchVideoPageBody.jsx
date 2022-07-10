@@ -14,6 +14,7 @@ import handleMessage from "../../context/handleMessage";
 import handleVideoSrc from "../../context/handleVideoSrc";
 import handleUser from "../../context/handleUser";
 import initConnectToServer from "../../controllers/initConnectToServer";
+import handleSearchResults from "../../context/handleSearchResults";
 
 const SearchVideoPageBody = () => {
   const [searchVideoApiResults, setSearchVideoApiResults] = useState(
@@ -22,12 +23,15 @@ const SearchVideoPageBody = () => {
       : initSearchApiResults
   );
 
-  const { favoritePlaylist, setFavoritePlaylist, setUserPlaylists } =
-    useContext(handlePlaylistMainState);
+  const { setFavoritePlaylist, setUserPlaylists } = useContext(
+    handlePlaylistMainState
+  );
   const { changeMessage, waitingMessage } = useContext(handleMessage);
   const { currentUser, checkConnectionStatus } = useContext(handleUser);
   const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
-  console.log({ searchVideoApiResults }, 35);
+  const { setSearchVideoResults } = useContext(handleSearchResults);
+  const [waitingForServerAns, setWaitingForServerAns] = useState(false);
+
   useEffect(async () => {
     try {
       if (currentUser) {
@@ -35,7 +39,6 @@ const SearchVideoPageBody = () => {
         setFavoritePlaylist(myFavorits);
 
         const userPlaylistsFromServer = await getUserPlaylistsFromServer();
-        console.log({ userPlaylistsFromServer }, 29);
         setUserPlaylists(userPlaylistsFromServer.data);
       } else {
         await checkConnectionStatus();
@@ -50,7 +53,6 @@ const SearchVideoPageBody = () => {
 
   const searchVideosFromServer = async (searchValue) => {
     try {
-      console.log(26);
       if (searchValue === "") {
         changeMessage("You didn't enter search value", "error");
         return;
@@ -61,15 +63,17 @@ const SearchVideoPageBody = () => {
         );
         return;
       }
-
-      waitingMessage();
+      setWaitingForServerAns(true);
+      // waitingMessage();
       const ans = await fetch(`${BASE_URL}/api/search/${searchValue}`);
       const data = await ans.json();
       if (ans.status === 200) {
         setSearchVideoApiResults(data);
+        setSearchVideoResults(data);
         // console.log(data);
         localStorage.searchVideoApiResults = JSON.stringify(data);
         updateVideoSource(data[0].id);
+        setWaitingForServerAns(false);
         changeMessage(
           "Great. we founded videos for you from YouTube",
           "success"
@@ -98,7 +102,7 @@ const SearchVideoPageBody = () => {
                 icon={"search"}
                 type="video"
                 itemsList={searchVideoApiResults}
-                setItemsListState={setSearchVideoApiResults}
+                // setItemsListState={setSearchVideoApiResults}
               />
             </div>
 
@@ -108,7 +112,7 @@ const SearchVideoPageBody = () => {
           </div>
 
           <div className="SearchPageBody-right">
-            <FoundedVideosYouTube />
+            <FoundedVideosYouTube waitingForServerAns={waitingForServerAns} />
           </div>
         </HandleSearchVideoApi.Provider>
       </div>

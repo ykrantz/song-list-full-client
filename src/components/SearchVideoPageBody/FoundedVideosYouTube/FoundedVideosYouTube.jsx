@@ -11,12 +11,16 @@ import handleMessage from "../../../context/handleMessage";
 import { BASE_URL } from "../../../general/main_var";
 import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
 import VideoItem from "../../generalComponents/VideoItem/VideoItem";
-const FoundedVideosYouTube = () => {
+import handleSearchResults from "../../../context/handleSearchResults";
+import { CircularProgress, Typography } from "@mui/material";
+const FoundedVideosYouTube = ({ waitingForServerAns }) => {
   const { getFavoritePlaylistFromServer, setCurrentPlaylist } = useContext(
     handlePlaylistMainState
   );
   const { changeMessage } = useContext(handleMessage);
   const { searchVideoApiResults } = useContext(handleSearchVideoApi);
+  const { searchVideoResults, setSearchVideoResults } =
+    useContext(handleSearchResults);
 
   useEffect(() => {
     getFavoritePlaylistFromServer();
@@ -32,7 +36,6 @@ const FoundedVideosYouTube = () => {
   const addVideoToPlaylistServer = useCallback(
     async (videoId, playlistName) => {
       try {
-        console.log(27);
         if (!playlistName) {
           changeMessage(
             "Please choose/create playlist before adding a video",
@@ -90,40 +93,52 @@ const FoundedVideosYouTube = () => {
     width: "100%",
     maxWidth: 500,
   };
-
   return (
     <div className="FoundedVideosYouTube-container">
       <List sx={style} component="nav" aria-label="mailbox folders">
-        <p className="FoundedVideosYouTube-title">
-          {" "}
-          <b>Search Results:</b>
-        </p>
+        <div className="FoundedVideosYouTube-title">
+          <span>
+            {" "}
+            <b>Search Results:</b>
+          </span>
+        </div>
         <Divider />
         <div className="FoundedVideosYouTube-searchVideoResults">
-          {searchVideoApiResults.map((video) => {
-            video.img = video?.thumbnails[0].url;
+          {waitingForServerAns ? (
+            <Typography
+              align="center"
+              sx={{
+                marginTop: "5vh",
+              }}
+            >
+              <CircularProgress />
+            </Typography>
+          ) : (
+            searchVideoResults.map((video) => {
+              video.img = video?.thumbnails[0].url;
 
-            return (
-              <VideoItem
-                key={video.id}
-                // type= new: when server doesnnt have the details of the song.
-                // need to formolize and all details  to server when adding
-                video={video}
-                type="new"
-                searchVideoApiResults={searchVideoApiResults}
-                iconOne={
-                  <AddVideoToPlaylistComponent
-                    id={video.id}
-                    addVideoToPlaylistServer={addVideoToPlaylistServer}
-                  />
-                  // <AddVideoToPlaylist
-                  //   id={video.id}
-                  //   addVideoToPlaylistServer={addVideoToPlaylistServer}
-                  // />
-                }
-              />
-            );
-          })}
+              return (
+                <VideoItem
+                  key={video.id}
+                  // type= new: when server doesnnt have the details of the song.
+                  // need to formolize and all details  to server when adding
+                  video={video}
+                  type="new"
+                  searchVideoApiResults={searchVideoApiResults}
+                  iconOne={
+                    <AddVideoToPlaylistComponent
+                      id={video.id}
+                      addVideoToPlaylistServer={addVideoToPlaylistServer}
+                    />
+                    // <AddVideoToPlaylist
+                    //   id={video.id}
+                    //   addVideoToPlaylistServer={addVideoToPlaylistServer}
+                    // />
+                  }
+                />
+              );
+            })
+          )}
         </div>
         <Divider />
         <p className="FoundedVideosYouTube-linkToPlaylist">

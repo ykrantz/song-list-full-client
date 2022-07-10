@@ -41,6 +41,7 @@ flex-direction: column; */
         width: 50%;
         /* justify-content: center; */
         align-items: center;
+        justify-content: center;
     }
 
 

@@ -9,6 +9,7 @@ import handleMessage from "../../../context/handleMessage";
 import handleUser from "../../../context/handleUser";
 import { BASE_URL } from "../../../general/main_var";
 import formolizeVideoToServer from "../../../controllers/formolizeVideoToServer";
+import handlePlaylists from "../../../context/handlePlaylists";
 
 const FavoriteButton = ({
   id,
@@ -25,7 +26,6 @@ const FavoriteButton = ({
   const { currentUser } = React.useContext(handleUser);
 
   const { changeMessage } = useContext(handleMessage);
-  // console.log({ favoritePlaylist }, 36);
   const checkIfVideoIsFavorite = (id) => {
     if (favoritePlaylist.find((favorite) => favorite?.id === id)) {
       return true;
@@ -109,9 +109,8 @@ const FavoriteButton = ({
     changeMessage(ans.message, "info");
 
     await getFavoritePlaylistFromServer();
-
     if (currentPlaylist === "My Favorites" && type !== "new") {
-      getPlaylistFromServer();
+      await getPlaylistFromServer();
     }
   };
   return (

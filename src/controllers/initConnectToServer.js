@@ -11,7 +11,7 @@ const initConnectToServer = async () => {
     });
     const data = await ans.json();
     if (ans?.status === 200) {
-      console.log(data);
+      // console.log(data);
       return { status: 200, message: ans?.message };
     } else {
       console.log(data);

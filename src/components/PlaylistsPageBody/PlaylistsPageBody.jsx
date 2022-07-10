@@ -1,9 +1,9 @@
 import "./PlaylistsPageBody.css";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 // import CreatePlaylist from "../archive/CreatePlaylist/CreatePlaylist";
 import VideoPlay from "../generalComponents/VideoPlay/VideoPlay";
-import { BASE_URL } from "../../general/main_var";
+import { BASE_URL, PLAYLIST_NAME_MAX_LENGTH } from "../../general/main_var";
 import HandlePlaylists from "../../context/handlePlaylists";
 import Playlist from "./Playlist/Playlist";
 import handlePlaylistMainState from "../../context/handlePlaylistMainState";
@@ -12,6 +12,7 @@ import InputAndButton from "../generalComponents/InputAndButton/InputAndButton";
 import handleUser from "../../context/handleUser";
 import getUserPlaylistsFromServer from "../../controllers/getUserPlaylistsFromServer";
 import handleVideoSrc from "../../context/handleVideoSrc";
+import handleSearchResults from "../../context/handleSearchResults";
 
 const PlaylistsPageBody = () => {
   const {
@@ -22,10 +23,11 @@ const PlaylistsPageBody = () => {
   } = useContext(handlePlaylistMainState);
   const { changeMessage, waitingMessage } = useContext(handleMessage);
   const { currentUser, checkConnectionStatus } = useContext(handleUser);
-
+  const { searchPlaylistResults, setPlaylistResults } =
+    useContext(handleSearchResults);
   const [playlist, setPlaylist] = useState([]);
+  const [waitingForServerAns, setWaitingForServerAns] = useState(false);
   const { videoSrc, updateVideoSource } = useContext(handleVideoSrc);
-  console.log({ playlist }, 35);
 
   useEffect(async () => {
     try {
@@ -37,7 +39,6 @@ const PlaylistsPageBody = () => {
 
   useEffect(async () => {
     try {
-      // console.log(37);
       await getPlaylistFromServer();
 
       if (playlist.length > 0) {
@@ -47,6 +48,7 @@ const PlaylistsPageBody = () => {
       console.log(e);
     }
   }, [currentPlaylist]);
+  // const { updateVideoSource } = useContext(handleVideoSrc);
 
   useEffect(async () => {
     if (playlist.length > 0 && videoSrc?.sources[0]?.src !== playlist[0].id) {
@@ -54,7 +56,7 @@ const PlaylistsPageBody = () => {
     }
   }, [playlist]);
 
-  const getPlaylistFromServer = async () => {
+  const getPlaylistFromServer = useCallback(async () => {
     try {
       if (!currentUser) {
         changeMessage("Please log in / register to see your playlist");
@@ -66,7 +68,12 @@ const PlaylistsPageBody = () => {
 
         return;
       }
-      waitingMessage();
+      // waitingMessage();
+      if (currentPlaylist !== "My Favorites") {
+        //  in favorites don't want to do a circle when deleting a video from favorites. becuse it destorbes
+        setWaitingForServerAns(true);
+      }
+
       const ans = await fetch(
         `${BASE_URL}/playList/playlist/${currentPlaylist}`,
         {
@@ -81,6 +88,9 @@ const PlaylistsPageBody = () => {
       if (ans.status === 200) {
         myPlaylist = [...myPlaylist].reverse();
         setPlaylist([...myPlaylist]);
+        setPlaylistResults([...myPlaylist]);
+        setWaitingForServerAns(false);
+
         changeMessage("Got your updated playlist from server", "success");
       } else {
         setPlaylist([]);
@@ -89,9 +99,9 @@ const PlaylistsPageBody = () => {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, [currentPlaylist]);
 
-  const createPlayListInServer = async (playlistName) => {
+  const createPlayListInServer = useCallback(async (playlistName) => {
     try {
       if (!currentUser) {
         changeMessage(`Please log in to create playlist`, "error");
@@ -99,7 +109,7 @@ const PlaylistsPageBody = () => {
       }
 
       if (playlistName) {
-        if (playlistName.length < 20) {
+        if (playlistName.length < PLAYLIST_NAME_MAX_LENGTH) {
           const accessToken = JSON.parse(localStorage?.accessToken);
           const ans = await fetch(`${BASE_URL}/playlist`, {
             method: "POST",
@@ -114,7 +124,7 @@ const PlaylistsPageBody = () => {
           const data = await ans.json();
           // console.log(data);
           if (ans.status === 200) {
-            console.log("plalist was updated in server");
+            console.log("playlist was updated in server");
 
             const userPlaylistsFromServer = await getUserPlaylistsFromServer();
             setUserPlaylists(userPlaylistsFromServer.data);
@@ -136,7 +146,7 @@ const PlaylistsPageBody = () => {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, []);
 
   return (
     <div className="PlaylistsPageBody-container">
@@ -148,7 +158,7 @@ const PlaylistsPageBody = () => {
               icon={"create"}
               type="playlist"
               itemsList={playlist}
-              setItemsListState={setPlaylist}
+              // setItemsListState={setPlaylist}
             />
             <VideoPlay videoSrc={videoSrc}></VideoPlay>
           </div>
@@ -165,7 +175,7 @@ const PlaylistsPageBody = () => {
         >
           <div className="PlaylistsPageBody-right">
             <div className="PlaylistsPageBody-Playlist">
-              <Playlist />
+              <Playlist waitingForServerAns={waitingForServerAns} />
             </div>
           </div>
         </HandlePlaylists.Provider>

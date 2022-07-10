@@ -84,9 +84,11 @@ const ChoosePlaylist = () => {
   return (
     <div>
       <div className="ChoosePlaylist-container-header">
-        <p className="ChoosePlaylist-title">
-          <b>Play list:</b>
-        </p>
+        <div className="ChoosePlaylist-title">
+          <sapn>
+            <b>Play list:</b>
+          </sapn>
+        </div>
         <UserPlayLists />
 
         <Tooltip title={"delete playlist"}>

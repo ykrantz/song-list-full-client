@@ -63,7 +63,6 @@ const UserPlayLists = ({ type }) => {
             }}
             // label={playlistLabel}
             onChange={(e) => {
-              console.log(e.target.value, 27);
               handleSetCurrentPlaylist(e.target.value);
             }}
           >

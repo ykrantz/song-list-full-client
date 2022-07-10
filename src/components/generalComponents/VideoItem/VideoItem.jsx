@@ -21,11 +21,6 @@ const VideoItem = ({
 }) => {
   const { updateVideoSource } = useContext(handleVideoSrc);
 
-  const getPlaylistFromServerFunc = useCallback(
-    () => getPlaylistFromServer,
-    []
-  );
-
   return (
     <div className="VideoItem-container">
       <ListItem
@@ -51,8 +46,7 @@ const VideoItem = ({
         <FavoriteButton
           id={id}
           type={type}
-          getPlaylistFromServer={getPlaylistFromServerFunc}
-          // getPlaylistFromServer={getPlaylistFromServer}
+          getPlaylistFromServer={getPlaylistFromServer}
           searchVideoApiResults={searchVideoApiResults}
         />
         <div className="VideoItem-divImg">
