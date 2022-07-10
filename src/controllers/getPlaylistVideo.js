@@ -17,7 +17,6 @@ const getPlaylistVideoFromServer = async (playlistName) => {
         authorization: `bearer ${JSON.parse(localStorage?.accessToken)}`,
       },
     });
-    // console.log({ ans }, 38);
     const myPlaylist = await ans.json();
     if (ans?.status === 200) {
       return [...myPlaylist];
@@ -26,7 +25,6 @@ const getPlaylistVideoFromServer = async (playlistName) => {
     }
   } catch (e) {
     console.log(e);
-    console.log({ playlistName }, 37);
   }
 };
 

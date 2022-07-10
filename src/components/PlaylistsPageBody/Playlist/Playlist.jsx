@@ -12,58 +12,54 @@ import { BASE_URL } from "../../../general/main_var";
 
 import handlePlaylists from "../../../context/handlePlaylists";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
-import { IconButton } from "@mui/material";
+import { CircularProgress, IconButton, Typography } from "@mui/material";
 import { useEffect } from "react";
-import UserPlayLists from "../../generalComponents/UserPlayLists/UserPlayLists";
-import handleMessage from "../../../context/handleMessage";
-import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFromServer";
 import VideoItem from "../../generalComponents/VideoItem/VideoItem";
 import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
 import handleUser from "../../../context/handleUser";
 import { useCallback } from "react";
 import ChoosePlaylist from "../ChoosePlaylist/ChoosePlaylist";
+import handleSearchResults from "../../../context/handleSearchResults";
+import LogInRegisterLink from "./LogInRegisterLink";
+import NoVideoComponent from "./NoVideoComponent";
+import WaitingForServerAnsCircle from "../../generalComponents/WaitingForServerAnsCircle/WaitingForServerAnsCircle";
 
-const Playlist = () => {
-  const style = {
-    width: "100%",
-    maxWidth: 500,
-  };
-
+const Playlist = ({ waitingForServerAns }) => {
   const { playlist, getPlaylistFromServer } = useContext(handlePlaylists);
   const { getFavoritePlaylistFromServer } = useContext(handlePlaylistMainState);
   const { currentUser } = useContext(handleUser);
-  const [isVideosInPlaylist, setIsVideosInPlaylist] = useState(
-    playlist.length !== 0
-  );
-  const getPlaylistFromServerFunc = useCallback(
-    () => getPlaylistFromServer,
-    []
-  );
+  const { searchPlaylistResults } = useContext(handleSearchResults);
+  const [isVideosInPlaylist, setIsVideosInPlaylist] = useState(true);
+
+  useEffect(async () => {
+    await getFavoritePlaylistFromServer();
+  }, []);
+
+  useEffect(async () => {
+    await getFavoritePlaylistFromServer();
+    setIsVideosInPlaylist(playlist.length !== 0);
+  }, [playlist]);
 
   const RemoveVideoButtonComponent = useCallback(({ id }) => {
     return <RemoveVideoButton id={id} />;
   }, []);
 
-  useEffect(() => {
-    getFavoritePlaylistFromServer();
-  }, []);
-
-  useEffect(async () => {
-    await getFavoritePlaylistFromServer();
-    console.log(playlist.length !== 0, 42, "playlist.length !== 0");
-    setIsVideosInPlaylist(playlist.length !== 0);
-    console.log(isVideosInPlaylist, 43, "isVideosInPlaylist");
-  }, [playlist]);
-  console.log(isVideosInPlaylist, 45, "isVideosInPlaylist");
+  const style = {
+    width: "100%",
+    maxWidth: 500,
+  };
+  // TODO: fix bug of twice rendering in first time that get into page or refresh
   return (
     <div className="PlayList-container">
       <List sx={style} component="nav" aria-label="mailbox folders">
         <ChoosePlaylist />
         <Divider />
         <div className="PlayList-videoContainer">
-          {currentUser ? (
+          {waitingForServerAns ? (
+            <WaitingForServerAnsCircle />
+          ) : currentUser ? (
             isVideosInPlaylist ? (
-              playlist.map((video) => {
+              searchPlaylistResults.map((video) => {
                 return (
                   <div className="PlayList-list">
                     <VideoItem
@@ -71,23 +67,21 @@ const Playlist = () => {
                       video={video}
                       iconOne={<RemoveVideoButtonComponent id={video.id} />}
                       type="exist"
-                      getPlaylistFromServer={getPlaylistFromServerFunc}
+                      getPlaylistFromServer={getPlaylistFromServer}
                     />
                   </div>
                 );
               })
             ) : (
-              <div>
-                <p>No videos in playlist.</p>
-                <p>Want to add? Press {<Link to="/search"> here</Link>}</p>
-              </div>
+              <NoVideoComponent />
+
+              // <div>
+              //   <p>No videos in playlist.</p>
+              //   <p>Want to add? Press {<Link to="/search"> here</Link>}</p>
+              // </div>
             )
           ) : (
-            <p>
-              Please {<Link to="/login"> log in</Link>} /{" "}
-              {<Link to="/register"> register</Link>}
-              <br></br> to get your playlists
-            </p>
+            <LogInRegisterLink />
           )}
         </div>
       </List>

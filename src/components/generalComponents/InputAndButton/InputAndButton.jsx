@@ -3,30 +3,48 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import SearchIcon from "@mui/icons-material/Search";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import IconButton from "@mui/material/IconButton";
 import { Tooltip } from "@mui/material";
 import findItemsInList from "../../../controllers/findItemsInList";
+import handleSearchResults from "../../../context/handleSearchResults";
 
-const InputAndButton = ({
-  buttonFunc,
-  icon,
-  type,
-  setItemsListState,
-  itemsList,
-}) => {
+const InputAndButton = ({ buttonFunc, icon, type, itemsList }) => {
   const [inputValue, setInputValue] = useState("");
+  const {
+    searchVideoResults,
+    setSearchVideoResults,
+    searchPlaylistResults,
+    setPlaylistResults,
+  } = useContext(handleSearchResults);
 
   const butttonIconType = {
     search: <SearchIcon />,
     create: <AddCircleOutlinedIcon />,
   };
 
-  const itemsFoundInExistingList = () => {
-    findItemsInList(inputValue, itemsList, "title");
-    console.log({ itemsFoundInExistingList });
-    setItemsListState(itemsFoundInExistingList);
+  // const searchTypeState = {
+  //   video: itemsList,
+  //   playlist: searchPlaylistResults,
+  // };
+  const searchTypeSet = {
+    video: setSearchVideoResults,
+    playlist: setPlaylistResults,
+  };
+
+  const itemsFoundInExistingList = (str) => {
+    const itemsFoundInExistingList = findItemsInList(str, itemsList, "title");
+    searchTypeSet[type](itemsFoundInExistingList);
+  };
+
+  const handleInputCahnge = (value) => {
+    setInputValue(value);
+    itemsFoundInExistingList(value);
+  };
+  const handleClearInput = (value) => {
+    setInputValue("");
+    itemsFoundInExistingList("");
   };
 
   return (
@@ -35,7 +53,7 @@ const InputAndButton = ({
         <Tooltip title={`clear ${icon} `}>
           <IconButton
             onClick={() => {
-              setInputValue("");
+              handleClearInput();
             }}
             color={"error"}
           >
@@ -47,7 +65,7 @@ const InputAndButton = ({
           className="SearchVideos-input"
           value={inputValue}
           onChange={(e) => {
-            setInputValue(e.target.value);
+            handleInputCahnge(e.target.value);
           }}
           onKeyPress={(event) => {
             if (event.key === "Enter") {

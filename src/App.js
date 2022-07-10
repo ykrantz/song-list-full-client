@@ -16,6 +16,8 @@ import getPlaylistVideoFromServer from "./controllers/getPlaylistVideo";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import HandleVideoSrc from "./context/handleVideoSrc";
 import initConnectToServer from "./controllers/initConnectToServer";
+import HandleSearchResults from "./context/handleSearchResults";
+import { initSearchApiResults } from "./general/main_var";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(
@@ -42,6 +44,12 @@ function App() {
         }
       : ""
   );
+  const [searchVideoResults, setSearchVideoResults] = useState(
+    localStorage?.searchVideoApiResults?.length
+      ? JSON.parse(localStorage?.searchVideoApiResults)
+      : initSearchApiResults
+  );
+  const [searchPlaylistResults, setPlaylistResults] = useState([]);
   // const [autoPlayFlag, setAutoPlayFlag] = useState(false);
   const updateVideoSource = (videoId) => {
     const youtubeId = videoId;
@@ -124,30 +132,43 @@ function App() {
                 getFavoritePlaylistFromServer,
               }}
             >
-              <Router>
-                <Routes>
-                  <Route exact path="/" element={<SearchVideoPage />} />
-                  <Route exact path="/playlists" element={<PlaylistsPage />} />
-                  <Route exact path="/search" element={<SearchVideoPage />} />
-                  <Route exact path="/favorites" element={<FavoritePage />} />
-                  <Route exact path="/about" element={<AboutPage />} />
-                  <Route
-                    exact
-                    path="/register"
-                    element={<LoginRegisterPage type="register" />}
-                  />
-                  <Route
-                    exact
-                    path="/login"
-                    element={<LoginRegisterPage type="logIn" />}
-                  />
-                  <Route
-                    exact
-                    path="/songfavorites/:songid"
-                    element={<UserFavoriteList />}
-                  />
-                </Routes>
-              </Router>
+              <HandleSearchResults.Provider
+                value={{
+                  searchVideoResults,
+                  setSearchVideoResults,
+                  searchPlaylistResults,
+                  setPlaylistResults,
+                }}
+              >
+                <Router>
+                  <Routes>
+                    <Route exact path="/" element={<SearchVideoPage />} />
+                    <Route
+                      exact
+                      path="/playlists"
+                      element={<PlaylistsPage />}
+                    />
+                    <Route exact path="/search" element={<SearchVideoPage />} />
+                    <Route exact path="/favorites" element={<FavoritePage />} />
+                    <Route exact path="/about" element={<AboutPage />} />
+                    <Route
+                      exact
+                      path="/register"
+                      element={<LoginRegisterPage type="register" />}
+                    />
+                    <Route
+                      exact
+                      path="/login"
+                      element={<LoginRegisterPage type="logIn" />}
+                    />
+                    <Route
+                      exact
+                      path="/songfavorites/:songid"
+                      element={<UserFavoriteList />}
+                    />
+                  </Routes>
+                </Router>
+              </HandleSearchResults.Provider>
             </HandlePlaylistMainState.Provider>
           </HandleMessage.Provider>
         </HandleVideoSrc.Provider>

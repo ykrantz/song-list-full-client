@@ -22,7 +22,6 @@ const SearchVideo = () => {
 
   const searchVideosFromServer = async (searchValue) => {
     try {
-      console.log({ searchValue });
       if (searchValue === "") {
         changeMessage("You didn't enter search value", "error");
         return;

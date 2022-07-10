@@ -54,6 +54,7 @@ export default function AddVideoToPlaylist({ id, addVideoToPlaylistServer }) {
             <BasicListPlaylist
               id={id}
               addVideoToPlaylistServer={addVideoToPlaylistServer}
+              handleClose={handleClose}
             />
           </Box>
         </div>

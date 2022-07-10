@@ -1,6 +1,7 @@
 // export const BASE_URL = "http://localhost:3008";
 export const BASE_URL = "https://playlist-ykrantz.herokuapp.com";
 export const TITLE_LENGTH = 35;
+export const PLAYLIST_NAME_MAX_LENGTH = 15;
 
 export const initSearchApiResults = [
   {

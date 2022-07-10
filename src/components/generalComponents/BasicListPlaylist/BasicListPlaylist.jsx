@@ -9,17 +9,19 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 
-export default function BasicListPlaylist({ id, addVideoToPlaylistServer }) {
+export default function BasicListPlaylist({
+  id,
+  addVideoToPlaylistServer,
+  handleClose,
+}) {
   const { userPlaylists, handleSetCurrentPlaylist } = React.useContext(
     handlePlaylistMainState
   );
-  console.log({ userPlaylists }, 31);
   return (
     <div className="BasicListPlaylist-Container">
-      <b>Add to Playlist:</b>
-      {/* <Box sx={{ width: "100%", maxWidth: "360", bgcolor: "background.paper" }}> */}
+      <b className="BasicListPlaylist-title">Add to Playlist:</b>
       <nav aria-label="main mailbox folders">
-        <p></p>
+        <br></br>
         <Divider />
         <List
           sx={{
@@ -32,46 +34,24 @@ export default function BasicListPlaylist({ id, addVideoToPlaylistServer }) {
             "& ul": { padding: 0 },
           }}
         >
-          {/* {userPlaylists.length > 0 */}
-          {/* {userPlaylists.length > 0 && */}
           {userPlaylists.map((playlist) => {
             return (
               <ListItem disablePadding key={playlist?.playlistName}>
                 <ListItemButton>
-                  {/* <ListItemIcon>
-                      <InboxIcon />
-                    </ListItemIcon> */}
                   <ListItemText
                     primary={playlist.playlistName}
                     onClick={() => {
                       addVideoToPlaylistServer(id, playlist.playlistName);
                       handleSetCurrentPlaylist(playlist.playlistName);
+                      handleClose(false);
                     }}
                   />
                 </ListItemButton>
               </ListItem>
             );
           })}
-          {/* : changeMessage("plese sign in", "error")} */}
-          {/* <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" />
-            </ListItemButton>
-          </ListItem> */}
         </List>
       </nav>
-      {/* </Box> */}
     </div>
   );
 }

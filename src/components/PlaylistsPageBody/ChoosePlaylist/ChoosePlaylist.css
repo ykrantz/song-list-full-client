@@ -10,7 +10,15 @@
   .ChoosePlaylist-title {
     float: left;
     width: 25%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* display: inline-block; */
     /* margin-right: 20%; */
+    display: inline-block;
+    /* float:left;  remove */
+    margin: 10px 10px 0 0;
+    padding: 5px 10px
   
   }
 
@@ -27,8 +35,9 @@
       float: right;
       width: 95%;
       max-width: 400px;
-      /* justify-content: center; */
-      /* align-items: center; */
+      min-width: 400px;
+      /* justify-content: center;
+       align-items: center; */
       margin-top: 0;
   
     }
@@ -36,7 +45,11 @@
     .ChoosePlaylist-title {
       float: left;
       width: 100px;
-      
+      font-size: 3vh;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
   
     }
   }

@@ -2,8 +2,10 @@
   display: flex;
   flex-direction: column;
   /* width: 90%; */
+  width: 95vw;
   border-radius: 20px;
   margin:2vw;
+  margin-top: 3vh;
 
 
   background-color: #dfcfbe;
@@ -36,9 +38,8 @@ justify-content: center;
 
   overflow: hidden;
   overflow-y: scroll;
-  min-height: 80px;
-
-  max-height: 25vh;
+  min-height: 28vh;
+  max-height: 28vh;
 }
 
 .PlayList-DeleteSweepIcon {
@@ -55,16 +56,18 @@ justify-content: center;
 @media only screen and (min-width: 600px) {
   .PlayList-container {
     float: right;
-    width: 95%;
-    max-width: 400px;
+    width: 90%;
+    min-width: 30vw;
+    align-items: center;
+    justify-content: center;
     /* justify-content: center; */
     /* align-items: center; */
     margin-top: 0;
 
   }
   .PlayList-videoContainer{
-    height: 45vh;
-    max-height:  45vh;
+    height: 50vh;
+    max-height:  50vh;
 
   }
   .PlayList-title {
