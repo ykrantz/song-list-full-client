@@ -4,7 +4,7 @@ import { useContext } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Tooltip from "@mui/material/Tooltip";
 
-import { BASE_URL } from "../../../general/main_var";
+import { BASE_URL } from "../../../utils/main_var";
 import handlePlaylists from "../../../context/handlePlaylists";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import handleMessage from "../../../context/handleMessage";

@@ -1,4 +1,4 @@
-import { BASE_URL } from "../general/main_var";
+import { BASE_URL } from "../../utils/main_var";
 
 const getUserPlaylistsFromServer = async () => {
   try {

@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import IconButton from "@mui/material/IconButton";
 import { Tooltip } from "@mui/material";
-import findItemsInList from "../../../controllers/findItemsInList";
+import findItemsInList from "../../../actions/sideFunctions/findItemsInList";
 import handleSearchResults from "../../../context/handleSearchResults";
 
 const InputAndButton = ({ buttonFunc, icon, type, itemsList }) => {
@@ -22,6 +22,10 @@ const InputAndButton = ({ buttonFunc, icon, type, itemsList }) => {
   const butttonIconType = {
     search: <SearchIcon />,
     create: <AddCircleOutlinedIcon />,
+  };
+  const placeHolderText = {
+    video: "video to search",
+    playlist: "playlist  to create",
   };
 
   // const searchTypeState = {
@@ -48,7 +52,7 @@ const InputAndButton = ({ buttonFunc, icon, type, itemsList }) => {
   };
 
   return (
-    <div className="SearchVideos-container">
+    <div className="InputAndButton--container">
       <Stack spacing={2} direction="row" justifyContent="center">
         <Tooltip title={`clear ${icon} `}>
           <IconButton
@@ -62,7 +66,7 @@ const InputAndButton = ({ buttonFunc, icon, type, itemsList }) => {
         </Tooltip>
 
         <TextField
-          className="SearchVideos-input"
+          className="InputAndButton--input"
           value={inputValue}
           onChange={(e) => {
             handleInputCahnge(e.target.value);
@@ -72,8 +76,10 @@ const InputAndButton = ({ buttonFunc, icon, type, itemsList }) => {
               buttonFunc(inputValue);
             }
           }}
-          placeholder={`${type} name`}
-          label={`enter ${type} name`}
+          // placeholder={`${type} name`}
+          // label={`enter ${type} name`}
+          placeholder={`${placeHolderText[type]} `}
+          label={`${placeHolderText[type]} `}
           variant="outlined"
           style={{
             maxWidth: "20%",

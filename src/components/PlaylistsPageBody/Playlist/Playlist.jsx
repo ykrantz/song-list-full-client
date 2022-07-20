@@ -8,7 +8,7 @@ import Tooltip from "@mui/material/Tooltip";
 
 import { useContext, useState } from "react";
 
-import { BASE_URL } from "../../../general/main_var";
+import { BASE_URL } from "../../../utils/main_var";
 
 import handlePlaylists from "../../../context/handlePlaylists";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
@@ -59,19 +59,25 @@ const Playlist = ({ waitingForServerAns }) => {
             <WaitingForServerAnsCircle />
           ) : currentUser ? (
             isVideosInPlaylist ? (
-              searchPlaylistResults.map((video) => {
-                return (
-                  <div className="PlayList-list">
-                    <VideoItem
-                      key={video._id}
-                      video={video}
-                      iconOne={<RemoveVideoButtonComponent id={video.id} />}
-                      type="exist"
-                      getPlaylistFromServer={getPlaylistFromServer}
-                    />
-                  </div>
-                );
-              })
+              playlist.length > 0 && searchPlaylistResults.length === 0 ? (
+                <p className="Playlist-NoResults">
+                  No video was found in Playlist
+                </p>
+              ) : (
+                searchPlaylistResults.map((video) => {
+                  return (
+                    <div className="PlayList-list">
+                      <VideoItem
+                        key={video._id}
+                        video={video}
+                        iconOne={<RemoveVideoButtonComponent id={video.id} />}
+                        type="exist"
+                        getPlaylistFromServer={getPlaylistFromServer}
+                      />
+                    </div>
+                  );
+                })
+              )
             ) : (
               <NoVideoComponent />
 
@@ -84,11 +90,11 @@ const Playlist = ({ waitingForServerAns }) => {
             <LogInRegisterLink />
           )}
         </div>
+        <Divider />
+        <p className="Playlist-link">
+          Press {<Link to="/search"> here</Link>} to add more videos
+        </p>
       </List>
-      <Divider />
-      <span className="Playlist-link">
-        Press {<Link to="/search"> here</Link>} to add more videos
-      </span>
     </div>
   );
 };

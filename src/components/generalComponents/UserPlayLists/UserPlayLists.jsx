@@ -6,8 +6,9 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import React, { useContext, useEffect } from "react";
-import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFromServer";
+import getUserPlaylistsFromServer from "../../../actions/getData/getUserPlaylistsFromServer";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
+import handleMessage from "../../../context/handleMessage";
 const UserPlayLists = ({ type }) => {
   const {
     currentPlaylist,
@@ -15,6 +16,8 @@ const UserPlayLists = ({ type }) => {
     userPlaylists,
     setUserPlaylists,
   } = useContext(handlePlaylistMainState);
+  const { changeMessage } = useContext(handleMessage);
+
   useEffect(async () => {
     try {
       const userPlaylistsFromServer = await getUserPlaylistsFromServer();
@@ -37,6 +40,7 @@ const UserPlayLists = ({ type }) => {
       }
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   }, []);
 

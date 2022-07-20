@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 
 import { useState } from "react";
-import { BASE_URL } from "../../../general/main_var";
+import { BASE_URL } from "../../../utils/main_var";
 import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
 import handleMessage from "../../../context/handleMessage";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -50,6 +50,7 @@ const SearchVideo = () => {
       }
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   };
 

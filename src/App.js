@@ -12,12 +12,12 @@ import AboutPage from "./pages/AboutPage/AboutPage";
 import HandlePlaylistMainState from "./context/handlePlaylistMainState";
 import HandleMessage from "./context/handleMessage";
 import HandleUser from "./context/handleUser";
-import getPlaylistVideoFromServer from "./controllers/getPlaylistVideo";
+import getPlaylistVideoFromServer from "./actions/getData/getPlaylistVideo";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import HandleVideoSrc from "./context/handleVideoSrc";
-import initConnectToServer from "./controllers/initConnectToServer";
+import initConnectToServer from "./actions/getData/initConnectToServer";
 import HandleSearchResults from "./context/handleSearchResults";
-import { initSearchApiResults } from "./general/main_var";
+import { initSearchApiResults } from "./utils/main_var";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(

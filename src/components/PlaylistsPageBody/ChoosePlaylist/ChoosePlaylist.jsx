@@ -8,8 +8,8 @@ import handlePlaylists from "../../../context/handlePlaylists";
 import handleUser from "../../../context/handleUser";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 import RemoveVideoButton from "../RemoveVideoButton/RemoveVideoButton";
-import { BASE_URL } from "../../../general/main_var";
-import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFromServer";
+import { BASE_URL } from "../../../utils/main_var";
+import getUserPlaylistsFromServer from "../../../actions/getData/getUserPlaylistsFromServer";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 
 const ChoosePlaylist = () => {
@@ -79,15 +79,16 @@ const ChoosePlaylist = () => {
       }
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   };
   return (
     <div>
       <div className="ChoosePlaylist-container-header">
         <div className="ChoosePlaylist-title">
-          <sapn>
+          <span>
             <b>Play list:</b>
-          </sapn>
+          </span>
         </div>
         <UserPlayLists />
 
