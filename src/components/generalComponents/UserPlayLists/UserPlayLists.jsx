@@ -6,7 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import React, { useContext, useEffect } from "react";
-import getUserPlaylistsFromServer from "../../../controllers/getUserPlaylistsFromServer";
+import getUserPlaylistsFromServer from "../../../actions/getData/getUserPlaylistsFromServer";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
 const UserPlayLists = ({ type }) => {
   const {

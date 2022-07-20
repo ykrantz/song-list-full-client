@@ -1,6 +1,6 @@
 import "./LoginRegisterPageBody.css";
 import handleMessage from "../../context/handleMessage";
-import { BASE_URL } from "../../general/main_var";
+import { BASE_URL } from "../../utils/main_var";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
@@ -10,7 +10,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
-import checkUserDetailsInput from "../../controllers/checkCorrectInput";
+import checkUserDetailsInput from "../../actions/validations/checkCorrectInput";
 import { Divider } from "@mui/material";
 import handleUser from "../../context/handleUser";
 

@@ -4,11 +4,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Tooltip from "@mui/material/Tooltip";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
-import deleteVideoFromPlaylist from "../../../controllers/deleteVideoFromPlaylist";
+import deleteVideoFromPlaylist from "../../../actions/updateData/deleteVideoFromPlaylist";
 import handleMessage from "../../../context/handleMessage";
 import handleUser from "../../../context/handleUser";
-import { BASE_URL } from "../../../general/main_var";
-import formolizeVideoToServer from "../../../controllers/formolizeVideoToServer";
+import { BASE_URL } from "../../../utils/main_var";
+import formolizeVideoToServer from "../../../actions/sideFunctions/formolizeVideoToServer";
 import handlePlaylists from "../../../context/handlePlaylists";
 
 const FavoriteButton = ({

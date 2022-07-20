@@ -8,7 +8,7 @@ import Tooltip from "@mui/material/Tooltip";
 
 import { useContext, useState } from "react";
 
-import { BASE_URL } from "../../../general/main_var";
+import { BASE_URL } from "../../../utils/main_var";
 
 import handlePlaylists from "../../../context/handlePlaylists";
 import handlePlaylistMainState from "../../../context/handlePlaylistMainState";
@@ -82,6 +82,9 @@ const Playlist = ({ waitingForServerAns }) => {
             )
           ) : (
             <LogInRegisterLink />
+          )}
+          {searchPlaylistResults.length === 0 && (
+            <p className="Playlist-NoResults">No video was found in Playlist</p>
           )}
         </div>
       </List>

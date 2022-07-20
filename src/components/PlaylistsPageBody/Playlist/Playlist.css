@@ -8,15 +8,16 @@
   margin-top: 3vh;
 
 
-  background-color: #dfcfbe;
-
+  /* background-color: #dfcfbe; */
+  background-color: var(--backgroundColorResults);
+  background-image:  var(--backgroundImageResults);
 }
 
 .PlayList-container-header {
   border-radius: 20px;
 justify-content: center;
   display: flex;
-  background-color: #dfcfbe;
+  /* background-color: #dfcfbe; */
   margin-bottom: 1vh;
 }
 .PlayList-title {

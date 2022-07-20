@@ -6,7 +6,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 
-import { TITLE_LENGTH } from "../../../general/main_var";
+import { TITLE_LENGTH } from "../../../utils/main_var";
 import PlayVideoButton from "../../generalComponents/PlayVideoButton/PlayVideoButton";
 
 import FavoriteButton from "../../generalComponents/FavoriteButton/FavoriteButton";

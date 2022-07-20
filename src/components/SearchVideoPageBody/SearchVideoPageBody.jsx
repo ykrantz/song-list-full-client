@@ -5,15 +5,14 @@ import VideoPlay from "../generalComponents/VideoPlay/VideoPlay";
 import HandleSearchVideoApi from "../../context/handleSearchVideoApi";
 import FoundedVideosYouTube from "./FoundedVideosYouTube/FoundedVideosYouTube";
 
-import getFavoritePlayList from "../../controllers/getPlaylistVideo";
+import getPlaylistVideo from "../../actions/getData/getPlaylistVideo";
 import handlePlaylistMainState from "../../context/handlePlaylistMainState";
-import getUserPlaylistsFromServer from "../../controllers/getUserPlaylistsFromServer";
-import { BASE_URL, initSearchApiResults } from "../../general/main_var";
+import getUserPlaylistsFromServer from "../../actions/getData/getUserPlaylistsFromServer";
+import { BASE_URL, initSearchApiResults } from "../../utils/main_var";
 import InputAndButton from "../generalComponents/InputAndButton/InputAndButton";
 import handleMessage from "../../context/handleMessage";
 import handleVideoSrc from "../../context/handleVideoSrc";
 import handleUser from "../../context/handleUser";
-import initConnectToServer from "../../controllers/initConnectToServer";
 import handleSearchResults from "../../context/handleSearchResults";
 
 const SearchVideoPageBody = () => {
@@ -35,7 +34,7 @@ const SearchVideoPageBody = () => {
   useEffect(async () => {
     try {
       if (currentUser) {
-        const myFavorits = await getFavoritePlayList("My Favorites");
+        const myFavorits = await getPlaylistVideo("My Favorites");
         setFavoritePlaylist(myFavorits);
 
         const userPlaylistsFromServer = await getUserPlaylistsFromServer();

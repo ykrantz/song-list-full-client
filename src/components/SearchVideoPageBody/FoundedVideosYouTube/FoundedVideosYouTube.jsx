@@ -6,9 +6,9 @@ import { useCallback, useContext, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import AddVideoToPlaylist from "../AddVideoToPlaylist/AddVideoToPlaylist";
-import formolizeVideoToServer from "../../../controllers/formolizeVideoToServer";
+import formolizeVideoToServer from "../../../actions/sideFunctions/formolizeVideoToServer";
 import handleMessage from "../../../context/handleMessage";
-import { BASE_URL } from "../../../general/main_var";
+import { BASE_URL } from "../../../utils/main_var";
 import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
 import VideoItem from "../../generalComponents/VideoItem/VideoItem";
 import handleSearchResults from "../../../context/handleSearchResults";
@@ -93,6 +93,7 @@ const FoundedVideosYouTube = ({ waitingForServerAns }) => {
     width: "100%",
     maxWidth: 500,
   };
+  console.log({ searchVideoResults }, 1);
   return (
     <div className="FoundedVideosYouTube-container">
       <List sx={style} component="nav" aria-label="mailbox folders">
@@ -139,7 +140,13 @@ const FoundedVideosYouTube = ({ waitingForServerAns }) => {
               );
             })
           )}
+          {searchVideoResults.length === 0 && (
+            <p className="FoundedVideosYouTube-NoResults">
+              No video was found in search results
+            </p>
+          )}
         </div>
+
         <Divider />
         <p className="FoundedVideosYouTube-linkToPlaylist">
           To see your playlist press <Link to="/playlists">here</Link>

@@ -4,7 +4,11 @@
   width: 95vw;
   justify-content: center;
   margin:2vw;
-  background-color: #dfcfbe;
+  /* background-color: #dfcfbe; */
+ 
+
+  background-color: var(--backgroundColorResults);
+  background-image:  var(--backgroundImageResults);
   border-radius: 20px;
 margin-top: 3vh;
 padding-top: 0;
@@ -29,6 +33,9 @@ padding-top: 0;
 }
 .FoundedVideosYouTube-linkToPlaylist{
   margin: 1vh;
+}
+.FoundedVideosYouTube-NoResults{
+  
 }
 @media only screen and (min-width: 600px) {
   .FoundedVideosYouTube-container {

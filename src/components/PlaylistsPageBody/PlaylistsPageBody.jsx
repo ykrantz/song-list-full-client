@@ -3,14 +3,14 @@ import "./PlaylistsPageBody.css";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 // import CreatePlaylist from "../archive/CreatePlaylist/CreatePlaylist";
 import VideoPlay from "../generalComponents/VideoPlay/VideoPlay";
-import { BASE_URL, PLAYLIST_NAME_MAX_LENGTH } from "../../general/main_var";
+import { BASE_URL, PLAYLIST_NAME_MAX_LENGTH } from "../../utils/main_var";
 import HandlePlaylists from "../../context/handlePlaylists";
 import Playlist from "./Playlist/Playlist";
 import handlePlaylistMainState from "../../context/handlePlaylistMainState";
 import handleMessage from "../../context/handleMessage";
 import InputAndButton from "../generalComponents/InputAndButton/InputAndButton";
 import handleUser from "../../context/handleUser";
-import getUserPlaylistsFromServer from "../../controllers/getUserPlaylistsFromServer";
+import getUserPlaylistsFromServer from "../../actions/getData/getUserPlaylistsFromServer";
 import handleVideoSrc from "../../context/handleVideoSrc";
 import handleSearchResults from "../../context/handleSearchResults";
 
