@@ -27,7 +27,10 @@ const FavoriteButton = ({
 
   const { changeMessage } = useContext(handleMessage);
   const checkIfVideoIsFavorite = (id) => {
-    if (favoritePlaylist.find((favorite) => favorite?.id === id)) {
+    if (
+      favoritePlaylist?.length &&
+      favoritePlaylist.find((favorite) => favorite?.id === id)
+    ) {
       return true;
     } else {
       return false;
@@ -96,6 +99,7 @@ const FavoriteButton = ({
       }
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   };
 

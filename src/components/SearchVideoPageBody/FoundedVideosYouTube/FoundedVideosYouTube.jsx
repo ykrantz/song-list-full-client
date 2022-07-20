@@ -13,6 +13,7 @@ import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
 import VideoItem from "../../generalComponents/VideoItem/VideoItem";
 import handleSearchResults from "../../../context/handleSearchResults";
 import { CircularProgress, Typography } from "@mui/material";
+import WaitingForServerAnsCircle from "../../generalComponents/WaitingForServerAnsCircle/WaitingForServerAnsCircle";
 const FoundedVideosYouTube = ({ waitingForServerAns }) => {
   const { getFavoritePlaylistFromServer, setCurrentPlaylist } = useContext(
     handlePlaylistMainState
@@ -72,6 +73,8 @@ const FoundedVideosYouTube = ({ waitingForServerAns }) => {
         }
       } catch (e) {
         console.log(e);
+
+        changeMessage(e?.message, "error");
       }
     },
     []
@@ -93,7 +96,6 @@ const FoundedVideosYouTube = ({ waitingForServerAns }) => {
     width: "100%",
     maxWidth: 500,
   };
-  console.log({ searchVideoResults }, 1);
   return (
     <div className="FoundedVideosYouTube-container">
       <List sx={style} component="nav" aria-label="mailbox folders">
@@ -106,14 +108,11 @@ const FoundedVideosYouTube = ({ waitingForServerAns }) => {
         <Divider />
         <div className="FoundedVideosYouTube-searchVideoResults">
           {waitingForServerAns ? (
-            <Typography
-              align="center"
-              sx={{
-                marginTop: "5vh",
-              }}
-            >
-              <CircularProgress />
-            </Typography>
+            <WaitingForServerAnsCircle />
+          ) : searchVideoResults.length === 0 ? (
+            <p className="FoundedVideosYouTube-NoResults">
+              No video was found in search results
+            </p>
           ) : (
             searchVideoResults.map((video) => {
               video.img = video?.thumbnails[0].url;
@@ -139,11 +138,6 @@ const FoundedVideosYouTube = ({ waitingForServerAns }) => {
                 />
               );
             })
-          )}
-          {searchVideoResults.length === 0 && (
-            <p className="FoundedVideosYouTube-NoResults">
-              No video was found in search results
-            </p>
           )}
         </div>
 

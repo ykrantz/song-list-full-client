@@ -58,7 +58,8 @@ justify-content: center;
   .PlayList-container {
     float: right;
     width: 90%;
-    min-width: 30vw;
+    min-width: 35vw;
+    max-width: 35vw;
     align-items: center;
     justify-content: center;
     /* justify-content: center; */

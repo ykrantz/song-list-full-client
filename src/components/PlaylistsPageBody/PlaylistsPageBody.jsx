@@ -34,6 +34,7 @@ const PlaylistsPageBody = () => {
       await checkConnectionStatus();
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   }, []);
 
@@ -46,6 +47,7 @@ const PlaylistsPageBody = () => {
       }
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   }, [currentPlaylist]);
   // const { updateVideoSource } = useContext(handleVideoSrc);
@@ -98,6 +100,7 @@ const PlaylistsPageBody = () => {
       }
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   }, [currentPlaylist]);
 
@@ -111,6 +114,8 @@ const PlaylistsPageBody = () => {
       if (playlistName) {
         if (playlistName.length < PLAYLIST_NAME_MAX_LENGTH) {
           const accessToken = JSON.parse(localStorage?.accessToken);
+          setWaitingForServerAns(true);
+
           const ans = await fetch(`${BASE_URL}/playlist`, {
             method: "POST",
             headers: {
@@ -128,7 +133,7 @@ const PlaylistsPageBody = () => {
 
             const userPlaylistsFromServer = await getUserPlaylistsFromServer();
             setUserPlaylists(userPlaylistsFromServer.data);
-
+            setWaitingForServerAns(false);
             setCurrentPlaylist(playlistName);
             changeMessage(`new playlist was created: ${playlistName}`);
           } else {
@@ -145,6 +150,7 @@ const PlaylistsPageBody = () => {
       }
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   }, []);
 

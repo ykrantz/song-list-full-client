@@ -79,15 +79,16 @@ const ChoosePlaylist = () => {
       }
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   };
   return (
     <div>
       <div className="ChoosePlaylist-container-header">
         <div className="ChoosePlaylist-title">
-          <sapn>
+          <span>
             <b>Play list:</b>
-          </sapn>
+          </span>
         </div>
         <UserPlayLists />
 

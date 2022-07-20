@@ -28,6 +28,7 @@ const LoginRegisterPageBody = ({ type }) => {
       await checkConnectionStatus();
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   }, []);
 

@@ -50,6 +50,7 @@ const SearchVideo = () => {
       }
     } catch (e) {
       console.log(e);
+      changeMessage(e?.message, "error");
     }
   };
 
