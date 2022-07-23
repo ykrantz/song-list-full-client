@@ -130,10 +130,6 @@ const FoundedVideosYouTube = ({ waitingForServerAns }) => {
                       id={video.id}
                       addVideoToPlaylistServer={addVideoToPlaylistServer}
                     />
-                    // <AddVideoToPlaylist
-                    //   id={video.id}
-                    //   addVideoToPlaylistServer={addVideoToPlaylistServer}
-                    // />
                   }
                 />
               );

@@ -3,21 +3,32 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "plyr-react/dist/plyr.css";
 
-import LoginRegisterPage from "./pages/LoginRegisterPage/LoginRegisterPage";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import UserFavoriteList from "./components/UserFavoriteList/UserFavoriteList";
-import SearchVideoPage from "./pages/SearchVideoPage/SearchVideoPage";
-import PlaylistsPage from "./pages/PlaylistsPage/PlaylistsPage";
-import AboutPage from "./pages/AboutPage/AboutPage";
+// import SearchVideoPage from "./pages/SearchVideoPage/SearchVideoPage";
+// import PlaylistsPage from "./pages/PlaylistsPage/PlaylistsPage";
+// import FavoritePage from "./pages/FavoritePage/FavoritePage";
+// import AboutPage from "./pages/AboutPage/AboutPage";
 import HandlePlaylistMainState from "./context/handlePlaylistMainState";
 import HandleMessage from "./context/handleMessage";
 import HandleUser from "./context/handleUser";
 import getPlaylistVideoFromServer from "./actions/getData/getPlaylistVideo";
-import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import HandleVideoSrc from "./context/handleVideoSrc";
 import initConnectToServer from "./actions/getData/initConnectToServer";
 import HandleSearchResults from "./context/handleSearchResults";
 import { initSearchApiResults } from "./utils/main_var";
+import CircularIndeterminate from "./components/generalComponents/CircularIndeterminate/CircularIndeterminate";
+
+const SearchVideoPage = lazy(() =>
+  import("./pages/SearchVideoPage/SearchVideoPage")
+);
+const PlaylistsPage = lazy(() => import("./pages/PlaylistsPage/PlaylistsPage"));
+const FavoritePage = lazy(() => import("./pages/FavoritePage/FavoritePage"));
+const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
+
+const LoginRegisterPage = lazy(() =>
+  import("./pages/LoginRegisterPage/LoginRegisterPage")
+);
 
 function App() {
   const [currentUser, setCurrentUser] = useState(
@@ -140,34 +151,44 @@ function App() {
                   setPlaylistResults,
                 }}
               >
-                <Router>
-                  <Routes>
-                    <Route exact path="/" element={<SearchVideoPage />} />
-                    <Route
-                      exact
-                      path="/playlists"
-                      element={<PlaylistsPage />}
-                    />
-                    <Route exact path="/search" element={<SearchVideoPage />} />
-                    <Route exact path="/favorites" element={<FavoritePage />} />
-                    <Route exact path="/about" element={<AboutPage />} />
-                    <Route
-                      exact
-                      path="/register"
-                      element={<LoginRegisterPage type="register" />}
-                    />
-                    <Route
-                      exact
-                      path="/login"
-                      element={<LoginRegisterPage type="logIn" />}
-                    />
-                    <Route
-                      exact
-                      path="/songfavorites/:songid"
-                      element={<UserFavoriteList />}
-                    />
-                  </Routes>
-                </Router>
+                <Suspense fallback={<CircularIndeterminate />}>
+                  <Router>
+                    <Routes>
+                      <Route exact path="/" element={<SearchVideoPage />} />
+                      <Route
+                        exact
+                        path="/playlists"
+                        element={<PlaylistsPage />}
+                      />
+                      <Route
+                        exact
+                        path="/search"
+                        element={<SearchVideoPage />}
+                      />
+                      <Route
+                        exact
+                        path="/favorites"
+                        element={<FavoritePage />}
+                      />
+                      <Route exact path="/about" element={<AboutPage />} />
+                      <Route
+                        exact
+                        path="/register"
+                        element={<LoginRegisterPage type="register" />}
+                      />
+                      <Route
+                        exact
+                        path="/login"
+                        element={<LoginRegisterPage type="logIn" />}
+                      />
+                      <Route
+                        exact
+                        path="/songfavorites/:songid"
+                        element={<UserFavoriteList />}
+                      />
+                    </Routes>
+                  </Router>
+                </Suspense>
               </HandleSearchResults.Provider>
             </HandlePlaylistMainState.Provider>
           </HandleMessage.Provider>
