@@ -3,9 +3,11 @@
   /* display: flex;
   flex-direction: column;
   align-items: center; */
+  /* background-color: #d5fefd;
+background-image: linear-gradient(315deg, #d5fefd 0%, #fffcff 74%); */
 }
 
-.App-container {
+/* .App-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -14,7 +16,7 @@
 .App-contex {
   display: flex;
   width: 100%;
-  /* flex-direction: row; */
+
 }
 .App-SongList {
   float: left;
@@ -33,7 +35,7 @@
 .App-video {
   height: 100px;
   width: 100px;
-}
+} */
 
 button {
   margin-left: 20px;

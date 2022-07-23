@@ -4,9 +4,16 @@
   --backgroundImageResults:linear-gradient(315deg, #52a7c1 0%, #b3f6d8 74%);
 }
 
+html{
+  height: 100%;
+}
 
 body {
+  height: 100%;
   margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -24,9 +31,10 @@ body {
   object-fit: cover */
 
 
-
-background-color: #d5fefd;
+  /* background-color:red */
+ background-color: #d5fefd;
 background-image: linear-gradient(315deg, #d5fefd 0%, #fffcff 74%);
+/* object-fit: cover  */
 }
 
 code {
