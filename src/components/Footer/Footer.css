@@ -2,7 +2,10 @@
 .Footer-container{
   position: absolute;
   bottom: 2vh;
-  width: 100%;
+  width: 10%;
+/* background-color: brown; */
+  /* background-color: #d5fefd;
+  background-image: linear-gradient(315deg, #d5fefd 0%, #fffcff 74%); */
 }
   @media only screen and (min-width: 600px) { 
 
