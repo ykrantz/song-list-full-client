@@ -83,9 +83,7 @@ const SearchVideoPageBody = () => {
       }
     } catch (e) {
       console.log(e);
-      // console.log(e?.message, "MS", 10);
       changeMessage(e?.message, "error");
-      // changeMessage("DDD", "error");
     }
   };
 

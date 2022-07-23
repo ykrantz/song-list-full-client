@@ -80,11 +80,6 @@ const Playlist = ({ waitingForServerAns }) => {
               )
             ) : (
               <NoVideoComponent />
-
-              // <div>
-              //   <p>No videos in playlist.</p>
-              //   <p>Want to add? Press {<Link to="/search"> here</Link>}</p>
-              // </div>
             )
           ) : (
             <LogInRegisterLink />
