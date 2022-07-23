@@ -1,3 +1,4 @@
+import React, { lazy, Suspense } from "react";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import "./FoundedVideosYouTube.css";
@@ -13,7 +14,16 @@ import handleSearchVideoApi from "../../../context/handleSearchVideoApi";
 import VideoItem from "../../generalComponents/VideoItem/VideoItem";
 import handleSearchResults from "../../../context/handleSearchResults";
 import { CircularProgress, Typography } from "@mui/material";
-import WaitingForServerAnsCircle from "../../generalComponents/WaitingForServerAnsCircle/WaitingForServerAnsCircle";
+import CircularIndeterminate from "../../generalComponents/CircularIndeterminate/CircularIndeterminate";
+// import WaitingForServerAnsCircle from "../../generalComponents/WaitingForServerAnsCircle/WaitingForServerAnsCircle";
+// import React from "react";
+// import FoundedVideoResults from "../FoundedVideoResults/FoundedVideoResults";
+
+const FoundedVideoResults = lazy(() =>
+  import("../FoundedVideoResults/FoundedVideoResults")
+);
+// const Artists = lazy(() => import(‘./Artists’))
+
 const FoundedVideosYouTube = ({ waitingForServerAns }) => {
   const { getFavoritePlaylistFromServer, setCurrentPlaylist } = useContext(
     handlePlaylistMainState
@@ -30,55 +40,55 @@ const FoundedVideosYouTube = ({ waitingForServerAns }) => {
     getFavoritePlaylistFromServer();
   }, [searchVideoApiResults]);
 
-  const getVideoApiDitails = (videoId) => {
-    return searchVideoApiResults.find((video) => video.id === videoId);
-  };
+  // const getVideoApiDitails = (videoId) => {
+  //   return searchVideoApiResults.find((video) => video.id === videoId);
+  // };
 
-  const addVideoToPlaylistServer = useCallback(
-    async (videoId, playlistName) => {
-      try {
-        if (!playlistName) {
-          changeMessage(
-            "Please choose/create playlist before adding a video",
-            "warning"
-          );
-          return;
-        }
-        const videoDitails = getVideoApiDitails(videoId);
-        const accessToken = JSON.parse(localStorage?.accessToken);
-        const ans = await fetch(`${BASE_URL}/playlist`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            playlistName: playlistName,
-            song: formolizeVideoToServer(videoDitails),
-          }),
-        });
+  // const addVideoToPlaylistServer = useCallback(
+  //   async (videoId, playlistName) => {
+  //     try {
+  //       if (!playlistName) {
+  //         changeMessage(
+  //           "Please choose/create playlist before adding a video",
+  //           "warning"
+  //         );
+  //         return;
+  //       }
+  //       const videoDitails = getVideoApiDitails(videoId);
+  //       const accessToken = JSON.parse(localStorage?.accessToken);
+  //       const ans = await fetch(`${BASE_URL}/playlist`, {
+  //         method: "PUT",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           authorization: `bearer ${accessToken}`,
+  //         },
+  //         body: JSON.stringify({
+  //           playlistName: playlistName,
+  //           song: formolizeVideoToServer(videoDitails),
+  //         }),
+  //       });
 
-        const data = await ans.json();
-        // console.log(data);
+  //       const data = await ans.json();
+  //       // console.log(data);
 
-        if (ans.status === 200) {
-          console.log("video was updated in server");
-          setCurrentPlaylist(playlistName);
-          changeMessage(`Added to playlist:  
-        ${playlistName.substring(0, 25)}`);
-        } else {
-          // console.log(data);
+  //       if (ans.status === 200) {
+  //         console.log("video was updated in server");
+  //         setCurrentPlaylist(playlistName);
+  //         changeMessage(`Added to playlist:
+  //       ${playlistName.substring(0, 25)}`);
+  //       } else {
+  //         // console.log(data);
 
-          changeMessage(data?.message, "warning");
-        }
-      } catch (e) {
-        console.log(e);
+  //         changeMessage(data?.message, "warning");
+  //       }
+  //     } catch (e) {
+  //       console.log(e);
 
-        changeMessage(e?.message, "error");
-      }
-    },
-    []
-  );
+  //       changeMessage(e?.message, "error");
+  //     }
+  //   },
+  //   []
+  // );
 
   const AddVideoToPlaylistComponent = useCallback(
     ({ id, addVideoToPlaylistServer }) => {
@@ -107,9 +117,14 @@ const FoundedVideosYouTube = ({ waitingForServerAns }) => {
         </div>
         <Divider />
         <div className="FoundedVideosYouTube-searchVideoResults">
-          {waitingForServerAns ? (
+          {/* {waitingForServerAns ? (
             <WaitingForServerAnsCircle />
-          ) : searchVideoResults.length === 0 ? (
+          ) : */}
+          {/* <Suspense fallback={<h1>Still Loading…</h1>}></Suspense> */}
+          <Suspense fallback={<CircularIndeterminate />}>
+            <FoundedVideoResults />
+          </Suspense>
+          {/* searchVideoResults.length === 0 ? (
             <p className="FoundedVideosYouTube-NoResults">
               No video was found in search results
             </p>
@@ -138,7 +153,7 @@ const FoundedVideosYouTube = ({ waitingForServerAns }) => {
                 />
               );
             })
-          )}
+          )} */}
         </div>
 
         <Divider />

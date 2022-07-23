@@ -63,7 +63,9 @@ const SearchVideoPageBody = () => {
         );
         return;
       }
-      setWaitingForServerAns(true);
+      // TODO: change wating
+      // setWaitingForServerAns(true);
+
       // waitingMessage();
       const ans = await fetch(`${BASE_URL}/api/search/${searchValue}`);
       const data = await ans.json();
@@ -73,7 +75,11 @@ const SearchVideoPageBody = () => {
         // console.log(data);
         localStorage.searchVideoApiResults = JSON.stringify(data);
         updateVideoSource(data[0].id);
-        setWaitingForServerAns(false);
+
+        // TODO: change wating
+
+        // setWaitingForServerAns(false);
+
         changeMessage(
           "Great. we founded videos for you from YouTube",
           "success"
